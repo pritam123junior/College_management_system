@@ -15,17 +15,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 
 //class
   
-    Route::prefix('class')->name('class.')->group(function () {
-        Route::get('index', [ClassController::class, 'index'])
-        ->name('index');
-        Route::get('add', [ClassController::class, 'add'])
-        ->name('add');
-        Route::post('store', [ClassController::class, 'store'])
-        ->name('store');
-        Route::get('edit', [ClassController::class, 'edit'])
-        ->name('edit');
-        Route::put('update', [ClassController::class, 'update'])->name('update');
-        Route::delete('delete', [ClassController::class, 'delete'])->name('delete');
+Route::prefix('class')->name('class.')->group(function () {
+    Route::get('index', [ClassController::class, 'index'])->name('index');
+    Route::get('add', [ClassController::class, 'add'])->name('add');
+    Route::post('store', [ClassController::class, 'store'])->name('store');
+
+    Route::get('edit/{id}', [ClassController::class, 'edit'])->name('edit'); // Fix: Added {id}
+    Route::put('update/{id}', [ClassController::class, 'update'])->name('update'); // Fix: Added {id}
+    Route::delete('delete/{id}', [ClassController::class, 'delete'])->name('delete'); // Fix: Added {id}
 
     });
 });
