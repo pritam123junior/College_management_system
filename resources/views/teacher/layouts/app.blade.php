@@ -34,13 +34,15 @@
 </head>
 <body>
     <div class="wrapper">
-        @include('layouts.sidebar')
+        @include('teacher.layouts.sidebar')
         <div class="main-panel">
-            @include('layouts.navbar')
-
+            @include('teacher.layouts.navbar')
+        <div class="content">
+            <div class="container-fluid">
              @yield('content')
-
-            @include('layouts.footer')
+             </div>
+        </div>
+            @include('teacher.layouts.footer')
         </div>
     </div>
 </body>

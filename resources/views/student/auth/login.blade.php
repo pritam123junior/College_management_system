@@ -16,7 +16,7 @@
             <div class="col-6 offset-3">                
                 <form action="{{url('login')}}" method="POST" class="p-5 border rounded">
                     @csrf
-                    <h3 class="text-center text-dark mb-5">Login</h3>
+                    <h3 class="text-center text-dark mb-5">Admin Login</h3>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">                       

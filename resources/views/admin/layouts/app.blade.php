@@ -38,8 +38,11 @@
         @include('admin.layouts.sidebar')
         <div class="main-panel">
             @include('admin.layouts.navbar')
-
-             @yield('content')
+            <div class="content">
+                <div class="container-fluid">
+                @yield('content')
+                </div>
+            </div>
 
             @include('admin.layouts.footer')
         </div>

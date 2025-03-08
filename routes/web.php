@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\ClassController;
+use App\Http\Middleware\AdminAuthCheck;
+use App\Http\Middleware\TeacherAuthCheck;
+use App\Http\Middleware\StudentAuthCheck;
 
 //admin
 
@@ -24,7 +27,20 @@ Route::prefix('class')->name('class.')->group(function () {
     Route::delete('delete/{id}', [ClassController::class, 'delete'])->name('delete'); // Fix: Added {id}
 
     });
-});
+})->middleware(AdminAuthCheck::class);
+
+
+//teacher
+
+Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('dashboard', function () {
+        return view('teacher.page.dashboard');
+    })->name('dashboard');
+
+
+
+})->middleware(TeacherAuthCheck::class);
 
 
 

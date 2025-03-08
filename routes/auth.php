@@ -24,6 +24,17 @@ Route::middleware('guest')->group(function () {
 
     });
 
+     //teacher
+
+     Route::prefix('teacher')->name('teacher.')->group(function () {
+
+        Route::get('login', [AuthenticatedSessionController::class, 'teacherCreate'])
+        ->name('login');
+    
+        Route::post('login', [AuthenticatedSessionController::class, 'teacherStore']);
+
+    });
+
    
 
     
