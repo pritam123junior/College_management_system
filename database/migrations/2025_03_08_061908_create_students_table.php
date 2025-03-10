@@ -21,7 +21,7 @@ return new class extends Migration
            
            
             $table->string('section')->nullable();
-            $table->string('moblie')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('approve_status')->default('Not Approved');
             $table->timestamps();
         });
