@@ -1,36 +1,38 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h3>Add New Class</h3>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+             <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title">Basic Form</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis, diam nibh finibus leo</p>
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email address:</label>
+                            <input type="email" class="form-control" id="email1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="checkbox mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                                <label class="form-check-label" for="flexCheckDefault3">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-danger">cancel</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    @endif
-
-    <form action="{{ route('admin.classes.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">Class Name</label>
-            <input type="text" class="form-control" name="name" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Sections (Multiple Allowed)</label>
-            <select class="form-select" name="sections[]" multiple>
-                <option value="A">Section A</option>
-                <option value="B">Section B</option>
-                <option value="C">Section C</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Create Class</button>
-    </form>
-</div>
+    </div>
 @endsection

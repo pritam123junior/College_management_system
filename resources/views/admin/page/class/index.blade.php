@@ -6,9 +6,9 @@
          <div class="card">
             <div class="card-header d-flex justify-content-between">
                <div class="header-title">
-                  <h4 class="card-title">Class 1 Content</h4>                   
+                  <h4 class="card-title">Class List</h4>                   
                </div>
-                <a href="{{ route('teacher.content.add', ['id' => 1]) }}" class="btn btn-primary">Add Content</a> 
+                <a href="{{ route('admin.classes.add') }}" class="btn btn-primary">Add Content</a> 
             </div>
             <div class="card-body p-0">
                <div class="table-responsive mt-4">
