@@ -40,11 +40,11 @@
           <div class="loader-body"></div>
       </div>    </div>
     <!-- loader END -->
-    @include('teacher.layouts.sidebar')
+    @include('admin.layouts.sidebar')
 
     <main class="main-content">
         <div class="position-relative iq-banner">
-            @include('teacher.layouts.navbar')
+            @include('admin.layouts.navbar')
             <div class="conatiner-fluid content-inner mt-n5 py-0">
                 @yield('content')
             </div>
@@ -54,7 +54,7 @@
     </main>    
     <!-- Wrapper End-->
    
-    @include('teacher.layouts.offcanvas')
+    @include('admin.layouts.offcanvas')
 
     <!-- Library Bundle Script -->
     <script src="{{ asset('js/core/libs.min.js') }}"></script>
