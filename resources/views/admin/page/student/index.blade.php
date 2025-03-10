@@ -21,6 +21,7 @@
                                     <th>Class</th>
                                     <th>Section</th>
                                     <th>Mobile</th>
+                                    <th>Approve Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -30,10 +31,15 @@
                                         <td>{{ $student->id }}</td>
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->email }}</td>
-                                        <td>{{ $student->dataClass?->name }}</td>
+                                        <td>{{ $student->dataclasses?->name }}</td>
                                         <td>{{ $student->section }}</td>
-                                        <td>{{ $student->mobile }}</td>
+                                        <td>{{ $student->moblie}}</td>
+                                        <td>{{$student->approve_status}}</td>
                                         <td>
+                                            <a href="{{ route('admin.student.edit', $student->id) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i> Change Status
+                                            </a>
                                             <a href="{{ route('admin.student.edit', $student->id) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="fas fa-edit"></i> Edit
