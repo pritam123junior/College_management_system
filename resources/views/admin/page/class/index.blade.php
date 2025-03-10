@@ -14,24 +14,32 @@
                <div class="table-responsive mt-4">
                   <table id="basic-table" class="table table-striped mb-0" role="grid">
                      <thead>
-                        <tr>
-                           <th>Sl.</th>
-                           <th>Content</th>
-                           <th>Action</th>
-                        </tr>
+                                       <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Sections</th>
+                                    <th>Actions</th>
+                                </tr>
                      </thead>
                      <tbody>
-                        <tr>
-                           <td>
-                              1
-                           </td>
-                           <td>
-                              one
-                           </td>
-                           <td>
-                           <button type="button" class="btn btn-danger">Delete</button>                          
-                           </td>                       
-                        </tr>                  
+                         @foreach($classes as $index => $class)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $class->name }}</td>
+                    <td><span class="badge bg-{{ $class->status == 'active' ? 'success' : 'danger' }}">{{ ucfirst($class->status) }}</span></td>
+                    <td>
+                      null
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.classes.edit', $class->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('admin.classes.delete', $class->id) }}" method="POST" class="d-inline">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this class?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach              
                      </tbody>
                   </table>
                </div>
