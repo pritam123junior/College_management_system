@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
+    //student
+
+    Route::get('login', [AuthenticatedSessionController::class, 'studentCreate'])
+    ->name('login');
+
+    Route::post('login', [AuthenticatedSessionController::class, 'studentStore']);
+
     //admin
 
     Route::prefix('admin')->name('admin.')->group(function () {

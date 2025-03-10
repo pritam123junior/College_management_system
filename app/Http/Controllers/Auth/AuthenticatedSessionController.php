@@ -49,6 +49,22 @@ class AuthenticatedSessionController extends Controller
     }
 
 
+     //student login
+
+     public function studentCreate(): View
+     {
+         return view('student.auth.login');
+     }
+    
+     public function studentStore(LoginRequest $request): RedirectResponse
+     {
+         $request->authenticate();
+ 
+         $request->session()->regenerate();
+ 
+         return redirect()->intended(route('student.dashboard', absolute: false));
+     }
+
 
 
 
@@ -73,6 +89,8 @@ class AuthenticatedSessionController extends Controller
         }
         elseif($type=='teacher'){
             return redirect()->route('teacher.login');
+        }else{
+            return redirect()->route('login');
         }
         
     }
