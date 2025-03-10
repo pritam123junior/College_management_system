@@ -1,28 +1,36 @@
 @extends('admin.layouts.app')
+
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-lg-12">
-             <div class="card">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Basic Form</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis, diam nibh finibus leo</p>
-                   <form action="{{ route('admin.classes.update', ['id'=>$class->id]) }}" method="POST">
-        @csrf @method('PUT')
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
+                        diam nibh finibus leo</p>
+                    <form action="{{ route('admin.teacher.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
-                    <label class="form-label">Class Name</label>
-            <input type="text" class="form-control" name="name" value="{{ $class->name }}" required>
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Status</label>
-            <select class="form-select" name="status">
-                <option value="active" {{ $class->status == 'active' ? 'selected' : '' }}>Active</option>
-                <option value="inactive" {{ $class->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
-            </select>
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                             <label>Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Mobile</label>
+                    <input type="text" name="mobile" class="form-control">
+                        </div>
+
                         <div class="checkbox mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
@@ -38,6 +46,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

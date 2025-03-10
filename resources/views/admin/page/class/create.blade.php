@@ -11,14 +11,19 @@
                 </div>
                 <div class="card-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis, diam nibh finibus leo</p>
-                    <form>
+                    <form action="{{ route('admin.classes.store') }}" method="POST">
+                     @csrf
                         <div class="form-group">
-                            <label class="form-label" for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email1">
+                     <label class="form-label">Class Name</label>
+            <input type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd">
+                            <label class="form-label">Sections (Multiple Allowed)</label>
+            <select class="form-select" name="sections[]" multiple>
+                <option value="A">Section A</option>
+                <option value="B">Section B</option>
+                <option value="C">Section C</option>
+            </select>
                         </div>
                         <div class="checkbox mb-3">
                             <div class="form-check">
