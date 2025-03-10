@@ -105,7 +105,8 @@
                                     </a>
                                     <h2 class="mb-2 text-center">Sign Up</h2>
                                     <p class="text-center">Create your Hope UI account.</p>
-                                    <form>
+                                    <form action="{{ url('register') }}" method="POST">
+                                    @csrf
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
