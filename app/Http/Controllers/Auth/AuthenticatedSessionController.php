@@ -12,17 +12,13 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+   
     public function adminCreate(): View
     {
         return view('admin.auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
+    
     public function adminStore(AdminLoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -70,9 +66,7 @@ class AuthenticatedSessionController extends Controller
 
 
 
-    /**
-     * Destroy an authenticated session.
-     */
+    
     public function destroy(Request $request): RedirectResponse
     {
 

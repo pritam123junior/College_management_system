@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherClassController;
 use App\Http\Controllers\TeacherContentController;
 use App\Http\Middleware\AdminAuthCheck;
@@ -10,6 +10,8 @@ use App\Http\Middleware\StudentAuthCheck;
 use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
+
+
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
@@ -85,14 +87,14 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified'])->gr
 
 
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified']);
+})->middleware(['auth', 'verified']); */
 
-Route::middleware('auth')->group(function () {
+/* Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+}); */
 
 require __DIR__.'/auth.php';

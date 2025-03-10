@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hope UI | Responsive Bootstrap 5 Admin Dashboard Template</title>
+    <title>Admin</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="" />
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{ asset('css/core/libs.min.css') }}" />
@@ -35,10 +35,7 @@
 
 <body>
  <!-- loader Start -->
-    <div id="loading">
-      <div class="loader simple-loader">
-          <div class="loader-body"></div>
-      </div>    </div>
+    
     <!-- loader END -->
     @include('admin.layouts.sidebar')
 
