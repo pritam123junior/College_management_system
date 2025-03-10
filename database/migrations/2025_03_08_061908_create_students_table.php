@@ -22,7 +22,7 @@ return new class extends Migration
            
             $table->string('section')->nullable();
             $table->string('moblie')->nullable();
-            $table->enum('Aprroved', ['Yes', 'No'])->default('No');
+            $table->enum('aprroved', ['yes', 'no'])->default('No');
             $table->timestamps();
         });
     }

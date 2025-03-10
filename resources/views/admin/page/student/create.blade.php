@@ -44,7 +44,7 @@
                     <input type="text" name="section" id="section" class="form-control" placeholder="Enter Section" value="{{ old('section') }}">
                         </div>  <div class="form-group">
                              <label for="mobile" class="form-label">Mobile Number (Optional)</label>
-                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile Number" value="{{ old('mobile') }}">Student Name" required value="{{ old('name') }}">
+                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile Number" value="{{ old('mobile') }}">
                         </div>
                         <div class="checkbox mb-3">
                             <div class="form-check">
