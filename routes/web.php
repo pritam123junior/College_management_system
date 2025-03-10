@@ -7,7 +7,7 @@ use App\Http\Controllers\TeacherContentController;
 use App\Http\Middleware\AdminAuthCheck;
 use App\Http\Middleware\TeacherAuthCheck;
 use App\Http\Middleware\StudentAuthCheck;
-
+use App\Http\Controllers\AdminClassController;
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
@@ -16,18 +16,33 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         return view('admin.page.dashboard');
     })->name('dashboard');
 
-//class
-  
-/* Route::prefix('class')->name('class.')->group(function () {
-    Route::get('index', [ClassController::class, 'index'])->name('index');
-    Route::get('add', [ClassController::class, 'add'])->name('add');
-    Route::post('store', [ClassController::class, 'store'])->name('store');
-
-    Route::get('edit/{id}', [ClassController::class, 'edit'])->name('edit'); // Fix: Added {id}
-    Route::put('update/{id}', [ClassController::class, 'update'])->name('update'); // Fix: Added {id}
-    Route::delete('delete/{id}', [ClassController::class, 'delete'])->name('delete'); // Fix: Added {id}
-
-    }); */
+    Route::prefix('classes')->name('classes.')->group(function () {
+        Route::get('index', [AdminClassController::class, 'index'])->name('index');
+        Route::get('add', [AdminClassController::class, 'add'])->name('add');
+        Route::post('store', [AdminClassController::class, 'store'])->name('store');
+        
+        Route::get('edit/{id}', [AdminClassController::class, 'edit'])->name('edit'); // Fix: Added {id}
+        Route::put('update/{id}', [AdminClassController::class, 'update'])->name('update'); // Fix: Added {id}
+        Route::delete('delete/{id}', [AdminClassController::class, 'delete'])->name('delete'); // Fix: Added {id}
+    
+        });
+        Route::prefix('student')->name('student.')->group(function () {
+            Route::get('/', [StudentController::class, 'index'])->name('index');
+            Route::get('/create', [StudentController::class, 'create'])->name('create');
+            Route::post('/store', [StudentController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [StudentController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [StudentController::class, 'destroy'])->name('destroy');
+        });
+    
+        Route::prefix('teacher')->name('teacher.')->group(function () {
+            Route::get('/', [TeacherController::class, 'index'])->name('index');
+            Route::get('/create', [TeacherController::class, 'create'])->name('create');
+            Route::post('/store', [TeacherController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [TeacherController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [TeacherController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [TeacherController::class, 'destroy'])->name('destroy');
+        });
 
 
 
