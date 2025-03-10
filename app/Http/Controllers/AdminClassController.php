@@ -9,7 +9,7 @@ class AdminClassController extends Controller
 {
     public function index()
     {
-        $classes = DataClass::all();
+         $classes = DataClass::all();
         return view('admin.page.class.index', compact('classes'));
     }
 
