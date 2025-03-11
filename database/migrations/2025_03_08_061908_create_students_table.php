@@ -12,17 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('data_class_id');
+            $table->id();          
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            
-           
-           
-            $table->string('section')->nullable();
-            $table->string('moblie')->nullable();
-            $table->string('approve_status')->default('Not Approved');
+            $table->string('password');            
+            $table->foreignId('class_id');           
+            $table->foreignId('section_id');
+            $table->string('mobile')->nullable();
+            $table->string('approve_status');
             $table->timestamps();
         });
     }

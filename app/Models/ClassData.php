@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class ClassData extends Model
 {
     protected $guarded = [];
 
-   
+    protected $table = 'classes';
 }

@@ -5,42 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Models\DataClass;
+use App\Models\ClassData;
 use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 class AdminStudentController extends Controller
-{ public function index(): View
+{ public function index()
     {
         $students = Student::get(); 
         return view('admin.page.student.index', compact('students'));
     }
-    public function create(): View
+    public function create()
     {
-        $dataclasses= DataClass::all(); // Fetch all available classes from the database
-        return view('admin.page.student.create', compact('dataclasses'));
+        $classes= ClassData::all(); // Fetch all available classes from the database
+        return view('admin.page.student.create', compact('classes'));
     }
     public function store(Request $request)
-    {  //  return $request->all();
+    {  
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:students'],
-            'password' => ['required'],
-            'data_class_id' => ['required'],
+            'name' => ['required', 'string'],
+            'password' => ['required', 'string'],
+            'class_id' => ['required'],
+            'section_id' => ['required'],
             'mobile' => ['nullable', 'string', 'max:20'],
-            'section' => ['nullable', 'string', 'max:10'],
+            'approve_status' => ['required', 'string']
         ]);
 
         Student::create([
             'name' => $request->name,
-            'email' => $request->email,
             'password' => Hash::make($request->password),
-            'data_class_id' => $request->data_class_id,
+            'class_id' => $request->class_id,
+            'section_id' => $request->section_id,
             'mobile' => $request->mobile,
-            'section' => $request->section,
+            'approve_status' => $request->approve_status
+
         ]);
 
-        return redirect()->route('admin.student.index')->with('success', 'Student created successfully.');
+        return redirect()->route('admin.student.index')->with('success', 'Student added successfully.');
     }
     public function edit($id): View
     {

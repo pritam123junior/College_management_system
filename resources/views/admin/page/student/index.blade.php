@@ -16,11 +16,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Name</th>  
+                                    <th>Mobile</th>                   
                                     <th>Class</th>
-                                    <th>Section</th>
-                                    <th>Mobile</th>
+                                    <th>Section</th>                                   
                                     <th>Approve Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -29,16 +28,15 @@
                                 @foreach ($students as $student)
                                     <tr>
                                         <td>{{ $student->id }}</td>
-                                        <td>{{ $student->name }}</td>
-                                        <td>{{ $student->email }}</td>
-                                        <td>{{ $student->dataclasses?->name }}</td>
-                                        <td>{{ $student->section }}</td>
-                                        <td>{{ $student->moblie}}</td>
+                                        <td>{{ $student->name }}</td>  
+                                        <td>{{ $student->moblie}}</td>      
+                                        <td>{{ $student->class?->name }}</td>
+                                        <td>{{ $student->section?->name }}</td>                                      
                                         <td>{{$student->approve_status}}</td>
                                         <td>
                                             <a href="{{ route('admin.student.edit', $student->id) }}"
                                                 class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i> Change Status
+                                                <i class="bi bi-people"></i>
                                             </a>
                                             <a href="{{ route('admin.student.edit', $student->id) }}"
                                                 class="btn btn-warning btn-sm">

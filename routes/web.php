@@ -10,7 +10,7 @@ use App\Http\Middleware\StudentAuthCheck;
 use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
-
+use App\Http\Controllers\AdminAjaxDataController;
 
 //admin
 
@@ -48,7 +48,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
             Route::delete('/delete/{id}', [AdminTeacherController::class, 'destroy'])->name('destroy');
         });
 
+        Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
+            Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
+        });
 
+
+       
 
 })->middleware(AdminAuthCheck::class);
 

@@ -6,59 +6,89 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Add Student</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
-                        diam nibh finibus leo</p>
-                     <form action="{{ route('admin.student.store') }}" method="POST">
-                @csrf
+                    <form action="{{ route('admin.student.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
-                            <label for="name" class="form-label">Student Name</label>
-                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Student Name" required value="{{ old('name') }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email Address</label>
-                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email" required value="{{ old('email') }}">
+                            <label for="name" class="form-label">Student Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="name"
+                                class="form-control" placeholder="Enter Student Name"
+                                required>
                         </div>
                         <div class="form-group">
-                                 <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter Password" required>
-                    @error('password')
-                        <span class="text-danger small">{{ $message }}</span>
-                    @enderror
-                        </div>
+                            <label for="password" class="form-label">Student Password <span class="text-danger">*</span></label>
+                            <input type="password" name="password" id="password"
+                                class="form-control"
+                                placeholder="Enter Student Password" required>                            
+                        </div>                                         
                         <div class="form-group">
-                           <label for="class_id" class="form-label">Select Class</label>
-                    <select name="data_class_id" id="data_class_id" class="form-control " required>
-                        <option value="">-- Select Class --</option>
-                        @foreach ($dataclasses as $dataclass)
-                            <option value="{{ $dataclass->id}}">{{ $dataclass->name }}</option>
-                       
-                        @endforeach
-                    </select>
-                        </div>
-                          <div class="form-group">
-                          <label for="section" class="form-label">Section (Optional)</label>
-                    <input type="text" name="section" id="section" class="form-control" placeholder="Enter Section" value="{{ old('section') }}">
-                        </div>  <div class="form-group">
-                             <label for="mobile" class="form-label">Mobile Number (Optional)</label>
-                    <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile Number" value="{{ old('mobile') }}">
-                        </div>
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                            <label for="mobile" class="form-label">Mobile Number (Optional)</label>
+                            <input type="text" name="mobile" id="mobile" class="form-control"
+                                placeholder="Enter Mobile Number" value="">
+                        </div> 
+                         <div class="form-group">
+                            <label for="class_id" class="form-label">Class <span class="text-danger">*</span></label>
+                            <select name="class_id" id="class_id" class="form-control" required>
+                                <option value="">Select Class</option>
+                                @foreach ($classes as $class)
+                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>    
+                         <div class="form-group">
+                            <label for="section_id" class="form-label">Section <span class="text-danger">*</span></label>
+                            <select name="section_id" id="section_id" class="form-control" required>
+                                <option value="">Select Section</option>                                
+                            </select>
+                        </div>     
+                        <div class="form-group">
+                            <label for="approve_status" class="form-label">Approve Status <span class="text-danger">*</span></label>
+                            <select name="approve_status" id="approve_status" class="form-control" required>
+                                <option value="">Select Status</option>   
+                                <option value="Approved">Approved</option>
+                                <option value="Not Approved">Not Approved</option>
+                            </select>
+                        </div> 
+
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function(){
+
+$( "#class_id" ).on( "change", function() {
+
+$( "#section_id" ).html( "" );
+$( "#section_id" ).html( '<option value="">Select Section</option>' );
+
+ $.ajax({
+            
+            url: "{{route('admin.ajaxdata.section')}}",
+            type: "POST",
+           data:{
+                _token:"{{ csrf_token() }}",
+                class_id:$("#class_id option:selected").val()
+            },
+            success:function(data){
+                for(const item of data){
+                    let html_code='<option value="'+item.id+'">'+item.name+'</option>';
+                    $( "#section_id" ).append(html_code);
+                }
+            }
+            
+        });
+
+} ); 
+} ); 
+
+</script>
+@endpush

@@ -30,12 +30,34 @@
     <!-- RTL Css -->
     <link rel="stylesheet" href="{{ asset('css/rtl.min.css') }}" />
 
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- snapAlert -->
+    <link rel="stylesheet" href="{{ asset('css/snapAlert.min.css') }}" />
+    <script src="{{ asset('js/snap-alert.min.js') }}"></script>
+
+    <script>
+        SnapAlert().SnapOptions({
+            duration: 2000,
+            isDark: false,
+            position: 'top right'
+        });
+    </script>
 
 </head>
 
 <body>
- <!-- loader Start -->
-    
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+
     <!-- loader END -->
     @include('admin.layouts.sidebar')
 
@@ -48,9 +70,9 @@
         </div>
 
 
-    </main>    
+    </main>
     <!-- Wrapper End-->
-   
+
     @include('admin.layouts.offcanvas')
 
     <!-- Library Bundle Script -->
@@ -83,6 +105,9 @@
 
     <!-- App Script -->
     <script src="{{ asset('js/hope-ui.js') }}" defer></script>
+
+    @stack('scripts')
+
 
 </body>
 

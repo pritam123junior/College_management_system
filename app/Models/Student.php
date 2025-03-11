@@ -1,40 +1,23 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Notifications\Notifiable;
-class Student extends Authenticatable
+
+use Illuminate\Database\Eloquent\Model;
+
+class Student extends Model
 {
-    use HasFactory, Notifiable;
+    
+    protected $guarded = [];
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'data_class_id',
-        'section',
-        'moblie',
-        
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    protected function casts(): array
+    public function class()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(ClassData::class);
     }
 
-    /**
-     * Get the class that the user belongs to.
-     */
-  
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+    
 
 }
