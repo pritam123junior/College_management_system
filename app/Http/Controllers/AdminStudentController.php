@@ -55,17 +55,11 @@ class AdminStudentController extends Controller
     }
     public function edit($id): View
     {
-<<<<<<< HEAD
-        $student = Student::findOrFail($id);
-        $classes = classData::all();
-        return view('admin.page.student.edit', compact('student', 'classes'));
-=======
         $student = Student::find($id);
         $classes = ClassData::all();
         $sections = Section::where('class_id',$student->class_id)->get();
 
         return view('admin.page.student.edit', compact('student', 'classes','sections'));
->>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
     }
 
     /**
