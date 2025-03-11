@@ -6,39 +6,31 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Edit Teacher</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
-                        diam nibh finibus leo</p>
-                  <form action="{{ route('admin.teacher.update', $teacher->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+                    <form action="{{ route('admin.teacher.update', $teacher->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $teacher->name }}" required>
+                            <input type="text" name="name" class="form-control" value="{{$teacher->name}}" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ $teacher->email }}" required>
+                            <input type="email" name="email" class="form-control" value="{{$teacher->user->email}}" required>
                         </div>
-                        
                         <div class="form-group">
-                          <label>Mobile</label>
-                    <input type="text" name="mobile" class="form-control" value="{{ $teacher->moblie }}">
+                            <label>Mobile</label>
+                            <input type="text" name="mobile" class="form-control" value="{{$teacher->user->mobile}}" required>
                         </div>
-
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                 </div>
             </div>

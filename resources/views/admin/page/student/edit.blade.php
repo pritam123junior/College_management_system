@@ -6,61 +6,91 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Edit Student</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
-                        diam nibh finibus leo</p>
-                      <form action="{{ route('admin.student.update', $student->id) }}" method="POST" id="editStudentForm">
-                @csrf
-                @method('PUT')
-              
+                    <form action="{{ route('admin.student.update', $student->id) }}" method="POST" id="editStudentForm">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
- <label class="form-label">Student Name <span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control" value="{{ $student->name }}" required>
+                            <label for="name" class="form-label">Student Name</label>
+                            <input type="text" name="name" id="name" class="form-control"
+                                placeholder="Enter Student Name" value="{{$student->name}}" required>
                         </div>
                         <div class="form-group">
-                          <label class="form-label">Email <span class="text-danger">*</span></label>
-                        <input type="email" name="email" class="form-control" value="{{ $student->email }}" required>
+                            <label for="password" class="form-label">Student Password</label>
+                            <input type="password" name="password" id="password" class="form-control"
+                                placeholder="Enter Student Password" value="">
                         </div>
-                        
                         <div class="form-group">
-                         <label class="form-label">Class <span class="text-danger">*</span></label>
-                        <select name="data_class_id" class="form-select" required>
-                            <option value="">-- Select Class --</option>
-                            @foreach ($classes as $class)
-                                <option value="{{ $class->id }}" {{ $student->data_class_id == $class->id ? 'selected' : '' }}>
-                                    {{ $class->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                            <label for="mobile" class="form-label">Mobile Number (Optional)</label>
+                            <input type="text" name="mobile" id="mobile" class="form-control"
+                                placeholder="Enter Mobile Number" value="{{$student->mobile}}">
                         </div>
-                         <div class="form-group">
-                       <label class="form-label">Section</label>
-                        <input type="text" name="section" class="form-control" value="{{ $student->section }}">
+                        <div class="form-group">
+                            <label for="class_id" class="form-label">Class</label>
+                            <select name="class_id" id="class_id" class="form-control" required>
+                                <option value="">Select Class</option>
+                                @foreach ($classes as $class)
+                                    <option value="{{ $class->id }}" {{$class->id===$student->class_id?'selected':''}}>{{ $class->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                                <div class="form-group">
-                       <label class="form-label">Mobile</label>
-                        <input type="text" name="mobile" class="form-control" value="{{ $student->mobile }}">
+                        <div class="form-group">
+                            <label for="section_id" class="form-label">Section</label>
+                            <select name="section_id" id="section_id" class="form-control" required>
+                                <option value="">Select Section</option>
+                                @foreach ($sections as $section)
+                                    <option value="{{ $section->id }}" {{$section->id===$student->section_id?'selected':''}}>{{ $section->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                                       <div class="form-group">
-                        <label class="form-label">New Password (Leave blank to keep current)</label>
-                        <input type="password" name="password" class="form-control">
+                        <div class="form-group">
+                            <label for="approve_status" class="form-label">Approve Status</label>
+                            <select name="approve_status" id="approve_status" class="form-control" required>
+                                <option value="">Select Status</option>
+                                <option value="Approved" {{'Approved'==$student->user->approve_status?'selected':''}}>Approved</option>
+                                <option value="Not Approved" {{'Not Approved'==$student->user->approve_status?'selected':''}}>Not Approved</option>
+                            </select>
                         </div>
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $("#class_id").on("change", function() {
+
+                $("#section_id").html("");
+                $("#section_id").html('<option value="">Select Section</option>');
+
+                $.ajax({
+
+                    url: "{{ route('admin.ajaxdata.section') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        class_id: $("#class_id option:selected").val()
+                    },
+                    success: function(data) {
+                        for (const item of data) {
+                            let html_code = '<option value="' + item.id + '">' + item.name +
+                                '</option>';
+                            $("#section_id").append(html_code);
+                        }
+                    }
+
+                });
+
+            });
+        });
+    </script>
+@endpush

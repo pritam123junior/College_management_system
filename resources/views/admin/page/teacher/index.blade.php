@@ -18,7 +18,6 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Subject</th>
                                     <th>Mobile</th>
                                     <th>Actions</th>
                                 </tr>
@@ -28,16 +27,19 @@
                                     <tr>
                                         <td>{{ $teacher->id }}</td>
                                         <td>{{ $teacher->name }}</td>
-                                        <td>{{ $teacher->email }}</td>
-                                        <td>{{ $teacher->subject }}</td>
-                                        <td>{{ $teacher->mobile }}</td>
+                                        <td>{{ $teacher->user?->email }}</td>
+                                        <td>{{ $teacher->user?->mobile }}</td>
                                         <td>
                                             <a href="{{ route('admin.teacher.edit', $teacher->id) }}"
-                                                class="btn btn-warning btn-sm">Edit</a>
+                                                class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
                                             <form action="{{ route('admin.teacher.destroy', $teacher->id) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                                <button class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash-fill"></i>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>

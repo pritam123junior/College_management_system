@@ -12,16 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('data_class_id')->nullable();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            
-            $table->string('course')->nullable();
-           
-            $table->string('section')->nullable();
-            $table->string('mobile')->nullable();
+            $table->id();            
+            $table->string('name');           
+            $table->foreignId('user_id');            
             $table->timestamps();
         });
     }

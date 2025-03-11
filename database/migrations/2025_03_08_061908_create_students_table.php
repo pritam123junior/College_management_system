@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();          
             $table->string('name');
-            $table->string('password');            
+            $table->foreignId('user_id');           
             $table->foreignId('class_id');           
-            $table->foreignId('section_id');
-            $table->string('mobile')->nullable();
-            $table->string('approve_status');
+            $table->foreignId('section_id');                      
             $table->timestamps();
         });
     }
