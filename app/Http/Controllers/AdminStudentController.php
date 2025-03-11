@@ -46,7 +46,7 @@ class AdminStudentController extends Controller
     public function edit($id): View
     {
         $student = Student::findOrFail($id);
-        $classes = DataClass::all();
+        $classes = classData::all();
         return view('admin.page.student.edit', compact('student', 'classes'));
     }
 
@@ -60,7 +60,7 @@ class AdminStudentController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', "unique:students,email,$id"],
-            'data_class_id' => ['required', 'exists:data_classes,id'],
+            'class_id' => ['required', 'exists:data_classes,id'],
             'mobile' => ['nullable', 'string', 'max:20'],
             'section' => ['nullable', 'string', 'max:10'],
         ]);
@@ -68,7 +68,7 @@ class AdminStudentController extends Controller
         $student->update([
             'name' => $request->name,
             'email' => $request->email,
-            'data_class_id' => $request->data_class_id,
+            'class_id' => $request->data_class_id,
             'mobile' => $request->mobile,
             'section' => $request->section,
         ]);

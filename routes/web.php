@@ -10,6 +10,8 @@ use App\Http\Middleware\StudentAuthCheck;
 use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
+use App\Http\Controllers\AdminCourseController;
+
 use App\Http\Controllers\AdminAjaxDataController;
 
 //admin
@@ -47,7 +49,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
             Route::put('/update/{id}', [AdminTeacherController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [AdminTeacherController::class, 'destroy'])->name('destroy');
         });
-
+        
+        
+        Route::prefix('courses')->name('courses.')->group(function () {
+            Route::get('/', [AdminCourseController::class, 'index'])->name('index');
+            Route::get('/create', [AdminCourseController::class, 'create'])->name('create');
+            Route::post('/store', [AdminCourseController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [AdminCourseController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [AdminCoueseController::class, 'destroy'])->name('destroy');
+        });
         Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
             Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
         });
