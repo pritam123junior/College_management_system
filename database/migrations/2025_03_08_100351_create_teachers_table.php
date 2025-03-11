@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('course')->nullable();
            
             $table->string('section')->nullable();
-            $table->string('moblie')->nullable();
+            $table->string('mobile')->nullable();
             $table->timestamps();
         });
     }

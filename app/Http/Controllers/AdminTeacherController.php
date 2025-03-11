@@ -9,7 +9,7 @@ class AdminTeacherController extends Controller
 {
     public function index()
     {
-        return 1 ;$teachers = Teacher::get(); 
+      $teachers = Teacher::get(); 
         return view('admin.page.teacher.index', compact('teachers'));
     }
     public function create()
