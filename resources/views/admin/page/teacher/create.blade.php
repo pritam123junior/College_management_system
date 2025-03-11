@@ -6,12 +6,10 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Add Teacher</h4>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
-                        diam nibh finibus leo</p>
                     <form action="{{ route('admin.teacher.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -23,24 +21,15 @@
                             <input type="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                             <label>Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label>Mobile</label>
-                    <input type="text" name="mobile" class="form-control">
+                            <label>Mobile</label>
+                            <input type="text" name="mobile" class="form-control" required>
                         </div>
-
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                 </div>
             </div>

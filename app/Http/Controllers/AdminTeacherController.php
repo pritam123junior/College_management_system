@@ -9,7 +9,7 @@ class AdminTeacherController extends Controller
 {
     public function index()
     {
-        return 1 ;$teachers = Teacher::get(); 
+        $teachers = Teacher::get(); 
         return view('admin.page.teacher.index', compact('teachers'));
     }
     public function create()
@@ -18,26 +18,22 @@ class AdminTeacherController extends Controller
         return view('admin.page.teacher.create', compact('classes'));
     }
     public function store(Request $request)
-    {  //  return $request->all();
+    {  
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:teachers'],
-            'password' => ['required'],
-           
-            'mobile' => ['nullable', 'string', 'max:20'],
-            'section' => ['nullable', 'string', 'max:10'],
+            'password' => ['required'],           
+            'mobile' => ['nullable', 'string', 'max:255']            
         ]);
 
         teacher::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-     
+            'password' => Hash::make($request->password),     
             'mobile' => $request->mobile,
-            'section' => $request->section,
         ]);
 
-        return redirect()->route('admin.teacher.index')->with('success', 'teacher created successfully.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Teacher added successfully.');
     }
     public function edit($id)
     {

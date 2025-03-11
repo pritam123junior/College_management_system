@@ -13,13 +13,13 @@
                     <form action="{{ route('admin.student.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="name" class="form-label">Student Name <span class="text-danger">*</span></label>
+                            <label for="name" class="form-label">Student Name</label>
                             <input type="text" name="name" id="name"
                                 class="form-control" placeholder="Enter Student Name"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="form-label">Student Password <span class="text-danger">*</span></label>
+                            <label for="password" class="form-label">Student Password</label>
                             <input type="password" name="password" id="password"
                                 class="form-control"
                                 placeholder="Enter Student Password" required>                            
@@ -30,7 +30,7 @@
                                 placeholder="Enter Mobile Number" value="">
                         </div> 
                          <div class="form-group">
-                            <label for="class_id" class="form-label">Class <span class="text-danger">*</span></label>
+                            <label for="class_id" class="form-label">Class</label>
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
@@ -39,13 +39,13 @@
                             </select>
                         </div>    
                          <div class="form-group">
-                            <label for="section_id" class="form-label">Section <span class="text-danger">*</span></label>
+                            <label for="section_id" class="form-label">Section</label>
                             <select name="section_id" id="section_id" class="form-control" required>
                                 <option value="">Select Section</option>                                
                             </select>
                         </div>     
                         <div class="form-group">
-                            <label for="approve_status" class="form-label">Approve Status <span class="text-danger">*</span></label>
+                            <label for="approve_status" class="form-label">Approve Status</label>
                             <select name="approve_status" id="approve_status" class="form-control" required>
                                 <option value="">Select Status</option>   
                                 <option value="Approved">Approved</option>
