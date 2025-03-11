@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 use App\Models\Teacher;
-use App\Models\DataClass;
+use App\Models\ClassData;
 use Illuminate\Http\Request;
 use  Hash;
 class AdminTeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::get(); 
+        return 1 ;$teachers = Teacher::get(); 
         return view('admin.page.teacher.index', compact('teachers'));
     }
     public function create()
     {
-        $dataclasses= DataClass::all(); // Fetch all available classes from the database
-        return view('admin.page.teacher.create', compact('dataclasses'));
+        $classes= ClassData::all(); // Fetch all available classes from the database
+        return view('admin.page.teacher.create', compact('classes'));
     }
     public function store(Request $request)
     {  //  return $request->all();
