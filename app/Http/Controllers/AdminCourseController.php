@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Course;
+use App\Models\ClassData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class AdminCourseController extends Controller
@@ -15,17 +16,17 @@ class AdminCourseController extends Controller
     public function create()
     {   
           $classes=ClassData::all();
-        return view('admin.page.course.create')/ compact('classes');
+        return view('admin.page.course.create' , compact('classes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'class_id'=>['required'],
-            'description' => 'required|string',
-            'price' => 'required|string',
-            'duration' => 'required|string',
+            'class_id'=>['nullable'],
+            'description' => 'nullable|string',
+            'price' => 'nullable|string',
+            'duration' => 'nullable|string',
             'type' => 'required|in:paid,free',
         ]);
 
@@ -46,7 +47,7 @@ class AdminCourseController extends Controller
     {
         $course = Course::findOrFail($id);
         $classes = classData::all();
-        return view('admin.page.course.edit', compact('course'));
+        return view('admin.page.course.edit', compact('course , classes'));
     }
 
     public function update(Request $request, $id)

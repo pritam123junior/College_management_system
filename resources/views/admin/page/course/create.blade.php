@@ -22,6 +22,15 @@
                             <label>Description</label>
                             <textarea name="description" class="form-control" required></textarea>
                         </div>
+                              <div class="form-group">
+                                             <label for="class_id" class="form-label">Class</label>
+                            <select name="class_id" id="class_id" class="form-control" required>
+                                <option value="">Select Class</option>
+                                @foreach ($classes as $class)
+                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label>Price (BDT)</label>
                             <input type="number" name="price" class="form-control" step="any" required>
