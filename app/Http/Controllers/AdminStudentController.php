@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Models\ClassData;
+use App\Models\Section;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 class AdminStudentController extends Controller
@@ -27,27 +29,43 @@ class AdminStudentController extends Controller
             'password' => ['required', 'string'],
             'class_id' => ['required'],
             'section_id' => ['required'],
-            'mobile' => ['nullable', 'string', 'max:20'],
+            'mobile' => ['nullable', 'string', 'max:255'],
             'approve_status' => ['required', 'string']
+        ]);
+
+        $user = User::create([            
+            'password' => Hash::make($request->password),
+            'mobile' => $request->mobile, 
+            'type' => 'student',
+            'approve_status' => $request->approve_status
         ]);
 
         Student::create([
             'name' => $request->name,
-            'password' => Hash::make($request->password),
+            'user_id' => $user->id,
             'class_id' => $request->class_id,
-            'section_id' => $request->section_id,
-            'mobile' => $request->mobile,
-            'approve_status' => $request->approve_status
-
+            'section_id' => $request->section_id                    
         ]);
+
+      
+
+
 
         return redirect()->route('admin.student.index')->with('success', 'Student added successfully.');
     }
     public function edit($id): View
     {
+<<<<<<< HEAD
         $student = Student::findOrFail($id);
         $classes = classData::all();
         return view('admin.page.student.edit', compact('student', 'classes'));
+=======
+        $student = Student::find($id);
+        $classes = ClassData::all();
+        $sections = Section::where('class_id',$student->class_id)->get();
+
+        return view('admin.page.student.edit', compact('student', 'classes','sections'));
+>>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
     }
 
     /**
@@ -55,22 +73,45 @@ class AdminStudentController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $student = Student::findOrFail($id);
-
+             
         $request->validate([
+<<<<<<< HEAD
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', "unique:students,email,$id"],
             'class_id' => ['required', 'exists:data_classes,id'],
             'mobile' => ['nullable', 'string', 'max:20'],
             'section' => ['nullable', 'string', 'max:10'],
+=======
+            'name' => ['required', 'string'],
+            'password' => ['nullable', 'string'],
+            'class_id' => ['required'],
+            'section_id' => ['required'],
+            'mobile' => ['nullable', 'string', 'max:255'],
+            'approve_status' => ['required', 'string']
+>>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
         ]);
+
+        $student = Student::find($id);      
+
+        $user = User::find($student->id); 
+        $user->approve_status = $request->approve_status;  
+        if($request->password){
+            $user->password = $request->password; 
+        }     
+        $user->mobile = $request->mobile;  
+        $user->save();
 
         $student->update([
             'name' => $request->name,
+<<<<<<< HEAD
             'email' => $request->email,
             'class_id' => $request->data_class_id,
             'mobile' => $request->mobile,
             'section' => $request->section,
+=======
+            'class_id' => $request->class_id,
+            'section_id' => $request->section_id                      
+>>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
         ]);
 
         return redirect()->route('admin.student.index')->with('success', 'Student updated successfully.');
@@ -83,5 +124,38 @@ class AdminStudentController extends Controller
     {
         Student::findOrFail($id)->delete();
         return redirect()->route('admin.student.index')->with('success', 'Student deleted successfully.');
+    }
+
+    public function statusApprove($id)
+    {
+        User::where('id', $id)            
+            ->update(['approve_status' => 'Approved']);
+
+        return redirect()->route('admin.student.index')->with('success', 'Student Approved.');
+    }
+
+    public function statusNotApprove($id)
+    {
+        User::where('id', $id)            
+            ->update(['approve_status' => 'Not Approved']);
+
+        return redirect()->route('admin.student.index')->with('success', 'Student Not Approved.');
+    }
+
+    public function statusToggle($id)
+    {
+
+        $status = User::where('id',$id)->value('approve_status');
+
+        if($status=='Approved'){
+            User::where('id', $id)            
+            ->update(['approve_status' => 'Not Approved']);            
+        }
+        elseif($status=='Not Approved'){
+            User::where('id', $id)            
+            ->update(['approve_status' => 'Approved']);
+        }     
+        
+        return redirect()->route('admin.student.index')->with('success', 'Student Approve Status Changed successfully.');
     }
 }

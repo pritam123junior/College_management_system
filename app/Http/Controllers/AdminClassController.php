@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\DataClass;
+use App\Models\ClassData;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -9,7 +9,7 @@ class AdminClassController extends Controller
 {
     public function index()
     {
-         $classes = DataClass::all();
+         $classes = ClassData::all();
         return view('admin.page.class.index', compact('classes'));
     }
 
@@ -21,11 +21,11 @@ class AdminClassController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:data_classes,name',
+            'name' => 'required|unique:classes,name',
             'sections' => 'array'
         ]);
 
-        $class = DataClass::create(['name' => $request->name]);
+        $class = ClassData::create(['name' => $request->name]);
 
         if ($request->sections) {
             foreach ($request->sections as $sectionName) {
@@ -45,7 +45,7 @@ class AdminClassController extends Controller
     public function update($id,Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:data_classes,name,' . $id
+            'name' => 'required|unique:classes,name,' . $id
         ]);
         $class = DataClass::find($id);
 

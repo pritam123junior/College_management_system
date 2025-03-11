@@ -8,7 +8,7 @@
                <div class="header-title">
                   <h4 class="card-title">Class List</h4>                   
                </div>
-                <a href="{{ route('admin.classes.add') }}" class="btn btn-primary">Add Content</a> 
+                <a href="{{ route('admin.classes.add') }}" class="btn btn-primary">Add Class</a> 
             </div>
             <div class="card-body p-0">
                <div class="table-responsive mt-4">
@@ -35,7 +35,9 @@
                         <a href="{{ route('admin.classes.edit', $class->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('admin.classes.delete', $class->id) }}" method="POST" class="d-inline">
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this class?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this class?')">
+                              <i class="bi bi-trash-fill"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>

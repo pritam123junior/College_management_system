@@ -42,11 +42,26 @@
 
     <script>
         SnapAlert().SnapOptions({
-            duration: 2000,
+            duration: 3000,
             isDark: false,
             position: 'top right'
         });
     </script>
+
+    @if (session()->has('success'))
+        <script>
+            $(document).ready(function() {
+
+                setTimeout(() => {
+
+                    SnapAlert().success('Success', "{{ session('success') }}");
+
+                }, "500");
+
+
+            });
+        </script>
+    @endif
 
 </head>
 

@@ -39,6 +39,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
             Route::get('/edit/{id}', [AdminStudentController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [AdminStudentController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [AdminStudentController::class, 'destroy'])->name('destroy');
+            Route::get('/status/approved/{id}', [AdminStudentController::class, 'statusApprove'])->name('status.approved');
+            Route::get('/status/not-approved/{id}', [AdminStudentController::class, 'statusNotApprove'])->name('status.not_approved');
+            Route::get('/status/toggle/{id}', [AdminStudentController::class, 'statusToggle'])->name('status.toggle');
+
         });
     
         Route::prefix('teacher')->name('teacher.')->group(function () {

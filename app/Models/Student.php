@@ -18,6 +18,11 @@ class Student extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 
 }

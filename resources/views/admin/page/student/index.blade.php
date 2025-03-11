@@ -26,29 +26,42 @@
                             </thead>
                             <tbody>
                                 @foreach ($students as $student)
-                                    <tr>
+                                    <tr class="{{$student->user->approve_status=='Pending'?'table-info':''}}">
                                         <td>{{ $student->id }}</td>
                                         <td>{{ $student->name }}</td>  
-                                        <td>{{ $student->moblie}}</td>      
+                                        <td>{{ $student->mobile}}</td>      
                                         <td>{{ $student->class?->name }}</td>
                                         <td>{{ $student->section?->name }}</td>                                      
-                                        <td>{{$student->approve_status}}</td>
+                                        <td>{{$student->user->approve_status}}</td>
                                         <td>
-                                            <a href="{{ route('admin.student.edit', $student->id) }}"
-                                                class="btn btn-warning btn-sm">
-                                                <i class="bi bi-people"></i>
+                                        @if($student->user->approve_status=='Pending')
+                                            <a href="{{ route('admin.student.status.approved', $student->user->id) }}"
+                                                class="btn btn-success btn-sm">
+                                                <i class="bi bi-person-check"></i> Approve
                                             </a>
+                                             <a href="{{ route('admin.student.status.not_approved', $student->user->id) }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="bi bi-person-dash"></i> Reject
+                                            </a>
+                                        @else
+                                        <a href="{{ route('admin.student.status.toggle', $student->user->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                               <i class="bi bi-arrow-left-right"></i>
+                                               
+                                        </a>
+                                        
                                             <a href="{{ route('admin.student.edit', $student->id) }}"
                                                 class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i> Edit
+                                                <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <form action="{{ route('admin.student.destroy', $student->id) }}" method="POST"
                                                 class="d-inline delete-form">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm delete-btn">
-                                                    <i class="fas fa-trash"></i> Delete
+                                                <i class="bi bi-trash-fill"></i>
                                                 </button>
                                             </form>
+                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach

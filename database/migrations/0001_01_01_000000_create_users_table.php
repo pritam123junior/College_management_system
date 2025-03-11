@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('password');
             $table->string('type');
+            $table->enum('approve_status', ['Pending', 'Approved','Not Approved'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
