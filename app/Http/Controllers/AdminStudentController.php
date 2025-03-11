@@ -69,20 +69,12 @@ class AdminStudentController extends Controller
     {
              
         $request->validate([
-<<<<<<< HEAD
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', "unique:students,email,$id"],
-            'class_id' => ['required', 'exists:data_classes,id'],
-            'mobile' => ['nullable', 'string', 'max:20'],
-            'section' => ['nullable', 'string', 'max:10'],
-=======
             'name' => ['required', 'string'],
             'password' => ['nullable', 'string'],
             'class_id' => ['required'],
             'section_id' => ['required'],
             'mobile' => ['nullable', 'string', 'max:255'],
             'approve_status' => ['required', 'string']
->>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
         ]);
 
         $student = Student::find($id);      
@@ -97,15 +89,8 @@ class AdminStudentController extends Controller
 
         $student->update([
             'name' => $request->name,
-<<<<<<< HEAD
-            'email' => $request->email,
-            'class_id' => $request->data_class_id,
-            'mobile' => $request->mobile,
-            'section' => $request->section,
-=======
             'class_id' => $request->class_id,
             'section_id' => $request->section_id                      
->>>>>>> e87141b966a4339ed2dd3eefef595049da7c571c
         ]);
 
         return redirect()->route('admin.student.index')->with('success', 'Student updated successfully.');
