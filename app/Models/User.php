@@ -12,6 +12,13 @@ class User extends Authenticatable
    
     protected $guarded = [];
     
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+
     protected function casts(): array
     {
         return [
