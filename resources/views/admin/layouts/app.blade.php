@@ -49,10 +49,9 @@
                 position: 'top right'
             });
 
-            $(".delete-btn").on("click", function(event) {
+            $(".add-input-text-btn").on("click", function(event) {
                 event.preventDefault();
-                let link = $(this).siblings('.row-id').val();
-                $(".delete-confirm-form").attr("action", link);
+                $("#dynamic-input-text").append('<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>');
             });
 
             @if (session()->has('success'))

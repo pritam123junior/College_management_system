@@ -29,7 +29,7 @@
                                     <tr class="{{$student->user->approve_status=='Pending'?'table-info':''}}">
                                         <td>{{ $student->id }}</td>
                                         <td>{{ $student->name }}</td>  
-                                        <td>{{ $student->mobile}}</td>      
+                                        <td>{{ $student->user?->mobile}}</td>      
                                         <td>{{ $student->class?->name }}</td>
                                         <td>{{ $student->section?->name }}</td>                                      
                                         <td>{{$student->user->approve_status}}</td>
@@ -53,14 +53,13 @@
                                             <a href="{{ route('admin.student.edit', $student->id) }}"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <form action="{{ route('admin.student.destroy', $student->id) }}" method="POST"
-                                                class="d-inline delete-form">
-                                                @csrf @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm delete-btn">
+                                            </a>                                           
+                                            <input type="hidden" class="row-id"
+                                                value="{{ route('admin.student.destroy', $student->id) }}">
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>
-                                                </button>
-                                            </form>
+                                            </button>
                                         @endif
                                         </td>
                                     </tr>

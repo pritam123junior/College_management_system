@@ -15,15 +15,15 @@
                         <div class="form-group">
                             <label class="form-label">Class Name</label>
                             <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Sections (Multiple Allowed)</label>
-                            <select class="form-select" name="sections[]" multiple>
-                                <option value="A">Section A</option>
-                                <option value="B">Section B</option>
-                                <option value="C">Section C</option>
-                            </select>
-                        </div>
+                        </div>  
+                        <div id="dynamic-input-text">
+                            <div class="form-group">
+                                <label class="form-label">Section</label>
+                                <input type="text" class="form-control" name="section[]">
+                                <button type="button" class="add-input-text-btn mt-2 btn btn-secondary"><i class="bi bi-plus-circle-fill"></i> Add more section</button>
+                            </div>  
+                            
+                        </div>                    
                         <button type="submit" class="btn btn-primary">Add</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </form>

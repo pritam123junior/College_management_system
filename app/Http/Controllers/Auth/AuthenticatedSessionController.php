@@ -78,12 +78,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        if($type=='admin'){
+        if($type=='Admin'){
             return redirect()->route('admin.login');
         }
-        elseif($type=='teacher'){
+        elseif($type=='Teacher'){
             return redirect()->route('teacher.login');
-        }else{
+        }
+        elseif($type=='Student'){
             return redirect()->route('login');
         }
         

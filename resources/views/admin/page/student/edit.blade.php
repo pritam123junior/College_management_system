@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="mobile" class="form-label">Mobile Number (Optional)</label>
                             <input type="text" name="mobile" id="mobile" class="form-control"
-                                placeholder="Enter Mobile Number" value="{{$student->mobile}}">
+                                placeholder="Enter Mobile Number" value="{{$student->user?->mobile}}">
                         </div>
                         <div class="form-group">
                             <label for="class_id" class="form-label">Class</label>

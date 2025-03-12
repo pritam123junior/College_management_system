@@ -79,7 +79,7 @@ class AdminStudentController extends Controller
 
         $student = Student::find($id);      
 
-        $user = User::find($student->id); 
+        $user = User::find($student->user_id); 
         $user->approve_status = $request->approve_status;  
         if($request->password){
             $user->password = $request->password; 
