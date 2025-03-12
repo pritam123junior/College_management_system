@@ -17,8 +17,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Type</th>
-                                    <th>Size</th>
-                                    <th>Course</th>
+                                    <th>Size</th>                                    
                                     <th>Class</th>
                                     <th>Course</th>
                                     <th>Time</th>
@@ -30,10 +29,10 @@
                                     <tr>
                                         <td>{{ $content->name }}</td>
                                         <td>{{ $content->type }}</td>
-                                        <td>{{ $content-> }}</td>
-                                        <td>{{ $content->price }}</td>
-                                        <td>{{ $content->duration }}</td>
-                                        <td>{{ ucfirst($course->type) }}</td>
+                                        <td>{{ $content->size }}</td>
+                                        <td>{{ $content->class->name }}</td>
+                                        <td>{{ $content->course->name }}</td>
+                                        <td>{{ $content->created_at }}</td>
 
                                         <td>
                                             <a href="{{ route('admin.course.edit', $course->id) }}"
