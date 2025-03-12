@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('class_id');
-            $table->foreignId('teacher_id');
+            $table->longText('description')->nullable();
+            $table->foreignId('course_id')->nullable();
+            $table->foreignId('class_id')->nullable();
+            $table->foreignId('teacher_id')->nullable();
             $table->longText('path');
             $table->timestamps();
         });

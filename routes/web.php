@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminAjaxDataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ContentController;
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
@@ -114,7 +115,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('index', [CourseController::class, 'index'])->name('index');
     });
     Route::prefix('content')->name('content.')->group(function () {
-        Route::get('list/{id}', [TeacherContentController::class, 'index'])->name('index');
+        Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
         Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
         Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
         Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete'); 
