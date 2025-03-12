@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('student.layouts.app')
 
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Course List</h4>
                     </div>
-                    <a href="{{ route('admin.course.create') }}" class="btn btn-primary">Add Course</a>
+                   
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -34,15 +34,10 @@
                     <td>{{ $course->price }}</td>
                     <td>{{ $course->duration }}</td>
                     <td>{{ ucfirst($course->type) }}</td>
+
                 
                     <td>
-                        <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
-                         <input type="hidden" class="row-id"
-                                                value="{{ route('admin.course.destroy', $course->id) }}">
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
+                       
                     </td>
                 </tr>
             @endforeach
