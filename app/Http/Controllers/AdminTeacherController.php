@@ -29,7 +29,7 @@ class AdminTeacherController extends Controller
 
         $user = User::create([            
             'password' => Hash::make($request->password),
-            'type' => 'teacher',
+            'type' => 'Teacher',
             'email' => $request->email,              
             'mobile' => $request->mobile,
         ]);

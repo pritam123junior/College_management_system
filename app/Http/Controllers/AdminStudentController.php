@@ -36,7 +36,7 @@ class AdminStudentController extends Controller
         $user = User::create([            
             'password' => Hash::make($request->password),
             'mobile' => $request->mobile, 
-            'type' => 'student',
+            'type' => 'Student',
             'approve_status' => $request->approve_status
         ]);
 

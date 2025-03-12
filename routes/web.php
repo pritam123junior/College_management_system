@@ -11,16 +11,14 @@ use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminCourseController;
-
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminAjaxDataController;
 
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('dashboard', function () {
-        return view('admin.page.dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    
 
     Route::prefix('class')->name('class.')->group(function () {
         Route::get('index', [AdminClassController::class, 'index'])->name('index');
@@ -55,13 +53,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         });
         
         
-        Route::prefix('courses')->name('courses.')->group(function () {
+        Route::prefix('course')->name('course.')->group(function () {
             Route::get('/', [AdminCourseController::class, 'index'])->name('index');
             Route::get('/create', [AdminCourseController::class, 'create'])->name('create');
             Route::post('/store', [AdminCourseController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [AdminCourseController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
-            Route::delete('/delete/{id}', [AdminCoueseController::class, 'destroy'])->name('destroy');
+            Route::delete('/destroy/{id}', [AdminCourseController::class, 'destroy'])->name('destroy');
         });
         Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
             Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');

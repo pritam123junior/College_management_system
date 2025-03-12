@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
                         diam nibh finibus leo</p>
-                    <form action="{{ route('admin.courses.store') }}" method="POST">
+                    <form action="{{ route('admin.course.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
