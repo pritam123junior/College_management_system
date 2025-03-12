@@ -22,7 +22,7 @@ class AdminClassController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:classes,name',
-            'sections' => 'array'
+            
         ]);
 
         $class = ClassData::create(['name' => $request->name]);
@@ -33,7 +33,7 @@ class AdminClassController extends Controller
             }
         }
 
-        return redirect()->route('admin.classes.index')->with('success', 'Class added successfully!');
+        return redirect()->route('admin.class.index')->with('success', 'Class added successfully!');
     }
 
     public function edit($id)
@@ -51,12 +51,12 @@ class AdminClassController extends Controller
 
         $class->update(['name' => $request->name]);
 
-        return redirect()->route('admin.classes.index')->with('success', 'Class updated successfully!');
+        return redirect()->route('admin.class.index')->with('success', 'Class updated successfully!');
     }
 
     public function delete($id)
     {
         DataClass::destroy($id);
-        return redirect()->route('admin.classes.index')->with('success', 'Class deleted successfully!');
+        return redirect()->route('admin.class.index')->with('success', 'Class deleted successfully!');
     }
 }

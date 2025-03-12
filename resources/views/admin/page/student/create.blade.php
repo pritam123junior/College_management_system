@@ -10,6 +10,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if ($errors->any())
+     @foreach ($errors->all() as $error)
+         <div>{{$error}}</div>
+     @endforeach
+ @endif
                     <form action="{{ route('admin.student.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
