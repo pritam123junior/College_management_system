@@ -86,9 +86,10 @@ $combined->all();
         return redirect()->route('admin.class.index')->with('success', 'Class updated successfully!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        DataClass::destroy($id);
+        ClassData::destroy($id);
+
         return redirect()->route('admin.class.index')->with('success', 'Class deleted successfully!');
     }
 }
