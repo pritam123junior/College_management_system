@@ -1,86 +1,159 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
 
-	<title>Light Bootstrap Dashboard by Creative Tim</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="" />
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <!-- Library / Plugin Css Build -->
+    <link rel="stylesheet" href="{{ asset('css/core/libs.min.css') }}" />
 
+    <!-- Aos Animation Css -->
+    <link rel="stylesheet" href="{{ asset('vendor/aos/dist/aos.css') }}" />
 
-    <!-- Bootstrap core CSS     -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <!-- Hope Ui Design System Css -->
+    <link rel="stylesheet" href="{{ asset('css/hope-ui.min.css?v=2.0.0') }}" />
 
-    <!-- Animation library for notifications   -->
-    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet"/>
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{{ asset('css/custom.min.css?v=2.0.0') }}" />
 
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="{{ asset('css/light-bootstrap-dashboard.css') }}" rel="stylesheet"/>
+    <!-- Dark Css -->
+    <link rel="stylesheet" href="{{ asset('css/dark.min.css') }}" />
 
+    <!-- Customizer Css -->
+    <link rel="stylesheet" href="{{ asset('css/customizer.min.css') }}" />
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <!-- RTL Css -->
+    <link rel="stylesheet" href="{{ asset('css/rtl.min.css') }}" />
 
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-</head>
-<body>
-    <div class="wrapper">
-        @include('layouts.sidebar')
-        <div class="main-panel">
-            @include('layouts.navbar')
-            <div class="content">
-                <div class="container-fluid">
-             @yield('content')
-                </div>
-            </div>
-            @include('layouts.footer')
-        </div>
-    </div>
-</body>
+    <!-- snapAlert -->
+    <link rel="stylesheet" href="{{ asset('css/snapAlert.min.css') }}" />
+    <script src="{{ asset('js/snap-alert.min.js') }}"></script>
 
- <!--   Core JS Files   -->
-    <script src="{{ asset('js/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src="{{ asset('js/chartist.min.js') }}"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="{{ asset('js/bootstrap-notify.js') }}"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="{{ asset('js/light-bootstrap-dashboard.js') }}"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
 
-            demo.initChartist();
-
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            }, {
-                type: 'info',
-                timer: 4000
+            SnapAlert().SnapOptions({
+                duration: 3000,
+                isDark: false,
+                position: 'top right'
             });
+
+            $(".add-input-text-btn").on("click", function(event) {
+                event.preventDefault();
+                $("#dynamic-input-text").append('<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>');
+            });
+
+            @if (session()->has('success'))
+                setTimeout(() => {
+
+                    SnapAlert().success('Success', "{{ session('success') }}");
+
+                }, "800");
+            @endif
 
         });
     </script>
+</head>
+
+<body>
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
+    {{-- delete modal --}}
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm Delete</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Are you sure to you want to delete?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="POST" class="d-inline delete-confirm-form">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @include('admin.layouts.sidebar')
+
+    <main class="main-content">
+        <div class="position-relative iq-banner">
+            @include('admin.layouts.navbar')
+            <div class="conatiner-fluid content-inner mt-n5 py-0">
+                @yield('content')
+            </div>
+        </div>
+
+
+    </main>
+    <!-- Wrapper End-->
+
+    {{--   @include('admin.layouts.offcanvas') --}}
+
+    <!-- Library Bundle Script -->
+    <script src="{{ asset('js/core/libs.min.js') }}"></script>
+
+    <!-- External Library Bundle Script -->
+    <script src="{{ asset('js/core/external.min.js') }}"></script>
+
+    <!-- Widgetchart Script -->
+    <script src="{{ asset('js/charts/widgetcharts.js') }}"></script>
+
+    <!-- mapchart Script -->
+    <script src="{{ asset('js/charts/vectore-chart.js') }} "></script>
+    <script src="{{ asset('js/charts/dashboard.js') }}"></script>
+
+    <!-- fslightbox Script -->
+    <script src="{{ asset('js/plugins/fslightbox.js') }}"></script>
+
+    <!-- Settings Script -->
+    <script src="{{ asset('js/plugins/setting.js') }}"></script>
+
+    <!-- Slider-tab Script -->
+    <script src="{{ asset('js/plugins/slider-tabs.js') }}"></script>
+
+    <!-- Form Wizard Script -->
+    <script src="{{ asset('js/plugins/form-wizard.js') }}"></script>
+
+    <!-- AOS Animation Plugin-->
+    <script src="{{ asset('vendor/aos/dist/aos.js') }}"></script>
+
+    <!-- App Script -->
+    <script src="{{ asset('js/hope-ui.js') }}" defer></script>
+
+    @stack('scripts')
+
+
+</body>
 
 </html>
