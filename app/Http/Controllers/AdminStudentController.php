@@ -12,7 +12,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 class AdminStudentController extends Controller
-{ public function index()
+{ 
+    public function index()
     {
         $students = Student::get(); 
         return view('admin.page.student.index', compact('students'));

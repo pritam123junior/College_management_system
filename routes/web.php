@@ -62,6 +62,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
             Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
             Route::delete('/destroy/{id}', [AdminCourseController::class, 'destroy'])->name('destroy');
         });
+
+        Route::prefix('content')->name('content.')->group(function () {
+            Route::get('/', [AdminContentController::class, 'index'])->name('index');
+            Route::get('/create', [AdminCourseController::class, 'create'])->name('create');
+            Route::post('/store', [AdminCourseController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [AdminCourseController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
+            Route::delete('/destroy/{id}', [AdminCourseController::class, 'destroy'])->name('destroy');
+        });
+
+        
         Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
             Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
         });

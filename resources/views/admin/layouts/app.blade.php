@@ -59,6 +59,12 @@
                  $(this).parent('div.dynamic-input').remove();
             });
 
+            $(".delete-btn").on("click", function(event) {
+                event.preventDefault();
+                let link = $(this).siblings('.row-id').val();
+                $(".delete-confirm-form").attr("action", link);
+            });
+
             @if (session()->has('success'))
                 setTimeout(() => {
 
