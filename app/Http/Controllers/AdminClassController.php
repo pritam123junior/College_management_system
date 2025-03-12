@@ -38,7 +38,7 @@ class AdminClassController extends Controller
 
     public function edit($id)
     {
-        $class=DataClass::find($id);
+        $class=ClassData::find($id);
         return view('admin.page.class.edit', compact('class'));
     }
 

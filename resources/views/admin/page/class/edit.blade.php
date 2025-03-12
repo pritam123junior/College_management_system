@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis, diam nibh finibus leo</p>
-                   <form action="{{ route('admin.classes.update', ['id'=>$class->id]) }}" method="POST">
+                   <form action="{{ route('admin.class.update', ['id'=>$class->id]) }}" method="POST">
         @csrf @method('PUT')
                         <div class="form-group">
                     <label class="form-label">Class Name</label>

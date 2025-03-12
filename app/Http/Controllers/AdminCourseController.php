@@ -22,12 +22,12 @@ class AdminCourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required','string','max:255'],
             'class_id'=>['nullable'],
-            'description' => 'nullable|string',
-            'price' => 'nullable|string',
-            'duration' => 'nullable|string',
-            'type' => 'required|in:paid,free',
+            'description' => ['nullable','string'],
+            'price' => ['nullable','string'],
+            'duration' => ['nullable','string'],
+            'type' => ['required'],
         ]);
 
         Course::create([

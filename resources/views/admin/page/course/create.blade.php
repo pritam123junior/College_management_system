@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label>Type</label>
-                            <select name="Course type" class="form-control" required>
+                            <select name="type" class="form-control" required>
                                <option value ="">Select Type</option>
 
                                 <option value="paid">Paid</option>
