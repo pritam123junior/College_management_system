@@ -83,7 +83,7 @@
                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <div class="caption ms-3 d-none d-md-block ">
                               <h6 class="mb-0 caption-title">Mr. test</h6>
-                              <p class="mb-0 caption-sub-title">Admin</p>
+                              <p class="mb-0 caption-sub-title">Student</p>
                           </div>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -95,7 +95,7 @@
                           <li>
                               <form method="POST" action="{{ route('logout') }}">
                                   @csrf
-                                  <a href="{{route('admin.logout')}}"
+                                  <a href="{{route('logout')}}"
                                       onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                                       class="dropdown-item">Logout</a>
@@ -113,7 +113,7 @@
               <div class="col-md-12">
                   <div class="flex-wrap d-flex justify-content-between align-items-center">
                       <div>
-                          <h1>Hello Admin!</h1>                         
+                          <h1>Hello Student!</h1>                         
                       </div>                     
                   </div>
               </div>
