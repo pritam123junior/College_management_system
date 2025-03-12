@@ -8,7 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Course List</h4>
                     </div>
-                    <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">Add Course</a>
+                    <a href="{{ route('admin.course.create') }}" class="btn btn-primary">Add Course</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -36,11 +36,13 @@
                     <td>{{ ucfirst($course->type) }}</td>
                 
                     <td>
-                        <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                         <input type="hidden" class="row-id"
+                                                value="{{ route('admin.course.destroy', $course->id) }}">
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
                     </td>
                 </tr>
             @endforeach

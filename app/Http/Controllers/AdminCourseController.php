@@ -40,32 +40,32 @@ class AdminCourseController extends Controller
            
         ]);
 
-        return redirect()->route('admin.courses.index')->with('success', 'Course created and pending approval.');
+        return redirect()->route('admin.course.index')->with('success', 'Course created and pending approval.');
     }
 
     public function edit($id)
     {
         $course = Course::findOrFail($id);
         $classes = classData::all();
-        return view('admin.page.course.edit', compact('course , classes'));
+        return view('admin.page.course.edit', compact('course' , 'classes'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'class_id' => ['required', 'exists:data_classes,id'],
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|string',
-            'duration' => 'required|string',
-            'type' => 'required|in:paid,free',
+            'name' => ['required','string','max:255'],
+            'class_id'=>['nullable'],
+            'description' => ['nullable','string'],
+            'price' => ['nullable','string'],
+            'duration' => ['nullable','string'],
+            'type' => ['required'],
            
         ]);
 
         $course = Course::findOrFail($id);
         $course->update($request->all());
 
-        return redirect()->route('admin.courses.index')->with('success', 'Course updated successfully.');
+        return redirect()->route('admin.course.index')->with('success', 'Course updated successfully.');
     }
 
     public function destroy($id)
@@ -73,6 +73,6 @@ class AdminCourseController extends Controller
         $course = Course::findOrFail($id);
         $course->delete();
 
-        return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully.');
+        return redirect()->route('admin.course.index')->with('success', 'Course deleted successfully.');
     }
 }

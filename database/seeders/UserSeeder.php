@@ -17,19 +17,19 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([            
             'username' => 'admin',
             'password' => Hash::make('admin'),
-            'type' => 'admin'
+            'type' => 'Admin'
         ]);
 
         DB::table('users')->insert([            
             'user_id' => '123',
             'password' => Hash::make('t123'),
-            'type' => 'teacher'
+            'type' => 'Teacher'
         ]);
 
         DB::table('users')->insert([            
             'user_id' => '123',
             'password' => Hash::make('s123'),
-            'type' => 'student'
+            'type' => 'Student'
         ]);
 
     }
