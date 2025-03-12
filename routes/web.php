@@ -67,6 +67,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         Route::prefix('content')->name('content.')->group(function () {
             Route::get('/', [AdminContentController::class, 'index'])->name('index');
             Route::get('/create', [AdminCourseController::class, 'create'])->name('create');
+            Route::get('/class/create', [AdminCourseController::class, 'classCreate'])->name('class.create');
+            Route::get('/course/create', [AdminCourseController::class, 'courseCreate'])->name('course.create');
+            Route::get('/class/create', [AdminCourseController::class, 'classCreate'])->name('class.create');
             Route::post('/store', [AdminCourseController::class, 'store'])->name('store');
             Route::get('/edit/{id}', [AdminCourseController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
