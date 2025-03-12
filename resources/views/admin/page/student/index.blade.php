@@ -8,7 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Student List</h4>
                     </div>
-                    <a href="{{ route('admin.student.create') }}" class="btn btn-primary">Add Student</a>
+                    <a href="{{ route('admin.student.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i> Add Student</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">

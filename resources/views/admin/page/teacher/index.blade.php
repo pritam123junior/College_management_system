@@ -8,7 +8,8 @@
                     <div class="header-title">
                         <h4 class="card-title">Teacher List</h4>
                     </div>
-                    <a href="{{ route('admin.teacher.create') }}" class="btn btn-primary">Add Teacher</a>
+                    <a href="{{ route('admin.teacher.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i> Add
+                        Teacher</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -34,13 +35,12 @@
                                                 class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <form action="{{ route('admin.teacher.destroy', $teacher->id) }}" method="POST"
-                                                class="d-inline">
-                                                @csrf @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">
+                                            <input type="hidden" class="row-id"
+                                                value="{{ route('admin.teacher.destroy', $teacher->id) }}">
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>
-                                                </button>
-                                            </form>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

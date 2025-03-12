@@ -22,14 +22,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         return view('admin.page.dashboard');
     })->name('dashboard');
 
-    Route::prefix('classes')->name('classes.')->group(function () {
+    Route::prefix('class')->name('class.')->group(function () {
         Route::get('index', [AdminClassController::class, 'index'])->name('index');
-        Route::get('add', [AdminClassController::class, 'add'])->name('add');
+        Route::get('create', [AdminClassController::class, 'create'])->name('create');
         Route::post('store', [AdminClassController::class, 'store'])->name('store');
         
         Route::get('edit/{id}', [AdminClassController::class, 'edit'])->name('edit'); // Fix: Added {id}
         Route::put('update/{id}', [AdminClassController::class, 'update'])->name('update'); // Fix: Added {id}
-        Route::delete('delete/{id}', [AdminClassController::class, 'delete'])->name('delete'); // Fix: Added {id}
+        Route::delete('destroy/{id}', [AdminClassController::class, 'destroy'])->name('destroy'); // Fix: Added {id}
     
         });
         Route::prefix('student')->name('student.')->group(function () {

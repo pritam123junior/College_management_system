@@ -13,7 +13,7 @@ class AdminClassController extends Controller
         return view('admin.page.class.index', compact('classes'));
     }
 
-    public function add()
+    public function create()
     {
         return view('admin.page.class.create');
     }

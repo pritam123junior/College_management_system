@@ -2,51 +2,51 @@
 
 @section('content')
     <div class="row">
-      <div class="col-sm-12">
-         <div class="card">
-            <div class="card-header d-flex justify-content-between">
-               <div class="header-title">
-                  <h4 class="card-title">Class List</h4>                   
-               </div>
-                <a href="{{ route('admin.classes.add') }}" class="btn btn-primary">Add Class</a> 
-            </div>
-            <div class="card-body p-0">
-               <div class="table-responsive mt-4">
-                  <table id="basic-table" class="table table-striped mb-0" role="grid">
-                     <thead>
-                                       <tr>
-                                    <th>#</th>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title">Class List</h4>
+                    </div>
+                    <a href="{{ route('admin.class.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i> Add
+                        Class</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive mt-4">
+                        <table id="basic-table" class="table table-striped mb-0" role="grid">
+                            <thead>
+                                <tr>
+                                    <th>Sl.</th>
                                     <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Sections</th>
+                                    <th>Section</th>
                                     <th>Actions</th>
                                 </tr>
-                     </thead>
-                     <tbody>
-                         @foreach($classes as $index => $class)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $class->name }}</td>
-                    <td><span class="badge bg-{{ $class->status == 'active' ? 'success' : 'danger' }}">{{ ucfirst($class->status) }}</span></td>
-                    <td>
-                      null
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.classes.edit', $class->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('admin.classes.delete', $class->id) }}" method="POST" class="d-inline">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this class?')">
-                              <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach              
-                     </tbody>
-                  </table>
-               </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($classes as $index => $class)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $class->name }}</td>                                       
+                                        <td>
+                                            null
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.class.edit', $class->id) }}"
+                                                class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>                                            
+                                            <input type="hidden" class="row-id"
+                                                value="{{ route('admin.class.destroy', $class->id) }}">
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 @endsection

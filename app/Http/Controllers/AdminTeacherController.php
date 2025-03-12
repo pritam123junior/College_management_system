@@ -76,15 +76,15 @@ class AdminTeacherController extends Controller
             'name' => $request->name            
         ]);           
         
-        return redirect()->route('admin.teacher.index')->with('success', 'teacher updated successfully.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Teacher updated successfully.');
     }
 
     /**
      * Delete a teacher
      */
-    public function destroy($id): RedirectResponse
+    public function destroy($id)
     {
         teacher::findOrFail($id)->delete();
-        return redirect()->route('admin.teacher.index')->with('success', 'teacher deleted successfully.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Teacher deleted successfully.');
     }
 }

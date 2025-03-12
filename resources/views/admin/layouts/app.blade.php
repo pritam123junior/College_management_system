@@ -41,28 +41,30 @@
     <script src="{{ asset('js/snap-alert.min.js') }}"></script>
 
     <script>
-        SnapAlert().SnapOptions({
-            duration: 3000,
-            isDark: false,
-            position: 'top right'
-        });
-    </script>
+        $(document).ready(function() {
 
-    @if (session()->has('success'))
-        <script>
-            $(document).ready(function() {
+            SnapAlert().SnapOptions({
+                duration: 3000,
+                isDark: false,
+                position: 'top right'
+            });
 
+            $(".delete-btn").on("click", function(event) {
+                event.preventDefault();
+                let link = $(this).siblings('.row-id').val();
+                $(".delete-confirm-form").attr("action", link);
+            });
+
+            @if (session()->has('success'))
                 setTimeout(() => {
 
                     SnapAlert().success('Success', "{{ session('success') }}");
 
-                }, "500");
+                }, "800");
+            @endif
 
-
-            });
-        </script>
-    @endif
-
+        });
+    </script>
 </head>
 
 <body>
@@ -72,8 +74,37 @@
             <div class="loader-body"></div>
         </div>
     </div>
-
     <!-- loader END -->
+    {{-- delete modal --}}
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm Delete</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Are you sure to you want to delete?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="POST" class="d-inline delete-confirm-form">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     @include('admin.layouts.sidebar')
 
     <main class="main-content">
@@ -88,7 +119,7 @@
     </main>
     <!-- Wrapper End-->
 
-    @include('admin.layouts.offcanvas')
+    {{--   @include('admin.layouts.offcanvas') --}}
 
     <!-- Library Bundle Script -->
     <script src="{{ asset('js/core/libs.min.js') }}"></script>
