@@ -19,8 +19,8 @@
                         <div id="dynamic-input-text">
                             <div class="form-group">
                                 <label class="form-label">Section</label>
-                                <input type="text" class="form-control" name="section[]">
-                                <button type="button" class="add-input-text-btn mt-2 btn btn-secondary"><i class="bi bi-plus-circle-fill"></i> Add more section</button>
+                                <input type="text" class="form-control" name="sections[]">
+                                <button type="button" class="add-input-text-btn mt-2 btn btn-sm btn-secondary"><i class="bi bi-plus-circle-fill"></i></button>
                             </div>  
                             
                         </div>                    

@@ -48,10 +48,15 @@
                 isDark: false,
                 position: 'top right'
             });
-
-            $(".add-input-text-btn").on("click", function(event) {
+           
+            $(document).on('click', '.add-input-text-btn', function(){
                 event.preventDefault();
-                $("#dynamic-input-text").append('<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>');
+                $("#dynamic-input-text").append('<div class="dynamic-input form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="sections[]"><button type="button" class="mt-2 add-input-text-btn btn btn-secondary btn-sm"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="remove-input-text-btn btn btn-danger btn-sm mt-2" style="margin-left:.5rem !important"><i class="bi bi-dash-circle-fill"></i></button></div>');
+            });
+
+             $(document).on('click', '.remove-input-text-btn', function(){
+                event.preventDefault();
+                 $(this).parent('div.dynamic-input').remove();
             });
 
             @if (session()->has('success'))

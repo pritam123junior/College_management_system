@@ -26,10 +26,13 @@
                                 @foreach ($classes as $index => $class)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $class->name }}</td>                                       
-                                        <td>
-                                            null
-                                        </td>
+                                        <td>{{ $class->name }}</td>   
+                                        <td>                                        
+                                        @foreach ($class->sections as $index => $section)
+                                            <span class="text-secondary">{{$index+1}}. {{$section->name}}</span>
+                                            @if(!$loop->last)<br>@endif
+                                        @endforeach                                        
+                                        </td>                                 
                                         <td>
                                             <a href="{{ route('admin.class.edit', $class->id) }}"
                                                 class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>                                            
