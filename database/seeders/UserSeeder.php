@@ -21,13 +21,13 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([            
-            'user_id' => '123',
+            'user_id' => 't123',
             'password' => Hash::make('t123'),
             'type' => 'Teacher'
         ]);
 
         DB::table('users')->insert([            
-            'user_id' => '123',
+            'user_id' => 's123',
             'password' => Hash::make('s123'),
             'type' => 'Student'
         ]);
