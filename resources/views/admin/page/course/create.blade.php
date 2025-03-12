@@ -22,8 +22,8 @@
                             <label>Description</label>
                             <textarea name="description" class="form-control" required></textarea>
                         </div>
-                              <div class="form-group">
-                                             <label for="class_id" class="form-label">Class</label>
+                        <div class="form-group">
+                            <label for="class_id" class="form-label">Class</label>
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
@@ -43,7 +43,6 @@
                             <label>Type</label>
                             <select name="type" class="form-control" required>
                                <option value ="">Select Type</option>
-
                                 <option value="paid">Paid</option>
                                 <option value="free">Free</option>
                             </select>
