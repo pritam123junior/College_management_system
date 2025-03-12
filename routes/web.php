@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\AdminContentController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminAjaxDataController;
 use App\Http\Controllers\DashboardController;
