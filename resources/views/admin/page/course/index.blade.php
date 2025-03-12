@@ -21,31 +21,32 @@
                                     <th>Price</th>
                                     <th>Duration</th>
                                     <th>Type</th>
-                                    
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                              @foreach($courses as $course)
-                <tr>
-                    <td>{{ $course->name }}</td>
-                    <td>{{ $course->description}}</td>
-                    <td>{{ $course->class?->name }}</td>
-                    <td>{{ $course->price }}</td>
-                    <td>{{ $course->duration }}</td>
-                    <td>{{ ucfirst($course->type) }}</td>
-                
-                    <td>
-                        <a href="{{ route('admin.course.edit', $course->id) }}" class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
-                         <input type="hidden" class="row-id"
+                                @foreach ($courses as $course)
+                                    <tr>
+                                        <td>{{ $course->name }}</td>
+                                        <td>{{ $course->description }}</td>
+                                        <td>{{ $course->class?->name }}</td>
+                                        <td>{{ $course->price }}</td>
+                                        <td>{{ $course->duration }}</td>
+                                        <td>{{ ucfirst($course->type) }}</td>
+
+                                        <td>
+                                            <a href="{{ route('admin.course.edit', $course->id) }}"
+                                                class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                                            <input type="hidden" class="row-id"
                                                 value="{{ route('admin.course.destroy', $course->id) }}">
                                             <button type="button" class="btn btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
-                    </td>
-                </tr>
-            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

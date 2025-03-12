@@ -28,17 +28,17 @@
                                 @foreach ($contents as $content)
                                     <tr>
                                         <td>{{ $content->name }}</td>
-                                        <td>{{ $content->type }}</td>
+                                        <td>{{ $content->file_type }}</td>
                                         <td>{{ $content->size }}</td>
                                         <td>{{ $content->class->name }}</td>
                                         <td>{{ $content->course->name }}</td>
                                         <td>{{ $content->created_at }}</td>
 
                                         <td>
-                                            <a href="{{ route('admin.course.edit', $course->id) }}"
-                                                class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                                            <a href="{{ route('admin.course.show', $content->id) }}"
+                                                class="btn btn-primary btn-sm"><i class="bi bi-file-earmark-fill"></i></a>
                                             <input type="hidden" class="row-id"
-                                                value="{{ route('admin.course.destroy', $course->id) }}">
+                                                value="{{ route('admin.content.destroy', $content->id) }}">
                                             <button type="button" class="btn btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>
