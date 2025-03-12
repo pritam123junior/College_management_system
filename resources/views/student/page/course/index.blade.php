@@ -8,7 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Course List</h4>
                     </div>
-                   
+
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -16,31 +16,30 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Class</th>
-                                    <th>Price</th>
                                     <th>Duration</th>
                                     <th>Type</th>
-                                    
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                              @foreach($courses as $course)
-                <tr>
-                    <td>{{ $course->name }}</td>
-                    <td>{{ $course->description}}</td>
-                    <td>{{ $course->class?->name }}</td>
-                    <td>{{ $course->price }}</td>
-                    <td>{{ $course->duration }}</td>
-                    <td>{{ ucfirst($course->type) }}</td>
+                                @foreach ($courses as $course)
+                                    <tr>
+                                        <td>{{ $course->name }}</td>
+                                        <td>{{ $course->duration }}</td>
+                                        <td>{{ $course->type }}</td>
+                                        <td>
+                                            <a href=""
+                                                class="btn btn-primary btn-sm">
+                                               <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.teacher.edit', $teacher->id) }}"
+                                                class="btn btn-secondary btn-sm">
+                                                <i class="bi bi-folder"></i>
+                                            </a>
 
-                
-                    <td>
-                       
-                    </td>
-                </tr>
-            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
