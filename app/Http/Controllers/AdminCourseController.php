@@ -18,7 +18,16 @@ class AdminCourseController extends Controller
           $classes=ClassData::all();
         return view('admin.page.course.create' , compact('classes'));
     }
-
+    public function courseCreate($id)
+    {      $course = Course::find($id);
+       
+        return view('admin.page.course.create' , compact('course'));
+    }
+    public function classcreate($id)
+    {    $class = Course::find($id);
+        
+        return view('admin.page.course.create' , compact('class'));
+    }
     public function store(Request $request)
     {
         $request->validate([
