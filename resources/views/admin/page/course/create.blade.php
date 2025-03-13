@@ -6,12 +6,10 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Add Course</h4>
                     </div>
                 </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate, ex ac venenatis mollis,
-                        diam nibh finibus leo</p>
+                <div class="card-body">                    
                     <form action="{{ route('admin.course.store') }}" method="POST">
                         @csrf
                         <div class="form-group">

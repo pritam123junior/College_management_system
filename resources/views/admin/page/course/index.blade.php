@@ -10,46 +10,37 @@
                     </div>
                     <a href="{{ route('admin.course.create') }}" class="btn btn-primary">Add Course</a>
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive mt-4">
-                        <table id="basic-table" class="table table-striped mb-0" role="grid">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Class</th>
-                                    <th>Price</th>
-                                    <th>Duration</th>
-                                    <th>Type</th>
+                <div class="card-body">
 
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($courses as $course)
-                                    <tr>
-                                        <td>{{ $course->name }}</td>
-                                        <td>{{ $course->description }}</td>
-                                        <td>{{ $course->class?->name }}</td>
-                                        <td>{{ $course->price }}</td>
-                                        <td>{{ $course->duration }}</td>
-                                        <td>{{ ucfirst($course->type) }}</td>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach ($courses as $course)
+                            <div class="col">
+                                <div class="card">
+                                    <img src="{{ asset('images/dashboard/top-header.png') }}" class="card-img-top"
+                                        alt="" style="height:10rem;">
+                                    <div class="card-body" style="background-color:lavender">
+                                        <h5 class="card-title">{{ $course->name }}</h5>
+                                        <span class="card-text">Class:{{ $course->class->name }}</span><br>
+                                        <span class="card-text">Price:{{ $course->price>0?$course->price.' BDT':'N/A' }}</span><br>
+                                        <span class="card-text">Type:{{ $course->type }}</span>
 
-                                        <td>
-                                            <a href="{{ route('admin.course.edit', $course->id) }}"
-                                                class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
-                                            <input type="hidden" class="row-id"
-                                                value="{{ route('admin.course.destroy', $course->id) }}">
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    </div>
+                                    <div class="card-footer" style="background-color:#cbd3d3">
+                                        <a href="{{ route('admin.course.edit', $course->id) }}"
+                                            class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                                        <input type="hidden" class="row-id"
+                                            value="{{ route('admin.course.destroy', $course->id) }}">
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
+
+
                 </div>
             </div>
         </div>
