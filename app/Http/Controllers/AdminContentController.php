@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Models\ClassData;
-use App\Models\YoutubeGroup;
+use App\Models\Group;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -23,7 +23,7 @@ class AdminContentController extends Controller
     public function create()
     {
         $classes = ClassData::get(); 
-        $youtube_groups=YoutubeGroup::get();
+        $youtube_groups=Group::get();
 
         return view('admin.page.content.create', compact('classes','youtube_groups'));
     }
@@ -91,6 +91,63 @@ class AdminContentController extends Controller
         Content::destroy($id);
 
         return redirect()->route('admin.content.index')->with('success', 'Content deleted successfully!');
+    }
+    public function groupList()
+    {
+        $groups = Group::all();
+        return view('admin.page.group.index', compact('groups'));
+    }
+
+    // Show form to create a new group
+    public function groupCreate()
+    {
+        return view('admin.page.group.create');
+    }
+
+    // Store a newly created group
+    public function groupStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Group::create($request->all());
+
+        return redirect()->route('admin.group.list')
+                         ->with('success', 'Group created successfully.');
+    }
+
+    // Show details of a specific group
+  
+
+    // Show form to edit an existing group
+    public function groupEdit($id)
+    { 
+        $group = Group::findOrFail($id);
+        return view('admin.page.group.edit', compact('group'));
+    }
+
+    // Update an existing group
+    public function groupUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'name' => ['required' ],
+        ]);
+
+        $group = Group::findOrFail($id);
+        $group->update($request->all());
+
+        return redirect()->route('admin.group.list')->with('success', 'Group updated successfully.');
+    }
+
+    // Delete a group
+    public function groupDestroy($id)
+    {
+        $group = Group::findOrFail($id);
+        $group->delete();
+
+        return redirect()->route('admin.group.list')
+                         ->with('success', 'Group deleted successfully.');
     }
 
 }

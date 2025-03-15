@@ -1,4 +1,4 @@
-@extends('teacher.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="row">
@@ -6,9 +6,10 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Class List</h4>
+                        <h4 class="card-title">Group List</h4>
                     </div>
-                    
+                    <a href="{{ route('admin.group.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i> Add
+                        group</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
@@ -17,26 +18,24 @@
                                 <tr>
                                     <th>Sl.</th>
                                     <th>Name</th>
-                                    <th>Section</th>
-                                    <th>Actions</th>
+                                    <th>Action</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($classes as $index => $class)
+                                @foreach ($groups as $group)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $class->name }}</td>   
-                                        <td>                                        
-                                        @foreach ($class->sections as $index => $section)
-                                            <span class="text-secondary">{{$index+1}}. {{$section->name}}</span>
-                                            @if(!$loop->last)<br>@endif
-                                        @endforeach                                        
-                                        </td>                                 
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>{{ $group->name }}</td>
+                                 
+                                        
                                         <td>
-                                            <a href="{{ route('admin.class.edit', $class->id) }}"
-                                                class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>                                            
+                                            <a href="{{ route('admin.group.edit', $group->id) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
                                             <input type="hidden" class="row-id"
-                                                value="{{ route('admin.class.destroy', $class->id) }}">
+                                                value="{{ route('admin.group.destroy', $group->id) }}">
                                             <button type="button" class="btn btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 @section('content')
 
 <div>
@@ -29,10 +29,10 @@
       <div class="col-lg-3 col-md-6">
          <div class="card">
             <div class="card-body">
-               <div class="text-center">Total Teacher</div>
+               <div class="text-center">Total Content</div>
                <div class="d-flex align-items-center justify-content-between mt-3">
                   <div>
-                        <h2 class="counter">{{ $totalTeachers }}</h2>
+                        <h2 class="counter">{{ $totalContent }}</h2>
                      26.84%
                   </div>
                   <div class="border bg-soft-info rounded p-3">

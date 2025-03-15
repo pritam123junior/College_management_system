@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Course List</h4>
                     </div>
-                    <a href="{{ route('admin.course.create') }}" class="btn btn-primary">Add Course</a>
+                 
                 </div>
                 <div class="card-body">
 
@@ -26,14 +26,11 @@
 
                                     </div>
                                     <div class="card-footer" style="background-color:#cbd3d3">
-                                        <a href="{{ route('admin.course.edit', $course->id) }}"
-                                            class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
-                                        <input type="hidden" class="row-id"
-                                            value="{{ route('admin.course.destroy', $course->id) }}">
-                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
+                                        <a href="{{ route('teacher.course.view', $course->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                               <i class="bi bi-eye"></i>
+                                            </a>
+                                        
                                     </div>
                                 </div>
                             </div>

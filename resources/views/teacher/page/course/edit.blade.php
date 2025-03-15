@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-lg-12">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.course.update', $course->id) }}" method="POST">
+                    <form action="{{ route('teacher.course.update', $course->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 

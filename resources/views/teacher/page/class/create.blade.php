@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 
 @section('content')
     <div class="row">
@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.class.store') }}" method="POST">
+                    <form action="{{ route('teacher.class.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="form-label">Class Name</label>

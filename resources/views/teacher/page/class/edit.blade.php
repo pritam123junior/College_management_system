@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-lg-12">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('admin.class.update', ['id' => $class->id]) }}" method="POST">
+                    <form action="{{ route('teacher.class.update', ['id' => $class->id]) }}" method="POST">
                         @csrf @method('PUT')
                         <div class="form-group">
                             <label class="form-label">Class Name</label>

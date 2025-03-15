@@ -61,13 +61,13 @@
                               <h4 class="logo-title ms-3">logo title</h4>
                            </a>
                            <h2 class="mb-5 text-center">Teacher Login</h2>                          
-                           <form action="{{url('admin/login')}}" method="POST">
+                           <form action="{{url('teacher/login')}}" method="POST">
                            @csrf
                               <div class="row">
                                  <div class="col-lg-12">
                                     <div class="form-group">
-                                       <label for="username" class="form-label">Username</label>
-                                       <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username" name="username">
+                                       <label for="user_id" class="form-label">User ID</label>
+                                       <input type="text" class="form-control" id="user_id" aria-describedby="user_id" placeholder="Enter User ID" name="user_id">
                                     </div>
                                  </div>
                                  <div class="col-lg-12">
