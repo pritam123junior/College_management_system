@@ -16,11 +16,11 @@
                         <div class="form-group">
                             <label for="name" class="form-label">Course Name</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ old('name', $course->name) }}" required>
+                                value="{{  $course->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description', $course->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" required>{{  $course->description }}</textarea>
                         </div>
                             <div class="form-group">
                            <label for="class_id" class="form-label">Class <span class="text-danger">*</span></label>
@@ -35,12 +35,12 @@
                         <div class="form-group">
                             <label for="price" class="form-label">Price (BDT)</label>
                             <input type="text" class="form-control" id="price" name="price"
-                                value="{{ old('price', $course->price) }}" required>
+                                value="{{  $course->price}}" required>
                         </div>
                         <div class="form-group">
                             <label for="duration" class="form-label">Duration (e.g., 2 hours)</label>
                             <input type="text" class="form-control" id="duration" name="duration"
-                                value="{{ old('duration', $course->duration) }}" required>
+                                value="{{ 'duration', $course->duration) }}" required>
                         </div>
                         <div class="form-group">
                             <label for="type" class="form-label">Course Type</label>
