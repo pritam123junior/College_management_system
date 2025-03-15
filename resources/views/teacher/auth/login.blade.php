@@ -60,7 +60,7 @@
                               
                               <h4 class="logo-title ms-3">logo title</h4>
                            </a>
-                           <h2 class="mb-5 text-center">Admin Login</h2>                          
+                           <h2 class="mb-5 text-center">Teacher Login</h2>                          
                            <form action="{{url('admin/login')}}" method="POST">
                            @csrf
                               <div class="row">
