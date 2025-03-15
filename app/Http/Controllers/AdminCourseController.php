@@ -34,8 +34,7 @@ class AdminCourseController extends Controller
             'name' => ['required','string','max:255'],
             'class_id'=>['nullable'],
             'description' => ['nullable','string'],
-            'price' => ['nullable','string'],
-            'duration' => ['nullable','string'],
+            'price' => ['nullable','string'],            
             'type' => ['required'],
         ]);
 
@@ -43,8 +42,7 @@ class AdminCourseController extends Controller
             'class_id'=>$request->class_id,
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price,
-            'duration' => $request->duration,
+            'price' => $request->price,            
             'type' => $request->type,
            
         ]);
@@ -63,10 +61,9 @@ class AdminCourseController extends Controller
     {
         $request->validate([
             'name' => ['required','string','max:255'],
-            'class_id'=>['nullable'],
+            'class_id'=>['required'],
             'description' => ['nullable','string'],
-            'price' => ['nullable','string'],
-            'duration' => ['nullable','string'],
+            'price' => ['nullable','string'],            
             'type' => ['required'],
            
         ]);

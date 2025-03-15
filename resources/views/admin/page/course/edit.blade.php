@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Basic Form</h4>
+                        <h4 class="card-title">Edit Course</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -20,10 +20,10 @@
                         </div>
                         <div class="form-group">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description', $course->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $course->description) }}</textarea>
                         </div>
                             <div class="form-group">
-                           <label for="class_id" class="form-label">Class <span class="text-danger">*</span></label>
+                           <label for="class_id" class="form-label">Class</label>
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
@@ -31,18 +31,7 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <label for="price" class="form-label">Price (BDT)</label>
-                            <input type="text" class="form-control" id="price" name="price"
-                                value="{{ old('price', $course->price) }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="duration" class="form-label">Duration (e.g., 2 hours)</label>
-                            <input type="text" class="form-control" id="duration" name="duration"
-                                value="{{ old('duration', $course->duration) }}" required>
-                        </div>
-                        <div class="form-group">
+                          <div class="form-group">
                             <label for="type" class="form-label">Course Type</label>
                             <select class="form-select" id="type" name="type" required>
                                 <option value ="">Select Type</option>
@@ -50,20 +39,54 @@
                                 <option value="paid" {{ $course->type == 'paid' ? 'selected' : '' }}>Paid</option>
                                 <option value="free" {{ $course->type == 'free' ? 'selected' : '' }}>Free</option>
                             </select>
-                        </div>
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        </div>       
+                        <div class="form-group priceshow d-none">
+                            <label for="price" class="form-label">Price (BDT)</label>
+                            <input type="text" class="form-control" id="price" name="price"
+                                value="{{ $class->price }}">
+                        </div>                       
+                                     
+                        <button type="submit" class="btn btn-primary">update</button>                       
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $("#type").on("change", function() {
+
+            let type = $("#type option:selected").val();
+
+            if (type === 'Paid') {   
+
+                $('.priceshow').removeClass("d-none");
+
+                $("#price").attr("required", true);
+
+
+
+            } else if (type === 'Free') {
+
+
+                $('.priceshow').addClass("d-none");
+
+                $("#price").attr("required", false);
+
+
+
+            } else {
+
+                $('.priceshow').addClass("d-none");
+
+                $("#price").attr("required", false);
+
+            }
+
+
+
+        });
+    </script>
+@endpush

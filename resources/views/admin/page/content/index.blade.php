@@ -22,9 +22,15 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $content->name }}</h5>
                                         <p class="card-text">{{ $content->description }}</p>
-                                         <p>Date:{{ $content->created_at }}</p>
-                                        <a href="{{ route('admin.content.download', $content->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>                                        
+                                         <p>Date:{{ $content->created_at }}</p>                                        
+                                             <button type="button" class="btn btn-primary btn-sm view-content-btn"
+                                                data-bs-toggle="modal" data-bs-target="#viewContentModal">
+                                                <i class="bi bi-eye"></i>
+                                            </button> 
+                                            @if($content->type==='file')
+                                                <a href="{{ route('admin.content.download', $content->id) }}"
+                                                class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>
+                                            @endif                                      
                                     </div>
                                     <div class="card-footer text-muted">
                                         <input type="hidden" class="row-id"
