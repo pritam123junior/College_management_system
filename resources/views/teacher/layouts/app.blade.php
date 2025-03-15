@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin</title>
+    <title>Teacher</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="" />
@@ -122,11 +122,11 @@
     </div>
 
 
-    @include('admin.layouts.sidebar')
+    @include('teacher.layouts.sidebar')
 
     <main class="main-content">
         <div class="position-relative iq-banner">
-            @include('admin.layouts.navbar')
+            @include('teacher.layouts.navbar')
             <div class="conatiner-fluid content-inner mt-n5 py-0">
                 @yield('content')
             </div>
@@ -136,7 +136,7 @@
     </main>
     <!-- Wrapper End-->
 
-    {{--   @include('admin.layouts.offcanvas') --}}
+    {{--   @include('teacher.layouts.offcanvas') --}}
 
     <!-- Library Bundle Script -->
     <script src="{{ asset('js/core/libs.min.js') }}"></script>

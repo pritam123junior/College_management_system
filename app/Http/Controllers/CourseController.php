@@ -14,6 +14,7 @@ class CourseController extends Controller
         
         return view('student.page.course.index', compact('courses'));
 
-    }
 
+    }
+   
 }

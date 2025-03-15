@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherClassController;
+use App\Http\Controllers\TeacherCourseController;
 use App\Http\Controllers\TeacherContentController;
 use App\Http\Middleware\AdminAuthCheck;
 use App\Http\Middleware\TeacherAuthCheck;
@@ -16,6 +17,7 @@ use App\Http\Controllers\AdminAjaxDataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\TeacherDashboardController;
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_auth_check'])->group(function () {
@@ -88,29 +90,26 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_au
 
 Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified','teacher_auth_check'])->group(function () {
 
-    Route::get('dashboard', function () {
-        return view('teacher.page.dashboard');
-    })->name('dashboard');
-
+    Route::get('dashboard', [TeacherDashboardController::class, 'index'])->name('dashboard');
     //content
   
     Route::prefix('class')->name('class.')->group(function () {
         Route::get('index', [TeacherClassController::class, 'index'])->name('index');
-        Route::get('add-content', [TeacherClassController::class, 'addContent'])->name('content.add');
-        Route::post('store-content', [TeacherClassController::class, 'storeContent'])->name('content.store');
-        Route::get('edit-content/{id}', [TeacherClassController::class, 'editContent'])->name('content.edit'); 
-        Route::put('update-content/{id}', [TeacherClassController::class, 'updateContent'])->name('content.update'); 
-        Route::delete('delete-content/{id}', [TeacherClassController::class, 'deleteContent'])->name('content.delete'); 
-
-    });
-
-    Route::prefix('content')->name('content.')->group(function () {
-        Route::get('list/{id}', [TeacherContentController::class, 'index'])->name('index');
-        Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
-        Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
-        Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete'); 
-
-    });
+       
+    
+        });
+        Route::prefix('course')->name('course.')->group(function () {
+            Route::get('index', [TeacherCourseController::class, 'index'])->name('index');
+            Route::get('/view/{id}', [TeacherCourseController::class, 'view'])->name('view');
+         
+        });
+   Route::prefix('content')->name('content.')->group(function () {
+            Route::get('index', [TeacherContentController::class, 'index'])->name('index');
+            Route::get('/create', [TeacherContentController::class, 'create'])->name('create');
+            Route::post('/store', [TeacherContentController::class, 'store'])->name('store');
+            Route::get('/download/{id}', [TeacherContentController::class, 'download'])->name('download');
+            Route::delete('/destroy/{id}', [TeacherContentController::class, 'destroy'])->name('destroy');
+        });
 
 
 

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('teacher.layouts.app')
 
 @section('content')
     <div class="row">
@@ -8,8 +8,7 @@
                     <div class="header-title">
                         <h4 class="card-title">Class List</h4>
                     </div>
-                    <a href="{{ route('admin.class.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i> Add
-                        Class</a>
+                    
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive mt-4">
