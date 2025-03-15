@@ -16,11 +16,11 @@
                         <div class="form-group">
                             <label for="name" class="form-label">Course Name</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ old('name', $course->name) }}" required>
+                                value="{{ $course->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $course->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ $course->description }}</textarea>
                         </div>
                             <div class="form-group">
                            <label for="class_id" class="form-label">Class</label>
