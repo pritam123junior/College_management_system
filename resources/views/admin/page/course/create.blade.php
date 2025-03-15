@@ -9,7 +9,7 @@
                         <h4 class="card-title">Add Course</h4>
                     </div>
                 </div>
-                <div class="card-body">                    
+                <div class="card-body">
                     <form action="{{ route('admin.course.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -30,29 +30,16 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Price (BDT)</label>
-                            <input type="number" name="price" class="form-control" step="any" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Duration (e.g. 2 hours)</label>
-                            <input type="text" name="duration" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label>Type</label>
-                            <select name="type" class="form-control" required>
-                               <option value ="">Select Type</option>
-                                <option value="paid">Paid</option>
-                                <option value="free">Free</option>
+                            <select name="type" id="type" class="form-control" required>
+                                <option value ="">Select Type</option>
+                                <option value="Paid">Paid</option>
+                                <option value="Free">Free</option>
                             </select>
                         </div>
-
-                        <div class="checkbox mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                                <label class="form-check-label" for="flexCheckDefault3">
-                                    Remember me
-                                </label>
-                            </div>
+                        <div class="form-group priceshow d-none">
+                            <label>Price (BDT)</label>
+                            <input type="number" name="price" class="form-control" id="price" step="any">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="submit" class="btn btn-danger">cancel</button>
@@ -62,3 +49,39 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $("#type").on("change", function() {
+
+            let type = $("#type option:selected").val();
+
+            if (type === 'Paid') {   
+
+                $('.priceshow').removeClass("d-none");
+
+                $("#price").attr("required", true);
+
+
+
+            } else if (type === 'Free') {
+
+
+                $('.priceshow').addClass("d-none");
+
+                $("#price").attr("required", false);
+
+
+
+            } else {
+
+                $('.priceshow').addClass("d-none");
+
+                $("#price").attr("required", false);
+
+            }
+
+
+
+        });
+    </script>
+@endpush

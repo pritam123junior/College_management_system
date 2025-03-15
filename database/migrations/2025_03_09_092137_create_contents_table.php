@@ -16,7 +16,7 @@ return new class extends Migration
             `contents`. Specifically, the lines: */
             
             $table->string('name');
-            $table->string('file_type');            
+            $table->string('file_type')->nullable();            
             $table->longText('description')->nullable();
             $table->foreignId('course_id')->nullable();
             $table->foreignId('class_id')->nullable();

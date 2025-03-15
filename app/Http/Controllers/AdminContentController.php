@@ -35,7 +35,9 @@ class AdminContentController extends Controller
             'description' => ['nullable','string'],
             'class_id'=>['required'],
             'course_id' => ['nullable'],
-            'file_content' => ['nullable','max:51200']            
+            'file_content' => ['nullable','max:51200'],
+            'youtube_link' => ['nullable','string'],  
+            'group_id' => ['nullable'],          
         ]);             
         
         $folder = 'contents'.'/'.Str::lower(Auth::user()->type);
@@ -61,7 +63,7 @@ class AdminContentController extends Controller
                 'path' => $path,
                 'file_type' => $request->file('file_content')->extension(),
                 'youtube_link'=>$request->youtube_link,
-                'group_id'=>$request->group_id,
+                'group_id'=>$request->group_id
                
             ]);
 

@@ -18,9 +18,8 @@ return new class extends Migration
             
              $table->string('name')->unique();
             $table->longText('description')->nullable();
-            $table->decimal('price',10,2)->nullable();
-            $table->string('duration');
-            $table->enum('type', ['paid', 'free']);
+            $table->decimal('price',10,2)->nullable();           
+            $table->enum('type', ['Paid', 'Free']);
             $table->timestamps();
         });
     }

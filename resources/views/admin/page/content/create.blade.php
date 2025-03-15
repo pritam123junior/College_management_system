@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="type_id" class="form-label">Type</label>
-                            <select name="type_id" id="type_id" class="form-control">
+                            <select name="type_id" id="type_id" class="form-control" required>
                                 <option value="">Select Type</option>
                                 <option value="file">File</option>
                                 <option value="youtube_link">Youtube Link</option>
@@ -46,17 +46,17 @@
                         <div class="content-upload-show d-none">
                             <div class="form-group">
                                 <label for="file_content" class="form-label">File Upload(max:50MB)</label>
-                                <input type="file" name="file_content" class="form-control" required>
+                                <input type="file" name="file_content" class="form-control" id="file_content">
                             </div>
                         </div>
-                        <div class="youtube-link-show dp-none">
+                        <div class="youtube-link-show d-none">
                             <div class="form-group">
                                 <label for="youtube_link" class="form-label">Youtube link</label>
-                                <input type="text" name="youtube_link" class="form-control" id="youtube_link" required>
+                                <input type="text" name="youtube_link" class="form-control" id="youtube_link">
                             </div>
                             <div class="form-group">
-                                <label>Group Name</label>
-                                <select id="group_id" class="form-control" name="group_id" required>
+                                <label for="group_id" class="form-label">Group Name</label>
+                                <select id="group_id" class="form-control" name="group_id">
                                     <option value="">Select Group</option>
                                     @foreach ($youtube_groups as $youtube_group)
                                         <option value="{{ $youtube_group->id }}">{{ $youtube_group->name }}</option>
@@ -110,6 +110,9 @@
                 }
 
                 $('.youtube-link-show').addClass("d-none");
+                $( "#file_content" ).attr( "required", true );
+                 $( "#youtube_link" ).attr( "required", false );
+                
 
 
             } else if (type === 'youtube_link') {
@@ -119,11 +122,17 @@
 
                 }
 
-                $('.content-upload-show').addClass("d-none");
+                $('.content-upload-show').addClass("d-none");                
+                $( "#youtube_link" ).attr( "required", true );
+                $( "#group_id" ).attr( "required", true );
+                 $( "#file_content" ).attr( "required", false );
 
             } else {
                 $('.content-upload-show').addClass("d-none");
                 $('.youtube-link-show').addClass("d-none");
+                 $( "#youtube_link" ).attr( "required", false );
+                $( "#group_id" ).attr( "required", false );
+                 $( "#file_content" ).attr( "required", false );
             }
 
 
