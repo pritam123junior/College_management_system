@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Section;
+use App\Models\Course;
 
 class AdminAjaxDataController extends Controller
 {
@@ -12,6 +13,13 @@ class AdminAjaxDataController extends Controller
         $sections=Section::where('class_id',$request->class_id)->get();
         
         return response()->json($sections);
+
+    }
+    public function course(Request $request){  
+
+        $courses=Course::where('class_id',$request->class_id)->get();
+        
+        return response()->json($courses);
 
     }
 }

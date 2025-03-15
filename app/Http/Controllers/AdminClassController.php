@@ -52,22 +52,16 @@ class AdminClassController extends Controller
         ]);
         $class = ClassData::find($id);
 
-        $class->update(['name' => $request->name]);
-
-        return $request->all();
-
-        
+        $class->update(['name' => $request->name]);        
 
         if ($request->sections) {
 
-            $newArray = collect($array[''])->zip($array['Color']);
+            $collectionn = collect($request->sections);
+            $collectioni = collect($request->section_ids);
 
+$combined = $collectioni->combine($collectionn);
 
-            $collection = collect(['name', 'age']);
-
-$combined = $request->section_ids->combine(['George', 29]);
-
-$combined->all();
+return $combined->all();
 
 // ['name' => 'George', 'age' => 29]
 

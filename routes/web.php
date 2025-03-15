@@ -6,7 +6,6 @@ use App\Http\Controllers\TeacherClassController;
 use App\Http\Controllers\TeacherContentController;
 use App\Http\Middleware\AdminAuthCheck;
 use App\Http\Middleware\TeacherAuthCheck;
-use App\Http\Middleware\StudentAuthCheck;
 use App\Http\Controllers\AdminClassController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\AdminStudentController;
@@ -19,7 +18,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ContentController;
 //admin
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_auth_check'])->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
 
@@ -67,28 +66,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 
         Route::prefix('content')->name('content.')->group(function () {
             Route::get('/', [AdminContentController::class, 'index'])->name('index');
-            Route::get('/create', [AdminCourseController::class, 'create'])->name('create');
-    
-            Route::post('/store', [AdminCourseController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [AdminCourseController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [AdminCourseController::class, 'update'])->name('update');
-            Route::delete('/destroy/{id}', [AdminCourseController::class, 'destroy'])->name('destroy');
+            Route::get('/create', [AdminContentController::class, 'create'])->name('create');
+            Route::post('/store', [AdminContentController::class, 'store'])->name('store');
+            Route::get('/download/{id}', [AdminContentController::class, 'download'])->name('download');
+            Route::delete('/destroy/{id}', [AdminContentController::class, 'destroy'])->name('destroy');
         });
 
         
         Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
             Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
+            Route::post('course', [AdminAjaxDataController::class, 'course'])->name('course');
         });
 
 
        
 
-})->middleware(AdminAuthCheck::class);
+});
 
 
 //teacher
 
-Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified','teacher_auth_check'])->group(function () {
 
     Route::get('dashboard', function () {
         return view('teacher.page.dashboard');
@@ -116,9 +114,10 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified'])->gr
 
 
 
-})->middleware(TeacherAuthCheck::class);
+});
+
 //student
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','student_auth_check'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //content
@@ -128,7 +127,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('index', [CourseController::class, 'index'])->name('index');
     });
     Route::prefix('content')->name('content.')->group(function () {
-        Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
+        Route::get('index', [ContentController::class, 'index'])->name('index');
+      //  Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
         Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
         Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
         Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete'); 
@@ -137,7 +137,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-})->middleware(TeacherAuthCheck::class);
+});
 
 
 /* Route::get('/', function () {
