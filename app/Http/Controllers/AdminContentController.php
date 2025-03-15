@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Models\ClassData;
+use App\Models\YoutubeGroup;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -22,8 +23,9 @@ class AdminContentController extends Controller
     public function create()
     {
         $classes = ClassData::get(); 
+        $youtube_groups=YoutubeGroup::get();
 
-        return view('admin.page.content.create', compact('classes'));
+        return view('admin.page.content.create', compact('classes','youtube_groups'));
     }
 
     public function store(Request $request)
