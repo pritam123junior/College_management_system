@@ -68,8 +68,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_au
             Route::get('/', [AdminContentController::class, 'index'])->name('index');
             Route::get('/create', [AdminContentController::class, 'create'])->name('create');
             Route::post('/store', [AdminContentController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [AdminContentController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [AdminContentController::class, 'update'])->name('update');
+            Route::get('/download/{id}', [AdminContentController::class, 'download'])->name('download');
             Route::delete('/destroy/{id}', [AdminContentController::class, 'destroy'])->name('destroy');
         });
 
@@ -128,7 +127,8 @@ Route::middleware(['auth', 'verified','student_auth_check'])->group(function () 
         Route::get('index', [CourseController::class, 'index'])->name('index');
     });
     Route::prefix('content')->name('content.')->group(function () {
-        Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
+        Route::get('index', [ContentController::class, 'index'])->name('index');
+      //  Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
         Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
         Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
         Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete'); 

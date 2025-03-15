@@ -10,15 +10,15 @@
                     </div>
                 </div>
                 <div class="card-body">                    
-                    <form action="{{ route('admin.content.store') }}" method="POST">
-                        @csrf
+                    <form action="{{ route('admin.content.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf                        
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" required></textarea>
+                            <textarea name="description" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="class_id" class="form-label">Class</label>
@@ -31,13 +31,21 @@
                         </div> 
                         <div class="form-group">
                             <label for="course_id" class="form-label">Course</label>
-                            <select name="course_id" id="course_id" class="form-control" required>
+                            <select name="course_id" id="course_id" class="form-control">
                                 <option value="">Select Course</option>                                
                             </select>
                         </div>  
                         <div class="form-group">
                             <label for="file_content" class="form-label">File Upload(max:50MB)</label>
-                            <input type="file" name="file_content" class="form-control" required>
+                            <input type="file" name="file_content" class="form-control">
+                        </div>
+                         <div class="form-group">
+                            <label>Group Name</label>
+                            <input type="text" name="youtube_group_name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="youtube_link" class="form-label">Youtube link</label>
+                            <input type="text" name="youtube_link" class="form-control" id="youtube_link">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Add</button>

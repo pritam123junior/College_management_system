@@ -7,13 +7,15 @@ use App\Models\Content;
 use App\Models\ClassData;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 
 class AdminContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::get(); 
+        $contents = Content::orderBy('id','desc')->get(); 
         return view('admin.page.content.index', compact('contents'));
     }
 
@@ -28,33 +30,56 @@ class AdminContentController extends Controller
     {
         $request->validate([
             'name' => ['required','string','max:255'],
-            'description' => ['required','string'],
+            'description' => ['nullable','string'],
             'class_id'=>['required'],
             'course_id' => ['nullable'],
-            'file_content' => ['required','file','size:51200']            
-        ]);       
-        $folder= 'contents'.'/'.Auth::user()->type.'/'.Auth::id();
+            'file_content' => ['required','max:51200']            
+        ]);             
+        
+        $folder = 'contents'.'/'.Str::lower(Auth::user()->type);
 
-        $upload_status=Storage::disk('local')->put($folder, $request->file_content);
-        if($upload_status){
+        $latest_id=Content::latest()->value('id');
+
+        $file_name=time().'.'.$request->file('file_content')->extension();
+
+        $path = $folder.'/'.$file_name;
+
+        $path=Storage::disk('local')->put($folder, $request->file_content);
+        if($path){
+
+
 
             Content::create([
                 'name'=>$request->name,
+                'description'=>$request->description,
                 'class_id' => $request->class_id,
                 'course_id' => $request->course_id,
-                'price' => $request->price,
-                'duration' => $request->duration,
-                'type' => $request->type,
+                'user_id' => Auth::id(),  
+                'user_type' => Auth::user()->type,              
+                'path' => $path,
+                'file_type' => $request->file('file_content')->extension()
                
             ]);
 
-        }
+        }               
+
+        return redirect()->route('admin.content.index')->with('success', 'Content added successfully.');
+    }
+
+    public function download($id)
+    {
+        $path=Content::where('id',$id)->value('path');
+
+        return Storage::download($path);
+        
+    }
 
 
+    public function destroy($id)
+    {
+        Content::destroy($id);
 
-       
-
-        return redirect()->route('admin.course.index')->with('success', 'Course created and pending approval.');
+        return redirect()->route('admin.content.index')->with('success', 'Content deleted successfully!');
     }
 
 }

@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Auth;
 
 class ContentController extends Controller
 {
-    public function index($id)
-{
+    public function index()
+    {
 
+        $contents = content::where('class_id',Auth::user()->student?->class_id)->paginate(12);
 
-   $content = content::where('course_id',$id)->get();
-   return view('student.page.content.index', compact( 'content'));
-}   
+        return view('student.page.content.index', compact( 'contents'));
+    }   
 }

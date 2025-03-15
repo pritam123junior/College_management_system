@@ -1,4 +1,4 @@
-@extends('student.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="row">
@@ -17,16 +17,22 @@
                             <div class="col">
                                 <div class="card">
                                     <div class="card-header">
-                                        Featured
+                                        File Content
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up
-                                            the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <h5 class="card-title">{{ $content->name }}</h5>
+                                        <p class="card-text">{{ $content->description }}</p>
+                                         <p>Date:{{ $content->created_at }}</p>
+                                        <a href="{{ route('admin.content.download', $content->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>                                        
                                     </div>
                                     <div class="card-footer text-muted">
-                                        2 days ago
+                                        <input type="hidden" class="row-id"
+                                            value="{{ route('admin.content.destroy', $content->id) }}">
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
