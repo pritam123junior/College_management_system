@@ -22,7 +22,9 @@ return new class extends Migration
             $table->foreignId('class_id')->nullable();
             $table->foreignId('user_id');
             $table->enum('user_type',['Admin','Teacher']);
-            $table->longText('path');
+            $table->longText('path')->nullable();
+            $table->longText('youtube_link')->nullable();
+            $table->enum('type',['youtube_link','file']);
             $table->timestamps();
         });
     }
