@@ -8,41 +8,36 @@
                     <div class="header-title">
                         <h4 class="card-title">Course List</h4>
                     </div>
-
+                  
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive mt-4">
-                        <table id="basic-table" class="table table-striped mb-0" role="grid">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Duration</th>
-                                    <th>Type</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($courses as $course)
-                                    <tr>
-                                        <td>{{ $course->name }}</td>
-                                        <td>{{ $course->duration }}</td>
-                                        <td>{{ $course->type }}</td>
-                                        <td>
-                                            <a href=""
+                <div class="card-body">
+
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach ($courses as $course)
+                            <div class="col">
+                                <div class="card">
+                                    <img src="{{ asset('images/dashboard/top-header.png') }}" class="card-img-top"
+                                        alt="" style="height:10rem;">
+                                    <div class="card-body" style="background-color:lavender">
+                                        <h5 class="card-title">{{ $course->name }}</h5>
+                                        <span class="card-text">Class:{{ $course->class->name }}</span><br>
+                                        <span class="card-text">Price:{{ $course->price>0?$course->price.' BDT':'N/A' }}</span><br>
+                                        <span class="card-text">Type:{{ $course->type }}</span>
+
+                                    </div>
+                                    <div class="card-footer" style="background-color:#cbd3d3">
+                                                <a href=""
                                                 class="btn btn-primary btn-sm">
                                                <i class="bi bi-eye"></i>
                                             </a>
-                                            <a href="{{ route('content.index', $course->id) }}"
-                                                class="btn btn-secondary btn-sm">
-                                                <i class="bi bi-folder"></i>
-                                            </a>
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
+
+
                 </div>
             </div>
         </div>
