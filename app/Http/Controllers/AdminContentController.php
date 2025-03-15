@@ -16,7 +16,7 @@ class AdminContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::orderBy('id','desc')->get(); 
+        $contents = Content::where('type','youtube_link')->get(); 
         return view('admin.page.content.index', compact('contents'));
     }
 
@@ -38,7 +38,9 @@ class AdminContentController extends Controller
             'file_content' => ['nullable','max:51200'],
             'youtube_link' => ['nullable','string'],  
             'group_id' => ['nullable'],          
-        ]);             
+        ]);    
+        
+        if($request->file_content){
         
         $folder = 'contents'.'/'.Str::lower(Auth::user()->type);
 
@@ -49,8 +51,16 @@ class AdminContentController extends Controller
         $path = $folder.'/'.$file_name;
 
         $path=Storage::disk('local')->put($folder, $request->file_content);
-       
 
+        $file_type = $request->file('file_content')->extension();
+
+        $type='file';
+       
+        }else{
+            $path='';
+            $file_type='';
+            $type='youtube_link';
+        }
 
 
             Content::create([
@@ -61,9 +71,10 @@ class AdminContentController extends Controller
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
-                'file_type' => $request->file('file_content')->extension(),
+                'file_type' => $file_type,
                 'youtube_link'=>$request->youtube_link,
-                'group_id'=>$request->group_id
+                'group_id'=>$request->group_id,
+                'type'=>$type
                
             ]);
 

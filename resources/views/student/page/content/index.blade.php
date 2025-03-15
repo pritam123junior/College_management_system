@@ -18,29 +18,13 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <div class="row">
                         @foreach ($contents as $content)
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-header">
-                                        File Content
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $content->name }}</h5>
-                                        <p class="card-text">{{ $content->description }}</p>
-                                        <p>Date:{{ $content->created_at }}</p>
-                                        <a href="{{ route('teacher.content.download', $content->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        <input type="hidden" class="row-id"
-                                            value="{{ route('teacher.content.destroy', $content->id) }}">
-                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="col-8">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/wzhJrXnh3ak?si=xq6UTVFd0q8xp-Ty" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="col-4">
+                               menu
                             </div>
                         @endforeach
                     </div>
