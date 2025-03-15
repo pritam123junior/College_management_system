@@ -106,7 +106,8 @@
                 let type = $("#type_id option:selected").val();
 
                 if (type === 'file') {                
-                   if ($('.youtube-link-show').hasClass("d-none")) {
+                   if ($('.content-upload-show').hasClass("d-none")) {
+                        $('.content-upload-show').removeClass("d-none");
 
                    } 
                     if ($('.youtube-link-show').hasClass("d-none")) {
