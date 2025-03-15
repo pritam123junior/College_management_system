@@ -49,21 +49,21 @@
                                 <input type="file" name="file_content" class="form-control" required>
                             </div>
                         </div>
-                        <div class="youtube-link-show d-none">
+                        <div class="youtube-link-show dp-none">
                             <div class="form-group">
                                 <label for="youtube_link" class="form-label">Youtube link</label>
                                 <input type="text" name="youtube_link" class="form-control" id="youtube_link" required>
                             </div>
                             <div class="form-group">
                                 <label>Group Name</label>
-                                <select class="single_tag_select" name="group_name" required>
+                                <select id="group_id" class="form-control" name="group_id" required>
+                                    <option value="">Select Group</option>
                                     @foreach ($youtube_groups as $youtube_group)
                                         <option value="{{ $youtube_group->id }}">{{ $youtube_group->name }}</option>
                                     @endforeach
-                                </select>
+                                </select>                                
                             </div>
                         </div>
-
                         <button type="submit" class="btn btn-primary">Add</button>
                         <button type="submit" class="btn btn-danger">cancel</button>
                     </form>
@@ -74,60 +74,59 @@
 @endsection
 @push('scripts')
     <script>
-        $(document).ready(function() {
+        $("#class_id").on("change", function() {
 
-            $("#class_id").on("change", function() {
+            $("#course_id").html("");
+            $("#course_id").html('<option value="">Select Course</option>');
 
-                $("#course_id").html("");
-                $("#course_id").html('<option value="">Select Course</option>');
+            $.ajax({
 
-                $.ajax({
-
-                    url: "{{ route('admin.ajaxdata.course') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        class_id: $("#class_id option:selected").val()
-                    },
-                    success: function(data) {
-                        for (const item of data) {
-                            let html_code = '<option value="' + item.id + '">' + item.name +
-                                '</option>';
-                            $("#course_id").append(html_code);
-                        }
+                url: "{{ route('admin.ajaxdata.course') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    class_id: $("#class_id option:selected").val()
+                },
+                success: function(data) {
+                    for (const item of data) {
+                        let html_code = '<option value="' + item.id + '">' + item.name +
+                            '</option>';
+                        $("#course_id").append(html_code);
                     }
-
-                });
+                }
 
             });
 
-            $("#type_id").on("change", function() {
+        });
 
-                let type = $("#type_id option:selected").val();
+        $("#type_id").on("change", function() {
 
-                if (type === 'file') {                
-                   if ($('.content-upload-show').hasClass("d-none")) {
-                        $('.content-upload-show').removeClass("d-none");
+            let type = $("#type_id option:selected").val();
 
-                   } 
-                    if ($('.youtube-link-show').hasClass("d-none")) {
-
-                   } 
-
+            if (type === 'file') {
+                if ($('.content-upload-show').hasClass("d-none")) {
+                    $('.content-upload-show').removeClass("d-none");
 
                 }
-                else if(type === 'youtube_link') {                   
-                    $('.youtube-link-show').toggleClass("d-none");
 
-                }else{
+                $('.youtube-link-show').addClass("d-none");
+
+
+            } else if (type === 'youtube_link') {
+
+                if ($('.youtube-link-show').hasClass("d-none")) {
+                    $('.youtube-link-show').removeClass("d-none");
+
+                }
 
                 $('.content-upload-show').addClass("d-none");
-                $('.content-upload-show').toggleClass("d-none");
-                }
+
+            } else {
+                $('.content-upload-show').addClass("d-none");
+                $('.youtube-link-show').addClass("d-none");
+            }
 
 
-
-            });
 
         });
     </script>

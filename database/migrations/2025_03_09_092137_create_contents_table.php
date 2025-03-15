@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('path')->nullable();
             $table->longText('youtube_link')->nullable();
             $table->enum('type',['youtube_link','file']);
+            $table->foreignId('group_id')->nullable();
             $table->timestamps();
         });
     }

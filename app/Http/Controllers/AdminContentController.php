@@ -35,7 +35,7 @@ class AdminContentController extends Controller
             'description' => ['nullable','string'],
             'class_id'=>['required'],
             'course_id' => ['nullable'],
-            'file_content' => ['required','max:51200']            
+            'file_content' => ['nullable','max:51200']            
         ]);             
         
         $folder = 'contents'.'/'.Str::lower(Auth::user()->type);
@@ -47,7 +47,7 @@ class AdminContentController extends Controller
         $path = $folder.'/'.$file_name;
 
         $path=Storage::disk('local')->put($folder, $request->file_content);
-        if($path){
+       
 
 
 
@@ -59,11 +59,18 @@ class AdminContentController extends Controller
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
-                'file_type' => $request->file('file_content')->extension()
+                'file_type' => $request->file('file_content')->extension(),
+                'youtube_link'=>$request->youtube_link,
+                'group_id'=>$request->group_id,
                
             ]);
 
-        }               
+         
+        
+        
+
+
+
 
         return redirect()->route('admin.content.index')->with('success', 'Content added successfully.');
     }
