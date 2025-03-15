@@ -52,9 +52,7 @@
                 isDark: false,
                 position: 'top right'
             });
-            $(".single_tag_select").select2({
-                tags: true
-            })
+           
 
             $(document).on('click', '.add-input-text-btn', function() {
                 event.preventDefault();

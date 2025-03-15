@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hope UI | Responsive Bootstrap 5 Admin Dashboard Template</title>
+    <title>Admin</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="" />
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{ asset('css/core/libs.min.css') }}" />
@@ -30,31 +30,113 @@
     <!-- RTL Css -->
     <link rel="stylesheet" href="{{ asset('css/rtl.min.css') }}" />
 
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- snapAlert -->
+    <link rel="stylesheet" href="{{ asset('css/snapAlert.min.css') }}" />
+    <script src="{{ asset('js/snap-alert.min.js') }}"></script>
+
+    <!-- select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            SnapAlert().SnapOptions({
+                duration: 3000,
+                isDark: false,
+                position: 'top right'
+            });
+           
+
+            $(document).on('click', '.add-input-text-btn', function() {
+                event.preventDefault();
+                $("#dynamic-input-text").append(
+                    '<div class="dynamic-input form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="sections[]"><button type="button" class="mt-2 add-input-text-btn btn btn-secondary btn-sm"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="remove-input-text-btn btn btn-danger btn-sm mt-2" style="margin-left:.5rem !important"><i class="bi bi-dash-circle-fill"></i></button></div>'
+                );
+            });
+
+            $(document).on('click', '.remove-input-text-btn', function() {
+                event.preventDefault();
+                $(this).parent('div.dynamic-input').remove();
+            });
+
+            $(".delete-btn").on("click", function(event) {
+                event.preventDefault();
+                let link = $(this).siblings('.row-id').val();
+                $(".delete-confirm-form").attr("action", link);
+            });
+
+            @if (session()->has('success'))
+                setTimeout(() => {
+
+                    SnapAlert().success('Success', "{{ session('success') }}");
+
+                }, "800");
+            @endif
+
+        });
+    </script>
 </head>
 
 <body>
- <!-- loader Start -->
+    <!-- loader Start -->
     <div id="loading">
-      <div class="loader simple-loader">
-          <div class="loader-body"></div>
-      </div>    </div>
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
     <!-- loader END -->
-    @include('teacher.layouts.sidebar')
+    {{-- delete modal --}}
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm Delete</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Are you sure to you want to delete?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="POST" class="d-inline delete-confirm-form">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @include('admin.layouts.sidebar')
 
     <main class="main-content">
         <div class="position-relative iq-banner">
-            @include('teacher.layouts.navbar')
+            @include('admin.layouts.navbar')
             <div class="conatiner-fluid content-inner mt-n5 py-0">
                 @yield('content')
             </div>
         </div>
 
 
-    </main>    
+    </main>
     <!-- Wrapper End-->
-   
-    @include('teacher.layouts.offcanvas')
+
+    {{--   @include('admin.layouts.offcanvas') --}}
 
     <!-- Library Bundle Script -->
     <script src="{{ asset('js/core/libs.min.js') }}"></script>
@@ -86,6 +168,9 @@
 
     <!-- App Script -->
     <script src="{{ asset('js/hope-ui.js') }}" defer></script>
+
+    @stack('scripts')
+
 
 </body>
 
