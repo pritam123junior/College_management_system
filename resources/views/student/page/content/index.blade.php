@@ -7,7 +7,8 @@
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Content List</h4>
-                    </div>                   
+                    </div>
+                    <a href="{{ route('teacher.content.create') }}" class="btn btn-primary">Add Content</a>
                 </div>
                 <div class="card-body">
 
@@ -21,18 +22,22 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $content->name }}</h5>
                                         <p class="card-text">{{ $content->description }}</p>
-                                         <p>Date:{{ $content->created_at }}</p>                                                                              
+                                         <p>Date:{{ $content->created_at }}</p>
+                                        <a href="{{ route('teacher.content.download', $content->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>                                        
                                     </div>
                                     <div class="card-footer text-muted">
-                                         <a href="{{ route('admin.content.download', $content->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a> 
+                                        <input type="hidden" class="row-id"
+                                            value="{{ route('teacher.content.destroy', $content->id) }}">
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-
-                    {{ $contents->links() }}
 
 
                 </div>
