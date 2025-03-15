@@ -47,7 +47,7 @@ class AdminCourseController extends Controller
            
         ]);
 
-        return redirect()->route('admin.course.index')->with('success', 'Course created and pending approval.');
+        return redirect()->route('admin.course.index')->with('success', 'Course added successfully.');
     }
 
     public function edit($id)

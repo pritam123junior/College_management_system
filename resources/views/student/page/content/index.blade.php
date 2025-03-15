@@ -8,7 +8,13 @@
                     <div class="header-title">
                         <h4 class="card-title">Content List</h4>
                     </div>
-                    <a href="{{ route('teacher.content.create') }}" class="btn btn-primary">Add Content</a>
+                    <div class="form-group">
+                        <label class="form-label">Type Filter</label>
+                        <select name="type" id="type" class="form-control" required>                            
+                            <option value="Youtube Content" selected>Youtube Content</option>
+                            <option value="File Content">File Content</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
 
@@ -22,9 +28,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $content->name }}</h5>
                                         <p class="card-text">{{ $content->description }}</p>
-                                         <p>Date:{{ $content->created_at }}</p>
+                                        <p>Date:{{ $content->created_at }}</p>
                                         <a href="{{ route('teacher.content.download', $content->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>                                        
+                                            class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>
                                     </div>
                                     <div class="card-footer text-muted">
                                         <input type="hidden" class="row-id"

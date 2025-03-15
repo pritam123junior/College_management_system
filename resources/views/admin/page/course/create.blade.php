@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" required></textarea>
+                            <textarea name="description" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="class_id" class="form-label">Class</label>
@@ -41,7 +41,7 @@
                             <label>Price (BDT)</label>
                             <input type="number" name="price" class="form-control" id="price" step="any">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                         <button type="submit" class="btn btn-danger">cancel</button>
                     </form>
                 </div>
