@@ -18,8 +18,7 @@
                             <input type="text" name="name" class="form-control" value="{{$group->name}}" required>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Update</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-primary">Update</button>                        
                     </form>
                 </div>
             </div>
