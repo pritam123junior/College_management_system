@@ -174,34 +174,8 @@
                                     <span class="item-name">List</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../dashboard/auth/sign-up.html">
-                                    <i class="icon">
-                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> R </i>
-                                    <span class="item-name">Register</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../dashboard/auth/confirm-mail.html">
-                                    <i class="icon">
-                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> C </i>
-                                    <span class="item-name">Confirm Mail</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../dashboard/auth/lock-screen.html">
+                             <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() === 'admin.group.list' ? 'active' : '' }}"  href="{{ route('admin.group.list') }}">
                                     <i class="icon">
                                         <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                             <g>
@@ -210,22 +184,10 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> L </i>
-                                    <span class="item-name">Lock Screen</span>
+                                    <span class="item-name">Group</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../dashboard/auth/recoverpw.html">
-                                   <i class="icon">
-                                        <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
-                                            <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> R </i>
-                                    <span class="item-name">Recover password</span>
-                                </a>
-                            </li>
+                          
                         </ul>
                     </li>                 
              </ul>

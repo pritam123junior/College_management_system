@@ -55,6 +55,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_au
             Route::put('/update/{id}', [AdminTeacherController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [AdminTeacherController::class, 'destroy'])->name('destroy');
         });
+        Route::prefix('group')->name('group.')->group(function () {
+            Route::get('/', [AdminContentController::class, 'groupList'])->name('list');
+            Route::get('/create', [AdminContentController::class, 'groupCreate'])->name('create');
+            Route::post('/store', [AdminContentController::class, 'groupStore'])->name('store');
+            Route::get('/edit/{id}', [AdminContentController::class, 'groupEdit'])->name('edit');
+            Route::put('/update/{id}', [AdminContentController::class, 'groupUpdate'])->name('update');
+            Route::delete('/delete/{id}', [AdminContentController::class, 'groupDestroy'])->name('destroy');
+        });
         
         
         Route::prefix('course')->name('course.')->group(function () {
