@@ -44,7 +44,7 @@
                                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
-                                            <a href="{{ route('admin.course.', $course->id) }}"
+                                            <a href="{{ route('admin.course.edit', $course->id) }}"
                                                 class="btn btn-warning btn-sm"> <i class="bi bi-file-plus"></i></a>
                                         </td>
                                     </tr>
