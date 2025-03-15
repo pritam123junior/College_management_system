@@ -22,8 +22,8 @@
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $course->description) }}</textarea>
                         </div>
-                            <div class="form-group">
-                           <label for="class_id" class="form-label">Class</label>
+                        <div class="form-group">
+                            <label for="class_id" class="form-label">Class</label>
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
@@ -31,7 +31,7 @@
                                 @endforeach
                             </select>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label for="type" class="form-label">Course Type</label>
                             <select class="form-select" id="type" name="type" required>
                                 <option value ="">Select Type</option>
@@ -39,14 +39,14 @@
                                 <option value="paid" {{ $course->type == 'paid' ? 'selected' : '' }}>Paid</option>
                                 <option value="free" {{ $course->type == 'free' ? 'selected' : '' }}>Free</option>
                             </select>
-                        </div>       
+                        </div>
                         <div class="form-group priceshow d-none">
                             <label for="price" class="form-label">Price (BDT)</label>
                             <input type="text" class="form-control" id="price" name="price"
                                 value="{{ $class->price }}">
-                        </div>                       
-                                     
-                        <button type="submit" class="btn btn-primary">update</button>                       
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">update</button>
                     </form>
                 </div>
             </div>
@@ -60,7 +60,7 @@
 
             let type = $("#type option:selected").val();
 
-            if (type === 'Paid') {   
+            if (type === 'Paid') {
 
                 $('.priceshow').removeClass("d-none");
 

@@ -26,11 +26,7 @@ class UserSeeder extends Seeder
             'type' => 'Teacher'
         ]);
 
-        DB::table('users')->insert([            
-            'user_id' => 's123',
-            'password' => Hash::make('s123'),
-            'type' => 'Student'
-        ]);
+       
 
     }
 }
