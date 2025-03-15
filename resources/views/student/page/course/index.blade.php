@@ -26,7 +26,7 @@
 
                                     </div>
                                     <div class="card-footer" style="background-color:#cbd3d3">
-                                                <a href=""
+                                               <a href="{{ route('course.view', $course->id) }}"
                                                 class="btn btn-primary btn-sm">
                                                <i class="bi bi-eye"></i>
                                             </a>

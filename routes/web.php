@@ -132,6 +132,7 @@ Route::middleware(['auth', 'verified','student_auth_check'])->group(function () 
     
     Route::prefix('course')->name('course.')->group(function () {
         Route::get('index', [CourseController::class, 'index'])->name('index');
+        Route::get('/view/{id}', [CourseController::class, 'view'])->name('view');
     });
     Route::prefix('content')->name('content.')->group(function () {
         Route::get('index', [ContentController::class, 'index'])->name('index');
