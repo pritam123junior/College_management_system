@@ -10,7 +10,7 @@ class CourseController extends Controller
     public function index()
     {
        
-        $courses = Course::where('class_id',  Auth::user()->student->class_id)->get();
+        $courses = Course::where('class_id',  Auth::user()->student?->class_id)->get();
         
         return view('student.page.course.index', compact('courses'));
 
