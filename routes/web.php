@@ -18,6 +18,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Controllers\PublicAjaxDataController;
+
+
+
 //admin
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified','admin_auth_check'])->group(function () {
@@ -145,6 +149,10 @@ Route::middleware(['auth', 'verified','student_auth_check'])->group(function () 
 
 
 
+});
+
+Route::prefix('public/ajaxdata')->name('public.ajaxdata.')->group(function () {
+    Route::post('section', [PublicAjaxDataController::class, 'publicSection'])->name('section');   
 });
 
 

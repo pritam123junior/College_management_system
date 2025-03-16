@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hope UI | Responsive Bootstrap 5 Admin Dashboard Template</title>
+    <title>Student Register</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="" />
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{ asset('css/core/libs.min.css') }}" />
@@ -30,6 +30,9 @@
     <!-- RTL Css -->
     <link rel="stylesheet" href="{{ asset('css/rtl.min.css') }}" />
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -46,8 +49,8 @@
         <section class="login-content">
             <div class="row m-0 align-items-center bg-white vh-100">
                 <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-                    <img src="../../assets/images/auth/05.png" class="img-fluid gradient-main animated-scaleX"
-                        alt="images">
+                    <img src="" class="img-fluid gradient-main animated-scaleX"
+                        alt="cimages">
                 </div>
                 <div class="col-md-6">
                     <div class="row justify-content-center">
@@ -62,38 +65,10 @@
                                         <!--Logo start-->
                                         <div class="logo-main">
                                             <div class="logo-normal">
-                                                <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="-0.757324" y="19.2427" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 -0.757324 19.2427)"
-                                                        fill="currentColor" />
-                                                    <rect x="7.72803" y="27.728" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 7.72803 27.728)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5366" y="16.3945" width="16" height="4"
-                                                        rx="2" transform="rotate(45 10.5366 16.3945)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5562" y="-0.556152" width="28" height="4"
-                                                        rx="2" transform="rotate(45 10.5562 -0.556152)"
-                                                        fill="currentColor" />
-                                                </svg>
+                                               logo
                                             </div>
                                             <div class="logo-mini">
-                                                <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="-0.757324" y="19.2427" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 -0.757324 19.2427)"
-                                                        fill="currentColor" />
-                                                    <rect x="7.72803" y="27.728" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 7.72803 27.728)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5366" y="16.3945" width="16" height="4"
-                                                        rx="2" transform="rotate(45 10.5366 16.3945)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5562" y="-0.556152" width="28" height="4"
-                                                        rx="2" transform="rotate(45 10.5562 -0.556152)"
-                                                        fill="currentColor" />
-                                                </svg>
+                                              logo
                                             </div>
                                         </div>
                                         <!--logo End-->
@@ -101,57 +76,49 @@
 
 
 
-                                        <h4 class="logo-title ms-3">Hope UI</h4>
+                                        <h4 class="logo-title ms-3">Logo Text</h4>
                                     </a>
-                                    <h2 class="mb-2 text-center">Sign Up</h2>
-                                    <p class="text-center">Create your Hope UI account.</p>
+                                    <h2 class="mb-2 text-center">Student Register</h2>                                    
                                     <form action="{{ url('register') }}" method="POST">
-                                    @csrf
+                                        @csrf
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="full-name" class="form-label">Full Name</label>
-                                                    <input type="text" class="form-control" id="full-name"
-                                                        placeholder=" " name="name">
+                                                    <label for="fullName" class="form-label">Full Name</label>
+                                                    <input type="text" class="form-control" id="fullName"
+                                                        placeholder="Enter your name" name="name">
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email"
-                                                        placeholder=" " name="email">
-                                                </div>
-                                            </div>
+                                            </div>                                            
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="phone" class="form-label">Phone No.</label>
                                                     <input type="text" class="form-control" id="phone"
-                                                        placeholder=" " name="phone">
+                                                        placeholder="Enter your phone no" name="phone">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="password" class="form-label">Password</label>
                                                     <input type="password" class="form-control" id="password"
-                                                        placeholder=" " name="password">
+                                                        placeholder="Enter password" name="password">
                                                 </div>
                                             </div>
-                                             <div class="col-lg-6">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="confirm-password" class="form-label">Confirm
                                                         Password</label>
-                                                    <input type="text" class="form-control" id="confirm-password"
-                                                        placeholder=" ">
+                                                    <input type="password" class="form-control" name="confirmed" id="confirm-password"
+                                                        placeholder="Enter password again">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="phone" class="form-label">Class</label>
-                                                    <select name="data_class_id" id="data_class_id"
-                                                        class="form-control " required>
-                                                        <option value="">-- Select Class --</option>
-                                                        @foreach ($dataclasses as $dataclass)
-                                                            <option value="{{ $dataclass->id }}">{{ $dataclass->name }}
+                                                    <label for="class_id" class="form-label">Class</label>
+                                                    <select name="class_id" id="class_id" class="form-control "
+                                                        required>
+                                                        <option value="">Select Class</option>
+                                                        @foreach ($classes as $class)
+                                                            <option value="{{ $class->id }}">{{ $class->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -159,53 +126,19 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="phone" class="form-label">Section</label>
-                                                   <select name="data_class_id" id="data_class_id"
-                                                        class="form-control " required>
-                                                        <option value="">-- Select Class --</option>
-                                                        @foreach ($dataclasses as $dataclass)
-                                                            <option value="{{ $dataclass->id }}">{{ $dataclass->name }}
-                                                            </option>
-                                                        @endforeach
+                                                    <label for="section_id" class="form-label">Section</label>
+                                                    <select name="section_id" id="section_id" class="form-control "
+                                                        required>
+                                                        <option value="">Select Section</option>
                                                     </select>
                                                 </div>
                                             </div>                                           
-                                            <div class="col-lg-12 d-flex justify-content-center">
-                                                <div class="form-check mb-3">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="customCheck1">
-                                                    <label class="form-check-label" for="customCheck1">I agree with
-                                                        the terms of use</label>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                                        </div>
-                                        <p class="text-center my-3">or sign in with other accounts?</p>
-                                        <div class="d-flex justify-content-center">
-                                            <ul class="list-group list-group-horizontal list-group-flush">
-                                                <li class="list-group-item border-0 pb-0">
-                                                    <a href="#"><img src="../../assets/images/brands/fb.svg"
-                                                            alt="fb"></a>
-                                                </li>
-                                                <li class="list-group-item border-0 pb-0">
-                                                    <a href="#"><img src="../../assets/images/brands/gm.svg"
-                                                            alt="gm"></a>
-                                                </li>
-                                                <li class="list-group-item border-0 pb-0">
-                                                    <a href="#"><img src="../../assets/images/brands/im.svg"
-                                                            alt="im"></a>
-                                                </li>
-                                                <li class="list-group-item border-0 pb-0">
-                                                    <a href="#"><img src="../../assets/images/brands/li.svg"
-                                                            alt="li"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary">Register</button>
+                                        </div>                                       
                                         <p class="mt-3 text-center">
-                                            Already have an Account <a href="sign-in.html" class="text-underline">Sign
-                                                In</a>
+                                            Already registered? <a href="{{route('login')}}" class="text-underline">Login</a>
                                         </p>
                                     </form>
                                 </div>
@@ -262,6 +195,36 @@
 
     <!-- App Script -->
     <script src="{{ asset('js/hope-ui.js') }}" defer></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#class_id").on("change", function() {
+
+                $("#section_id").html("");
+                $("#section_id").html('<option value="">Select Section</option>');
+
+                $.ajax({
+
+                    url: "{{ route('public.ajaxdata.section') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        class_id: $("#class_id option:selected").val()
+                    },
+                    success: function(data) {
+                        for (const item of data) {
+                            let html_code = '<option value="' + item.id + '">' + item.name +
+                                '</option>';
+                            $("#section_id").append(html_code);
+                        }
+                    }
+
+                });
+
+            });
+        });
+    </script>
 
 </body>
 
