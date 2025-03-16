@@ -37,21 +37,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $approve_status=User::where('id',$this->only('user_id'))->value('approve_status');
-        if($approve_status==='Pending'||$approve_status==='Not Approved'){
-            $login_status=false;
-        }
-        elseif($approve_status==='Approved'){
-            $login_status=true;
-        }
+        $approve_status=User::where('user_id',$this->only('user_id'))->value('approve_status');
 
-        if (! Auth::attempt($this->only('user_id', 'password'), $this->boolean('remember') && !$login_status)) {
+        if($approve_status==='Pending'||$approve_status==='Not Approved'){
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'user_id' => trans('auth.failed'),
+            ]);
+        }           
+
+        if ( !Auth::attempt($this->only('user_id', 'password'), $this->boolean('remember') )) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'user_id' => trans('auth.failed'),
             ]);
         }
+
+        
 
         RateLimiter::clear($this->throttleKey());
     }
