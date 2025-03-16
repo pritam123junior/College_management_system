@@ -11,7 +11,7 @@ class ContentController extends Controller
     public function index()
     {
 
-        return $contents = Group::with('content')->where('contents.class_id',Auth::user()->student?->class_id)->paginate(12);
+        $contents = content::where('class_id',Auth::user()->student?->class_id)->paginate(12);
 
         return view('student.page.content.index', compact( 'contents'));
     }   

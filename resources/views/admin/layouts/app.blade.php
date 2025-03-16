@@ -49,6 +49,12 @@
                 position: 'top right'
             });
 
+<<<<<<< HEAD
+=======
+          
+
+
+>>>>>>> 90aacf38d417dbfa67704b2a4862d222c9ba8190
             $(document).on('click', '.add-input-text-btn', function() {
                 event.preventDefault();
                 $("#dynamic-input-text").append(
@@ -131,11 +137,14 @@
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<<<<<<< HEAD
                     <figure>
                         <figcaption>Listen to the T-Rex:</figcaption>
                         <audio controls src="/shared-assets/audio/t-rex-roar.mp3"></audio>
                        
                     </figure>
+=======
+>>>>>>> 90aacf38d417dbfa67704b2a4862d222c9ba8190
 
                 </div>
                 <div class="modal-footer">

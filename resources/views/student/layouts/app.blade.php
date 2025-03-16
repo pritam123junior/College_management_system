@@ -49,6 +49,13 @@
                 position: 'top right'
             });
 
+              $(document).on('click', '.content-name', function() {
+                event.preventDefault();
+                let src_data = $(this).siblings('.content-youtube-link').val();               
+                $(".content-youtube-iframe").attr("src", src_data);
+                
+            });
+
             $(".add-input-text-btn").on("click", function(event) {
                 event.preventDefault();
                 $("#dynamic-input-text").append('<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>');
