@@ -16,7 +16,7 @@ class AdminContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::where('type','youtube_link')->get(); 
+        $contents = Content::get(); 
         return view('admin.page.content.index', compact('contents'));
     }
 

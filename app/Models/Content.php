@@ -21,6 +21,10 @@ class Content extends Model
     {
         return $this->belongsTo(teacher::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
 }
 
 

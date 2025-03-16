@@ -19,7 +19,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\PublicAjaxDataController;
-
+use App\Http\Controllers\TeacherAjaxDataController;
 
 
 //admin
@@ -122,7 +122,20 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified','teac
             Route::get('/download/{id}', [TeacherContentController::class, 'download'])->name('download');
             Route::delete('/destroy/{id}', [TeacherContentController::class, 'destroy'])->name('destroy');
         });
-
+        Route::prefix('group')->name('group.')->group(function () {
+            Route::get('/', [TeacherContentController::class, 'groupList'])->name('list');
+            Route::get('/create', [TeacherContentController::class, 'groupCreate'])->name('create');
+            Route::post('/store', [TeacherContentController::class, 'groupStore'])->name('store');
+            Route::get('/edit/{id}', [TeacherContentController::class, 'groupEdit'])->name('edit');
+            Route::put('/update/{id}', [TeacherContentController::class, 'groupUpdate'])->name('update');
+            Route::delete('/delete/{id}', [TeacherContentController::class, 'groupDestroy'])->name('destroy');
+        });
+        
+        
+        Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
+            Route::post('section', [TeacherAjaxDataController::class, 'section'])->name('section');
+            Route::post('course', [TeacherAjaxDataController::class, 'course'])->name('course');
+        });
 
 
 });
