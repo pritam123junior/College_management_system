@@ -30,11 +30,11 @@
                                 <div class="row"> 
                                 @foreach ($groups as $group)                                   
                                     <div class="col-12">
-                                        <div class="content-group">
+                                        <div class="content-group bg-secondary p-2">
                                             <span>
                                             {{$group->name}}
                                             </span>
-                                            <i class="bi bi-plus-square-fill"></i>
+                                            <i class="bi bi-plus-square-fill" style="float:right;"></i>
                                         </div>
                                         <div class="content-item">
                                             <span>
