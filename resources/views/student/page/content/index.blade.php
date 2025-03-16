@@ -18,33 +18,35 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="row">                        
-                            <div class="col-6">
-                                <iframe width="100%" height="315"
-                                    src="https://www.youtube.com/embed/wzhJrXnh3ak?si=xq6UTVFd0q8xp-Ty"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="col-6">
-                                <div class="row"> 
-                                @foreach ($groups as $group)                                   
+                    <div class="row">
+                        <div class="col-8">
+                            <iframe class="content-youtube-iframe" width="100%" height="400"
+                                src="https://www.youtube.com/embed/hQ6zGpM284Q"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                @foreach ($groups as $group)
                                     <div class="col-12">
                                         <div class="content-group bg-secondary p-2">
                                             <span>
-                                            {{$group->name}}
+                                                {{ $group->name }}
                                             </span>
                                             <i class="bi bi-plus-square-fill" style="float:right;"></i>
+                                            <div class="content-item bg-light p-1">
+                                            @foreach ($group->contents as $content) 
+                                            <input type="hidden" class="content-youtube-link" value="{{$content->youtube_link}}">
+                                            <span class="content-name">
+                                                    {{ $content->name }}</span>
+                                            @endforeach
+                                            </div>
                                         </div>
-                                        <div class="content-item">
-                                            <span>
-                                            {{$group->name}}
-                                            </span>
-                                        </div>                                        
                                     </div>
-                                    @endforeach
-                                </div>
-                            </div>                        
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
 

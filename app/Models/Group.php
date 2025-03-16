@@ -3,14 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Group extends Model
 {
     protected $guarded = [];
 
-    public function content()
+    
+   
+    public function contents()
     {
-        return $this->belongsTo(Content::class);
+        return $this->hasMany(Content::class);
     }
 
 }
