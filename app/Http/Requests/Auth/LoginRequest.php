@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class LoginRequest extends FormRequest
 {
@@ -36,7 +37,15 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('user_id', 'password'), $this->boolean('remember'))) {
+        $approve_status=User::where('id',$this->only('user_id'))->value('approve_status');
+        if($approve_status==='Pending'||$approve_status==='Not Approved'){
+            $login_status=false;
+        }
+        elseif($approve_status==='Approved'){
+            $login_status=true;
+        }
+
+        if (! Auth::attempt($this->only('user_id', 'password'), $this->boolean('remember') && !$login_status)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

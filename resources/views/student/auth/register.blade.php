@@ -49,8 +49,7 @@
         <section class="login-content">
             <div class="row m-0 align-items-center bg-white vh-100">
                 <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-                    <img src="" class="img-fluid gradient-main animated-scaleX"
-                        alt="cimages">
+                    <img src="" class="img-fluid gradient-main animated-scaleX" alt="cimages">
                 </div>
                 <div class="col-md-6">
                     <div class="row justify-content-center">
@@ -65,10 +64,10 @@
                                         <!--Logo start-->
                                         <div class="logo-main">
                                             <div class="logo-normal">
-                                               logo
+                                                logo
                                             </div>
                                             <div class="logo-mini">
-                                              logo
+                                                logo
                                             </div>
                                         </div>
                                         <!--logo End-->
@@ -77,9 +76,14 @@
 
 
                                         <h4 class="logo-title ms-3">Logo Text</h4>
-                                    </a>
-                                    <h2 class="mb-2 text-center">Student Register</h2>                                    
-                                    <form action="{{ url('register') }}" method="POST">
+                                    </a>                                                                       
+                                    <h2 class="pb-3 text-center">Student Register</h2>         
+                                    @if (session('status'))
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif                         
+                                    <form class="pt-2" action="{{ url('register') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -88,12 +92,12 @@
                                                     <input type="text" class="form-control" id="fullName"
                                                         placeholder="Enter your name" name="name">
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="phone" class="form-label">Phone No.</label>
-                                                    <input type="text" class="form-control" id="phone"
-                                                        placeholder="Enter your phone no" name="phone">
+                                                    <label for="mobile" class="form-label">Mobile No.</label>
+                                                    <input type="text" class="form-control" id="mobile"
+                                                        placeholder="Enter your mobile no" name="mobile">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -107,8 +111,8 @@
                                                 <div class="form-group">
                                                     <label for="confirm-password" class="form-label">Confirm
                                                         Password</label>
-                                                    <input type="password" class="form-control" name="confirmed" id="confirm-password"
-                                                        placeholder="Enter password again">
+                                                    <input type="password" class="form-control" name="confirm_password"
+                                                        id="confirm-password" placeholder="Enter password again">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -132,13 +136,14 @@
                                                         <option value="">Select Section</option>
                                                     </select>
                                                 </div>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-primary">Register</button>
-                                        </div>                                       
+                                        </div>
                                         <p class="mt-3 text-center">
-                                            Already registered? <a href="{{route('login')}}" class="text-underline">Login</a>
+                                            Already registered? <a href="{{ route('login') }}"
+                                                class="text-underline">Login</a>
                                         </p>
                                     </form>
                                 </div>
