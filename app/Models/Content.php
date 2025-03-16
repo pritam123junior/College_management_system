@@ -19,7 +19,11 @@ class Content extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(teacher::class);
+        return $this->belongsTo(Teacher::class);
+    }
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }
 

@@ -8,4 +8,9 @@ class Group extends Model
 {
     protected $guarded = [];
 
+    public function content()
+    {
+        return $this->belongsTo(Content::class);
+    }
+
 }

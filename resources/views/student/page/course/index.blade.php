@@ -15,7 +15,7 @@
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         @foreach ($courses as $course)
                             <div class="col">
-                                <div class="card">
+                                <div class="card" onclick="" style="cursor: pointer;">
                                     <img src="{{ asset('images/dashboard/top-header.png') }}" class="card-img-top"
                                         alt="" style="height:10rem;">
                                     <div class="card-body" style="background-color:lavender">
