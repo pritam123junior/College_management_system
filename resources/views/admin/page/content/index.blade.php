@@ -17,31 +17,36 @@
                             <div class="col">
                                 <div class="card">
                                     <div class="card-header">
-                                    @if($content->file_type=='png')
+                                        @if (in_array($content->file_type, ['png', 'jpg', 'jpeg', 'gif']))
+                                            <h5 class="card-title"><i class="bi bi-image"></i></h5>
+                                           
+                                        @elseif(in_array($content->file_type, ['mp3']))
+                                            <h5 class="card-title"><i class="bi bi-music-note"></i> Audio File</h5>
+                                           
+                                            
+                                        @endif
 
-                                       <h5 class="card-title"><i class="bi bi-image"></i></h5>
-                                        @endif 
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $content->name }}</h5>
                                         <span class="card-text">Description: {{ $content->description }}</span>
                                         </br>
-                                         <span class="card-text">Class: {{ $content->class?->name }}</span> </br>
-                                         <span class="card-text">Course: {{ $content->course?->name }}</span> </br>
-                                         @if($content->user?->type=='Admin')
-                                         <span class="card-text">Uploaded by: Admin</span> </br>
-                                         @elseif($content->user?->type=='Teacher')
-                                         <span class="card-text">Uploaded By: {{ $content->teacher?->name}}</span> </br>
-                                         @endif
-                                         <span>Date:{{ $content->created_at }}</span>  </br>                                       
-                                             <button type="button" class="btn btn-primary btn-sm view-content-btn"
-                                                data-bs-toggle="modal" data-bs-target="#viewContentModal">
-                                                <i class="bi bi-eye"></i>
-                                            </button> 
-                                            @if($content->type==='file')
-                                                <a href="{{ route('admin.content.download', $content->id) }}"
+                                        <span class="card-text">Class: {{ $content->class?->name }}</span> </br>
+                                        <span class="card-text">Course: {{ $content->course?->name }}</span> </br>
+                                        @if ($content->user?->type == 'Admin')
+                                            <span class="card-text">Uploaded by: Admin</span> </br>
+                                        @elseif($content->user?->type == 'Teacher')
+                                            <span class="card-text">Uploaded By: {{ $content->teacher?->name }}</span> </br>
+                                        @endif
+                                        <span>Date:{{ $content->created_at }}</span> </br>
+                                        <button type="button" class="btn btn-primary btn-sm view-content-btn"
+                                            data-bs-toggle="modal" data-bs-target="#viewContentModal">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        @if ($content->type === 'file')
+                                            <a href="{{ route('admin.content.download', $content->id) }}"
                                                 class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>
-                                            @endif                                      
+                                        @endif
                                     </div>
                                     <div class="card-footer text-muted">
                                         <input type="hidden" class="row-id"

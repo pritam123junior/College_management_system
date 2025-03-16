@@ -48,15 +48,17 @@
                 isDark: false,
                 position: 'top right'
             });
-           
-            $(document).on('click', '.add-input-text-btn', function(){
+
+            $(document).on('click', '.add-input-text-btn', function() {
                 event.preventDefault();
-                $("#dynamic-input-text").append('<div class="dynamic-input form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="sections[]"><button type="button" class="mt-2 add-input-text-btn btn btn-secondary btn-sm"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="remove-input-text-btn btn btn-danger btn-sm mt-2" style="margin-left:.5rem !important"><i class="bi bi-dash-circle-fill"></i></button></div>');
+                $("#dynamic-input-text").append(
+                    '<div class="dynamic-input form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="sections[]"><button type="button" class="mt-2 add-input-text-btn btn btn-secondary btn-sm"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="remove-input-text-btn btn btn-danger btn-sm mt-2" style="margin-left:.5rem !important"><i class="bi bi-dash-circle-fill"></i></button></div>'
+                    );
             });
 
-             $(document).on('click', '.remove-input-text-btn', function(){
+            $(document).on('click', '.remove-input-text-btn', function() {
                 event.preventDefault();
-                 $(this).parent('div.dynamic-input').remove();
+                $(this).parent('div.dynamic-input').remove();
             });
 
             $(".delete-btn").on("click", function(event) {
@@ -114,8 +116,8 @@
         </div>
     </div>
 
-     <!-- View Content Modal -->
-  <div class="modal fade" id="viewContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!-- View Content Modal -->
+    <div class="modal fade" id="viewContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -124,11 +126,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                         <iframe width="100%" height="315" src="https://www.youtube.com/embed/wzhJrXnh3ak?si=xq6UTVFd0q8xp-Ty" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    
+                    <iframe width="100%" height="315"
+                        src="https://www.youtube.com/embed/wzhJrXnh3ak?si=xq6UTVFd0q8xp-Ty" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <figure>
+                        <figcaption>Listen to the T-Rex:</figcaption>
+                        <audio controls src="/shared-assets/audio/t-rex-roar.mp3"></audio>
+                       
+                    </figure>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                   
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
