@@ -58,7 +58,7 @@
                               
                               
                               
-                              <h4 class="logo-title ms-3">logo title</h4>
+                            
                            </a>
                            <h2 class="mb-5 text-center">Teacher Login</h2>                          
                            <form action="{{url('teacher/login')}}" method="POST">
