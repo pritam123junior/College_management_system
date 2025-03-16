@@ -49,12 +49,6 @@
                 position: 'top right'
             });
 
-<<<<<<< HEAD
-=======
-          
-
-
->>>>>>> 90aacf38d417dbfa67704b2a4862d222c9ba8190
             $(document).on('click', '.add-input-text-btn', function() {
                 event.preventDefault();
                 $("#dynamic-input-text").append(
