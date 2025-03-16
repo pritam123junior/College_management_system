@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\ClassData;
+use App\Models\Student;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,28 +33,21 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.user::class],
-            'password' => ['required', 'confirmed'],
-        ]);
-
+    public function store(Request $request)
+    {       
         $request->validate([
            'name' => ['required', 'string', 'max:255'],
-           'password' => ['required', 'confirmed'],
+           'password' => ['required','string','same:confirm_password'],
             'class_id' => ['required'],
             'section_id' => ['required'],
-            'mobile' => ['nullable', 'string', 'max:255'],
-            'approve_status' => ['required', 'string']
+            'mobile' => ['required', 'string', 'max:255']            
         ]);
 
         $user = User::create([            
             'password' => Hash::make($request->password),
             'mobile' => $request->mobile, 
             'type' => 'Student',
-            'approve_status' => $request->approve_status
+            'approve_status' => 'Pending'
         ]);
 
         Student::create([
@@ -61,19 +55,12 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
             'class_id' => $request->class_id,
             'section_id' => $request->section_id                    
-        ]);
+        ]);   
+        
+        User::where('id', $user->id)            
+            ->update(['user_id' => 's'.$user->id]);
+                
 
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'approve_status' => 'Not Approved'
-        ]);
-
-        event(new Registered($user));        
-
-        return 0;
+        return back()->with('status', 'Student registration successful! Wait for approval.');
     }
 }
