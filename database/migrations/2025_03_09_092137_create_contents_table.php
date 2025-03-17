@@ -23,8 +23,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->enum('user_type',['Admin','Teacher']);
             $table->longText('path')->nullable();
-            $table->longText('youtube_link')->nullable();
-            $table->enum('type',['youtube_link','file']);
+            $table->longText('key')->nullable();
+            $table->enum('type',['youtube','file']);
             $table->foreignId('group_id')->nullable();
             $table->timestamps();
         });

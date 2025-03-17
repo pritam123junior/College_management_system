@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.group.update', $group->id) }}" method="POST">
+                    <form action="{{ route('admin.course.group.update', $group->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

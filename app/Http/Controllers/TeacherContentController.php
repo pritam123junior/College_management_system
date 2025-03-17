@@ -55,11 +55,17 @@ class TeacherContentController extends Controller
         $file_type = $request->file('file_content')->extension();
 
         $type='file';
+
+        $key = '';
        
         }else{
             $path='';
             $file_type='';
             $type='youtube_link';
+
+            $url = parse_url($request->youtube_link, PHP_URL_QUERY);
+            parse_str($url, $params);
+            $key = $params['v'];
         }
 
 
@@ -72,7 +78,7 @@ class TeacherContentController extends Controller
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
                 'file_type' => $file_type,
-                'youtube_link'=>$request->youtube_link,
+                'key'=>$key,
                 'group_id'=>$request->group_id,
                 'type'=>$type
                

@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.content.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.course.content.store',$course_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -19,22 +19,7 @@
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="class_id" class="form-label">Class</label>
-                            <select name="class_id" id="class_id" class="form-control" required>
-                                <option value="">Select Class</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_id" class="form-label">Course</label>
-                            <select name="course_id" id="course_id" class="form-control">
-                                <option value="">Select Course</option>
-                            </select>
-                        </div>
+                        </div>                       
                         <div class="form-group">
                             <label for="type_id" class="form-label">Type</label>
                             <select name="type_id" id="type_id" class="form-control" required>
@@ -58,8 +43,8 @@
                                 <label for="group_id" class="form-label">Group Name</label>
                                 <select id="group_id" class="form-control" name="group_id">
                                     <option value="">Select Group</option>
-                                    @foreach ($youtube_groups as $youtube_group)
-                                        <option value="{{ $youtube_group->id }}">{{ $youtube_group->name }}</option>
+                                    @foreach ($groups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
                                     @endforeach
                                 </select>                                
                             </div>
@@ -73,31 +58,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
-        $("#class_id").on("change", function() {
-
-            $("#course_id").html("");
-            $("#course_id").html('<option value="">Select Course</option>');
-
-            $.ajax({
-
-                url: "{{ route('admin.ajaxdata.course') }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    class_id: $("#class_id option:selected").val()
-                },
-                success: function(data) {
-                    for (const item of data) {
-                        let html_code = '<option value="' + item.id + '">' + item.name +
-                            '</option>';
-                        $("#course_id").append(html_code);
-                    }
-                }
-
-            });
-
-        });
+    <script>   
 
         $("#type_id").on("change", function() {
 

@@ -29,7 +29,7 @@
                                         <td>{{ $class->name }}</td>   
                                         <td>                                        
                                         @foreach ($class->sections as $index => $section)
-                                            <span class="text-secondary">{{$index+1}}. {{$section->name}}</span>
+                                            <span class="text-secondary">{{$section->name}}</span>
                                             @if(!$loop->last)<br>@endif
                                         @endforeach                                        
                                         </td>                                 
