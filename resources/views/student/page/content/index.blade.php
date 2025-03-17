@@ -35,11 +35,11 @@
                                                 {{ $group->name }}
                                             </span>
                                             <i class="bi bi-plus-square-fill" style="float:right;"></i>
-                                            <div class="content-item bg-light p-1">
+                                            <div class="content-item bg-light p-1 d-none">
                                             @foreach ($group->contents as $content) 
                                             <input type="hidden" class="content-youtube-link" value="{{$content->youtube_link}}">
                                             <span class="content-name">
-                                                    {{ $content->name }}</span>
+                                                    {{ $content->name }}</span><br>
                                             @endforeach
                                             </div>
                                         </div>
