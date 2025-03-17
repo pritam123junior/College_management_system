@@ -49,9 +49,6 @@
                 position: 'top right'
             });
 
-          
-
-
             $(document).on('click', '.add-input-text-btn', function() {
                 event.preventDefault();
                 $("#dynamic-input-text").append(
@@ -134,6 +131,11 @@
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <figure>
+                        <figcaption>Listen to the T-Rex:</figcaption>
+                        <audio controls src="/shared-assets/audio/t-rex-roar.mp3"></audio>
+                       
+                    </figure>
 
                 </div>
                 <div class="modal-footer">
