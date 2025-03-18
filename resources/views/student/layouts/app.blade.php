@@ -57,29 +57,11 @@
                 position: 'top right'
             });
 
-            $(document).on('click', '.content-item-show-action', function() {
-                event.preventDefault();
-
-                if ($(this).hasClass('bi-plus-square-fill')) {
-                    $(this).removeClass('bi-plus-square-fill');
-                    $(this).addClass('bi-dash-square-fill');
-                    $(this).css('color', 'darkred');
-
-                } else if ($(this).hasClass('bi-dash-square-fill')) {
-                    $(this).removeClass('bi-dash-square-fill');
-                    $(this).addClass('bi-plus-square-fill');
-                    $(this).css('color', 'darkgreen');
-
-                }
-
-
-                $(this).siblings('.content-item').toggleClass('d-none');
-
-
-            });
+         
 
             $(document).on('click', '.content-item-action', function() {
                 event.preventDefault();
+                $('.content-item-action').css('color', '#3a57e8');
                 $(this).css('color', 'green');
                 let key_data = $(this).siblings('.content-key').val();
                 let src_data='https://www.youtube.com/embed/'+key_data;                

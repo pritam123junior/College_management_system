@@ -20,37 +20,52 @@
 
                     <div class="row">
                         <div class="col-12 col-lg-8">
-                            <iframe class="content-youtube-iframe" width="100%" height="415"
-                                src="" frameborder="0"
+
+                            <iframe class="content-youtube-iframe" width="100%" height="415" src=""
+                                frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-12 col-lg-4 bg-primary">
 
-                            <div class="row">
-                                <h6 class="text-center py-2">Play List</h6>
+                        </div>
+                        <div class="col-12 col-lg-4 bg-primary rounded">
+
+
+                            <h6 class="text-center py-3 text-light">Play List</h6>
+
+
+                            <div class="accordion pb-3" id="accordionExample">
                                 @foreach ($groups as $group)
-                                    <div class="col-12">
-                                        <div class="content-group p-2 mb-1 shadow rounded-1"
-                                            style="background-color:#aebaf6">
-                                            <span class="" style="color:darkslategray">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $group->id }}"
+                                                aria-expanded="false" aria-controls="collapse{{ $group->id }}">
                                                 {{ $group->name }}
-                                            </span>
-                                            <i class="bi bi-plus-square-fill content-item-show-action"
-                                                style="float:right;color:darkgreen;cursor:pointer;"></i>
-                                            <div class="content-item d-none py-2"
-                                                style="display:flex;flex-direction:column;gap:5px;padding-left:5px;">
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $group->id }}" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
                                                 @foreach ($group->contents as $content)
-                                                    <input type="hidden" class="content-key"
-                                                        value="{{ $content->key }}">
-                                                    <a class="content-item-action" style="cursor:pointer;">
-                                                        <i class="bi bi-play-circle-fill"></i> {{ $content->name }}</a>                                                    
+                                                    <section class=""
+                                                        style="display:flex;flex-direction:column;gap:5px;">
+                                                        <input type="hidden" class="content-key"
+                                                            value="{{ $content->key }}">
+                                                        <a class="content-item-action"
+                                                            style="cursor:pointer;padding-top:3px;padding-bottom:3px;">
+                                                            <i class="bi bi-play-circle-fill"></i> {{ $content->name }}</a>
+
+                                                        <section>
                                                 @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
+
+
+
+
 
                         </div>
                     </div>

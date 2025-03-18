@@ -30,7 +30,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $group->name }}</td>
                                         <td>{{ $group->course?->name }}</td>
-                                        <td>{{ $group->class?->name }}</td>
+                                        <td>{{ $group->course?->class?->name }}</td>
                                  
                                         
                                         <td>

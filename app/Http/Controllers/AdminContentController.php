@@ -14,24 +14,38 @@ use Illuminate\Support\Str;
 
 class AdminContentController extends Controller
 {
-    public function index($course_id)
+    public function index($course_id,Request $request)
     {
+                if($request->type=='file'){
+                    $contents = Content::where('course_id',$course_id)->where('type','file')->get();
+                    $selected_type='file';
+                }
+                elseif($request->type=='youtube'){
+                    $contents = Content::where('course_id',$course_id)->where('type','youtube')->get();
+                    $selected_type='youtube';
+                }
+                else{
+                    $contents = Content::where('course_id',$course_id)->where('type','youtube')->get();
+                    $selected_type='';
+                }
                 
-        $contents = Content::where('course_id',$course_id)->get(); 
+        
 
-        return view('admin.page.content.index', compact('contents','course_id'));
+        return view('admin.page.content.index', compact('contents','course_id','selected_type'));
     }
 
     public function create($course_id)
     {
-        $classes = ClassData::get(); 
+        
         $groups=Group::where('course_id',$course_id)->get();
 
-        return view('admin.page.content.create', compact('course_id','classes','groups'));
+        return view('admin.page.content.create', compact('course_id','groups'));
     }
 
     public function store($course_id,Request $request)
     {
+
+        
         $request->validate([
             'name' => ['required','string','max:255'],
             'description' => ['nullable','string']               
@@ -62,7 +76,7 @@ class AdminContentController extends Controller
         }else{
 
             $request->validate([                
-                'youtube_key' => ['required','string'],  
+                'youtube_link' => ['required','string'],  
                 'group_id' => ['required'],          
             ]); 
 
@@ -75,12 +89,10 @@ class AdminContentController extends Controller
             $key = $params['v'];
         }
 
-            $class_id=Course::where('id',$course_id)->value('class_id');
-
+            
             Content::create([
                 'name'=>$request->name,
-                'description'=>$request->description,
-                'class_id' => $class_id,
+                'description'=>$request->description,                
                 'course_id' => $course_id,
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
@@ -93,13 +105,9 @@ class AdminContentController extends Controller
             ]);
 
          
-        
-        
+    
 
-
-
-
-        return redirect()->route('admin.content.index',$course_id)->with('success', 'Content added successfully.');
+        return redirect()->route('admin.course.content.index',$course_id)->with('success', 'Content added successfully.');
     }
 
     public function download($id)

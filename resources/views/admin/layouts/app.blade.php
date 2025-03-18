@@ -61,10 +61,30 @@
                 $(this).parent('div.dynamic-input').remove();
             });
 
+            $(".view-file-content-btn").on("click", function(event) {
+                event.preventDefault();
+                let file_path = $(this).siblings('.file-path').val();
+                $(".view-image-content").attr("src", file_path);
+            });
+
+            $(".view-youtube-content-btn").on("click", function(event) {
+                event.preventDefault();             
+                let key_data = $(this).siblings('.content-key').val();
+                let src_data='https://www.youtube.com/embed/'+key_data;                
+                $(".content-youtube-iframe").attr("src", src_data);
+            });
+
+
             $(".delete-btn").on("click", function(event) {
                 event.preventDefault();
                 let link = $(this).siblings('.row-id').val();
                 $(".delete-confirm-form").attr("action", link);
+            });
+
+
+            $("#content-type").on("click", function(event) {
+                event.preventDefault();
+                $( "#content-type-form" ).trigger( "submit" );
             });
 
             @if (session()->has('success'))
@@ -116,8 +136,8 @@
         </div>
     </div>
 
-    <!-- View Content Modal -->
-    <div class="modal fade" id="viewContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!-- View File Content Modal -->
+    <div class="modal fade" id="viewFileContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -125,18 +145,27 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <iframe width="100%" height="315"
-                        src="https://www.youtube.com/embed/wzhJrXnh3ak?si=xq6UTVFd0q8xp-Ty" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <figure>
-                        <figcaption>Listen to the T-Rex:</figcaption>
-                        <audio controls src="/shared-assets/audio/t-rex-roar.mp3"></audio>
-                       
-                    </figure>
+                <div class="modal-body">                 
+                    <img class="view-image-content" src="" style="width:100%;height:100%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- View Youtbe Content Modal -->
+    <div class="modal fade" id="viewYoutbeContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">                 
+                    <iframe width="100%" height="315" src="" class="content-youtube-iframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

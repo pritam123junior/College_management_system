@@ -10,7 +10,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.course.content.store',$course_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.course.content.store', $course_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -19,7 +20,7 @@
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" class="form-control"></textarea>
-                        </div>                       
+                        </div>
                         <div class="form-group">
                             <label for="type_id" class="form-label">Type</label>
                             <select name="type_id" id="type_id" class="form-control" required>
@@ -46,7 +47,7 @@
                                     @foreach ($groups as $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
                                     @endforeach
-                                </select>                                
+                                </select>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Add</button>
@@ -58,8 +59,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script>   
-
+    <script>
         $("#type_id").on("change", function() {
 
             let type = $("#type_id option:selected").val();
@@ -71,9 +71,9 @@
                 }
 
                 $('.youtube-link-show').addClass("d-none");
-                $( "#file_content" ).attr( "required", true );
-                 $( "#youtube_link" ).attr( "required", false );
-                
+                $("#file_content").attr("required", true);
+                $("#youtube_link").attr("required", false);
+
 
 
             } else if (type === 'youtube_link') {
@@ -83,17 +83,17 @@
 
                 }
 
-                $('.content-upload-show').addClass("d-none");                
-                $( "#youtube_link" ).attr( "required", true );
-                $( "#group_id" ).attr( "required", true );
-                 $( "#file_content" ).attr( "required", false );
+                $('.content-upload-show').addClass("d-none");
+                $("#youtube_link").attr("required", true);
+                $("#group_id").attr("required", true);
+                $("#file_content").attr("required", false);
 
             } else {
                 $('.content-upload-show').addClass("d-none");
                 $('.youtube-link-show').addClass("d-none");
-                 $( "#youtube_link" ).attr( "required", false );
-                $( "#group_id" ).attr( "required", false );
-                 $( "#file_content" ).attr( "required", false );
+                $("#youtube_link").attr("required", false);
+                $("#group_id").attr("required", false);
+                $("#file_content").attr("required", false);
             }
 
 

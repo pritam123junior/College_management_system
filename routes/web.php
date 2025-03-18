@@ -78,7 +78,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'admin_a
         Route::prefix('content')->name('content.')->group(function () {
             Route::get('/{course_id}', [AdminContentController::class, 'index'])->name('index');
             Route::get('/create/{course_id}', [AdminContentController::class, 'create'])->name('create');
-            Route::post('/store/{course_id}', [AdminContentController::class, 'store'])->name('store');           
+            Route::post('/store/{course_id}', [AdminContentController::class, 'store'])->name('store');    
+            Route::get('/download/{id}', [AdminContentController::class, 'download'])->name('download');      
             Route::delete('/destroy/{id}', [AdminContentController::class, 'destroy'])->name('destroy');
         });
 
