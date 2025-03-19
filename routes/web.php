@@ -148,7 +148,6 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'tea
             Route::post('course', [TeacherAjaxDataController::class, 'course'])->name('course');
         });
 
-    });
     Route::prefix('course')->name('course.')->group(function () {
         Route::get('index', [TeacherCourseController::class, 'index'])->name('index');
         Route::get('/view/{id}', [TeacherCourseController::class, 'view'])->name('view');
