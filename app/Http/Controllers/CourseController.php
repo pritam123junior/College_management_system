@@ -19,5 +19,13 @@ class CourseController extends Controller
 
       
     }
-   
+    public function view($id)
+    {
+        
+        $groups=Group::with('contents')->get();
+        $selected_type='';
+  
+
+        return view('student.page.content.index', compact( 'groups','selected_type'));
+    }
 }

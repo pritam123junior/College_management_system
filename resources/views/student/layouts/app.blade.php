@@ -75,6 +75,14 @@
 
             });
 
+            $(".view-file-content-btn").on("click", function(event) {
+                event.preventDefault();
+                let file_data = $(this).siblings('.file-data').val();
+                let file_mime_data = $(this).siblings('.file-mime-data').val();
+                $(".view-file-content").attr("type", file_mime_data);
+                $(".view-file-content").attr("data", file_data);
+            });
+
             $(".add-input-text-btn").on("click", function(event) {
                 event.preventDefault();
                 $("#dynamic-input-text").append(
@@ -130,6 +138,27 @@
             </div>
         </div>
     </div>
+
+     <!-- View File Content Modal -->
+     <div class="modal fade" id="viewFileContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div class="modal-dialog modal-fullscreen">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                 <object class="view-file-content" type="" data="" width="100%" height="100%">
+                 </object>
+
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
 
     @include('student.layouts.sidebar')

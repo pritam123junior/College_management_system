@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Models\ClassData;
 use App\Models\Group;
+use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -94,11 +95,14 @@ class AdminContentController extends Controller
             $url="/admin/course/content/$course_id?type=youtube";
         }
 
+
+        $class_id=Course::where('id',$course_id)->value('class_id');
             
             Content::create([
                 'name'=>$request->name,
                 'description'=>$request->description,                
                 'course_id' => $course_id,
+                'class_id' => $class_id,
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
@@ -160,9 +164,12 @@ class AdminContentController extends Controller
             'name' => 'required',
         ]);
 
+        $class_id=Course::where('id',$id)->value('class_id');
+
         Group::create([
             'name'=>$request->name,            
-            'course_id' => $id          
+            'course_id' => $id,  
+            'class_id' => $class_id        
         ]);
 
         return redirect()->route('admin.course.group.list',$id)

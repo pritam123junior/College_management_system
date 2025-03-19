@@ -188,17 +188,9 @@ Route::middleware(['auth', 'verified', 'student_auth_check'])->group(function ()
     });
     Route::prefix('content')->name('content.')->group(function () {
         
-        Route::get('/{course_id}', [ContentController::class, 'index'])->name('index');
-        Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
-        Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
-        Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete');
-
-
+        Route::get('/{course_id}', [ContentController::class, 'index'])->name('index');    
+        Route::get('/download/{id}', [ContentController::class, 'download'])->name('download');      
        
-        Route::get('/create/{course_id}', [AdminContentController::class, 'create'])->name('create');
-        Route::post('/store/{course_id}', [AdminContentController::class, 'store'])->name('store');    
-        Route::get('/download/{id}', [AdminContentController::class, 'download'])->name('download');      
-        Route::delete('/destroy/{id}', [AdminContentController::class, 'destroy'])->name('destroy');
 
     });
 
