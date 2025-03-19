@@ -95,11 +95,13 @@ class TeacherContentController extends Controller
             $url="/teacher/course/content/$course_id?type=youtube";
         }
 
-            
+        $class_id=Course::where('id',$course_id)->value('class_id');
+        
             Content::create([
                 'name'=>$request->name,
                 'description'=>$request->description,                
                 'course_id' => $course_id,
+                'class_id' => $class_id,
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
@@ -161,9 +163,12 @@ class TeacherContentController extends Controller
             'name' => 'required',
         ]);
 
+        $class_id=Course::where('id',$id)->value('class_id');
+
         Group::create([
             'name'=>$request->name,            
-            'course_id' => $id          
+            'course_id' => $id,  
+            'class_id' => $class_id         
         ]);
 
         return redirect()->route('teacher.course.group.list',$id)
