@@ -67,7 +67,7 @@
                                  <div class="col-lg-12">
                                     <div class="form-group">
                                        <label for="username" class="form-label">Username</label>
-                                       <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username" name="username">
+                                       <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username" name="user_identity">
                                     </div>
                                  </div>
                                  <div class="col-lg-12">

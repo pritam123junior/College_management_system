@@ -49,7 +49,7 @@ class AdminStudentController extends Controller
         ]);
 
         User::where('id', $user->id)            
-            ->update(['user_id' => 's'.$user->id]);      
+            ->update(['user_identity' => 's'.$user->id]);      
 
 
 

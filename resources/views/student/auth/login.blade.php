@@ -76,7 +76,7 @@
                                                     <label for="user_id" class="form-label">User ID</label>
                                                     <input type="text" class="form-control" id="user_id"
                                                         aria-describedby="user_id" placeholder="Enter User ID"
-                                                        name="user_id">
+                                                        name="user_identity">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">

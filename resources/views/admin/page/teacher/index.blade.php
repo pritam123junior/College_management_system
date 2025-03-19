@@ -16,7 +16,7 @@
                         <table id="basic-table" class="table table-striped mb-0" role="grid">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Teacher ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
@@ -26,7 +26,7 @@
                             <tbody>
                                 @foreach ($teachers as $teacher)
                                     <tr>
-                                        <td>{{ $teacher->id }}</td>
+                                        <td>{{ $teacher->user?->user_identity }}</td>
                                         <td>{{ $teacher->name }}</td>
                                         <td>{{ $teacher->user?->email }}</td>
                                         <td>{{ $teacher->user?->mobile }}</td>

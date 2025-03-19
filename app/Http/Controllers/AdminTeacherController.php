@@ -40,7 +40,7 @@ class AdminTeacherController extends Controller
         ]);
 
         User::where('id', $user->id)            
-            ->update(['user_id' => 't'.$user->id]);
+            ->update(['user_identity' => 't'.$user->id]);
 
         return redirect()->route('admin.teacher.index')->with('success', 'Teacher added successfully.');
     }
