@@ -208,6 +208,5 @@ Route::prefix('public/ajaxdata')->name('public.ajaxdata.')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); */
 
-//test
 
 require __DIR__.'/auth.php';
