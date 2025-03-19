@@ -18,7 +18,7 @@
                                     <th>Sl.</th>
                                     <th>Name</th>
                                     <th>Section</th>
-                                    <th>Actions</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,16 +32,7 @@
                                             @if(!$loop->last)<br>@endif
                                         @endforeach                                        
                                         </td>                                 
-                                        <td>
-                                            <a href="{{ route('admin.class.edit', $class->id) }}"
-                                                class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>                                            
-                                            <input type="hidden" class="row-id"
-                                                value="{{ route('admin.class.destroy', $class->id) }}">
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

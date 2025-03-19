@@ -31,7 +31,7 @@
                <div class="d-flex align-items-center justify-content-between mt-3">
                   <div>
                         <h2 class="counter">{{ $totalContent }}</h2>
-                     0%
+                     
                   </div>
                   <div class="border bg-soft-info rounded p-3">
                      <i class="bi bi-file-earmark-fill"></i>
@@ -52,7 +52,7 @@
                <div class="d-flex align-items-center justify-content-between mt-3">
                   <div>
                         <h2 class="counter">{{ $totalClasses }}</h2>
-                     26.84%
+                     
                   </div>
                   <div class="border bg-soft-info rounded p-3">
                      <i class="bi bi-card-list"></i>
