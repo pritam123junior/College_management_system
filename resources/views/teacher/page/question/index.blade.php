@@ -20,7 +20,7 @@
                     <th class="border border-gray-300 p-2">Question Text</th>
                     <th class="border border-gray-300 p-2">Options</th>
                     <th class="border border-gray-300 p-2">Correct Option</th>
-                    <th class="border border-gray-300 p-2">Marks</th>
+                    <th class="border border-gray-300 p-2">Solution</th>
                     <th class="border border-gray-300 p-2">Actions</th>
                 </tr>
                             </thead>
