@@ -26,7 +26,6 @@ class TeacherQuestionController extends Controller
     {
        
   
-        
         if ($request->questions) {
             foreach ($request->questions as $question) {
                 Question::create(['user_id' => Auth::id(),
