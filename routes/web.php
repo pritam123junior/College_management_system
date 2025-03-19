@@ -88,6 +88,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'admin_a
     Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
         Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
         Route::post('course', [AdminAjaxDataController::class, 'course'])->name('course');
+        Route::post('file', [AdminAjaxDataController::class, 'file'])->name('file');
     });
 
 });

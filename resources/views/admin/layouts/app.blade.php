@@ -53,7 +53,7 @@
                 event.preventDefault();
                 $("#dynamic-input-text").append(
                     '<div class="dynamic-input form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="sections[]"><button type="button" class="mt-2 add-input-text-btn btn btn-secondary btn-sm"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="remove-input-text-btn btn btn-danger btn-sm mt-2" style="margin-left:.5rem !important"><i class="bi bi-dash-circle-fill"></i></button></div>'
-                    );
+                );
             });
 
             $(document).on('click', '.remove-input-text-btn', function() {
@@ -63,14 +63,16 @@
 
             $(".view-file-content-btn").on("click", function(event) {
                 event.preventDefault();
-                let file_path = $(this).siblings('.file-path').val();
-                $(".view-image-content").attr("src", file_path);
+                let file_data = $(this).siblings('.file-data').val();
+                let file_mime_data = $(this).siblings('.file-mime-data').val();
+                $(".view-file-content").attr("type", file_mime_data);
+                $(".view-file-content").attr("data", file_data);
             });
 
             $(".view-youtube-content-btn").on("click", function(event) {
-                event.preventDefault();             
+                event.preventDefault();
                 let key_data = $(this).siblings('.content-key').val();
-                let src_data='https://www.youtube.com/embed/'+key_data;                
+                let src_data = 'https://www.youtube.com/embed/' + key_data;
                 $(".content-youtube-iframe").attr("src", src_data);
             });
 
@@ -84,7 +86,7 @@
 
             $("#content-type").on("click", function(event) {
                 event.preventDefault();
-                $( "#content-type-form" ).trigger( "submit" );
+                $("#content-type-form").trigger("submit");
             });
 
             @if (session()->has('success'))
@@ -139,14 +141,16 @@
     <!-- View File Content Modal -->
     <div class="modal fade" id="viewFileContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">                 
-                    <img class="view-image-content" src="" style="width:100%;height:100%">
+                <div class="modal-body">
+                    <object class="view-file-content" type="" data="" width="100%" height="100%">
+                    </object>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -156,16 +160,19 @@
     </div>
 
     <!-- View Youtbe Content Modal -->
-    <div class="modal fade" id="viewYoutbeContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="viewYoutbeContentModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">                 
-                    <iframe width="100%" height="315" src="" class="content-youtube-iframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="modal-body">
+                    <iframe width="100%" height="315" src="" class="content-youtube-iframe"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

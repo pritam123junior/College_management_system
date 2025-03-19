@@ -29,7 +29,7 @@
                             <input type="password" name="password" class="form-control" required>
                         </div>                       
                         <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        
                     </form>
                 </div>
             </div>

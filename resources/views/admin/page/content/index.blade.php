@@ -47,7 +47,8 @@
                                     </div>
                                     <div class="card-footer" style="background-color:lightsteelblue">
                                         @if ($content->type === 'file')
-                                            <input type="hidden" class="file-path" value="{{ $content->path }}">
+                                        <input type="hidden" class="file-mime-data" value="{{ Storage::mimeType($content->path) }}">    
+                                        <input type="hidden" class="file-data" value="data:{{ Storage::mimeType($content->path)}};base64,{{base64_encode(Storage::get($content->path))}}">
                                             <button type="button" class="btn btn-primary btn-sm view-file-content-btn"
                                                 data-bs-toggle="modal" data-bs-target="#viewFileContentModal">
                                                 <i class="bi bi-eye"></i>

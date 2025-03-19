@@ -50,8 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>                        
                     </form>
                 </div>
             </div>

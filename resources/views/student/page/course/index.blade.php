@@ -20,8 +20,8 @@
                                         alt="" style="height:10rem;">
                                     <div class="card-body" style="background-color:lavender">
                                         <h5 class="card-title">{{ $course->name }}</h5>
-                                        <span class="card-text">Class:{{ $course->class->name }}</span><br>
-                                        <span class="card-text">Price:{{ $course->price>0?$course->price.' BDT':'N/A' }}</span><br>
+                                        <span class="card-text">Class:{{ $course->class?->name }}</span><br>
+                                        <span class="card-text">Price:{{ $course->price>0?$course?->price.' BDT':'N/A' }}</span><br>
                                         <span class="card-text">Type:{{ $course->type }}</span>
 
                                     </div>                                   

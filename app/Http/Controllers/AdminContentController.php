@@ -9,6 +9,7 @@ use App\Models\Group;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Response;
 
 
 
@@ -72,6 +73,8 @@ class AdminContentController extends Controller
         $type='file';
 
         $key = '';
+
+        $url="/admin/course/content/$course_id?type=file";
        
         }else{
 
@@ -87,6 +90,8 @@ class AdminContentController extends Controller
             $url = parse_url($request->youtube_link, PHP_URL_QUERY);
             parse_str($url, $params);
             $key = $params['v'];
+
+            $url="/admin/course/content/$course_id?type=youtube";
         }
 
             
@@ -105,16 +110,16 @@ class AdminContentController extends Controller
             ]);
 
          
-    
 
-        return redirect()->route('admin.course.content.index',$course_id)->with('success', 'Content added successfully.');
+            return redirect($url)->with('success', 'Content added successfully.');
     }
 
     public function download($id)
     {
         $path=Content::where('id',$id)->value('path');
 
-        return Storage::download($path);
+        return response()->file($path);
+
         
     }
 
