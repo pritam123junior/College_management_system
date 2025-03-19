@@ -17,7 +17,7 @@
                   </div>
                </div>
                <div class="mt-4">
-                  <div class="progress bg-soft-danger shadow-none w-100" style="height: 6px">
+                  <div class="w-100" style="height: 6px">
                      
                   </div>
                </div>
@@ -38,8 +38,8 @@
                   </div>
                </div>
                <div class="mt-4">
-                  <div class="progress bg-soft-info shadow-none w-100" style="height: 6px">
-                     <div class="progress-bar bg-info" data-toggle="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="w-100" style="height: 6px">
+                     
                   </div>
                </div>
             </div>
@@ -59,8 +59,8 @@
                   </div>
                </div>
                <div class="mt-4">
-                  <div class="progress bg-soft-success shadow-none w-100" style="height: 6px">
-                     <div class="progress-bar bg-success" data-toggle="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="w-100" style="height: 6px">
+                     
                   </div>
                </div>
             </div>
@@ -80,8 +80,8 @@
                   </div>
                </div>
                <div class="mt-4">
-                  <div class="progress bg-soft-primary shadow-none w-100" style="height: 6px">
-                     <div class="progress-bar bg-primary" data-toggle="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="w-100" style="height: 6px">
+                     
                   </div>
                </div>
             </div>

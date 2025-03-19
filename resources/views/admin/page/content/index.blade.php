@@ -17,7 +17,7 @@
                                 <option value="youtube" {{ $selected_type === 'youtube' ? 'selected' : '' }}>Youtube Content
                                 </option>
                                 <option value="file" {{ $selected_type === 'file' ? 'selected' : '' }}>File Content</option>
-                            </select>
+                            </select>                            
                         </form>
                     </div>
                 </div>

@@ -68,8 +68,18 @@ class AdminCourseController extends Controller
            
         ]);
 
-        $course = Course::findOrFail($id);
-        $course->update($request->all());
+        $course = Course::findOrFail($id);       
+
+        $course->name = $request->name;  
+        $course->class_id = $request->class_id; 
+        if($request->type=='Paid'){
+            $course->price = $request->price; 
+        }else{
+            $course->price = 0; 
+        }     
+        $course->type = $request->type;  
+
+        $course->save();
 
         return redirect()->route('admin.course.index')->with('success', 'Course updated successfully.');
     }
