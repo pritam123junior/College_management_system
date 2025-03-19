@@ -57,6 +57,12 @@
                 position: 'top right'
             });
 
+
+            $("#content-type").on("change", function(event) {
+                event.preventDefault();
+                $("#content-type-form").trigger("submit");
+            });
+
          
 
             $(document).on('click', '.content-item-action', function() {

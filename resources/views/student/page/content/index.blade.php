@@ -8,12 +8,15 @@
                     <div class="header-title">
                         <h4 class="card-title">Content List</h4>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Type Filter</label>
-                        <select name="type" id="type" class="form-control" required>
-                            <option value="Youtube Content" selected>Youtube Content</option>
-                            <option value="File Content">File Content</option>
-                        </select>
+                    <div class="form-group">                       
+                        <form id="content-type-form">
+                            <select name="type" id="content-type" class="form-control" required>
+                                <option value="">Select Content Type</option>
+                                <option value="youtube" {{ $selected_type === 'youtube' ? 'selected' : '' }}>Youtube Content
+                                </option>
+                                <option value="file" {{ $selected_type === 'file' ? 'selected' : '' }}>File Content</option>
+                            </select>                            
+                        </form>
                     </div>
                 </div>
                 <div class="card-body">

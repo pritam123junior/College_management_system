@@ -26,15 +26,15 @@
                             </thead>
                             <tbody>
                                 @foreach ($students as $student)
-                                    <tr class="{{$student->user->approve_status=='Pending'?'table-info':''}}">
+                                    <tr class="{{$student->user?->approve_status=='Pending'?'table-info':''}}">
                                         <td>{{ $student->user?->user_identity }}</td>
                                         <td>{{ $student->name }}</td>  
                                         <td>{{ $student->user?->mobile}}</td>      
                                         <td>{{ $student->class?->name }}</td>
                                         <td>{{ $student->section?->name }}</td>                                      
-                                        <td>{{$student->user->approve_status}}</td>
+                                        <td>{{$student->user?->approve_status}}</td>
                                         <td>
-                                        @if($student->user->approve_status=='Pending')
+                                        @if($student->user?->approve_status=='Pending')
                                             <a href="{{ route('admin.student.status.approved', $student->user->id) }}"
                                                 class="btn btn-success btn-sm">
                                                 <i class="bi bi-person-check"></i> Approve
@@ -44,7 +44,7 @@
                                                 <i class="bi bi-person-dash"></i> Reject
                                             </a>
                                         @else
-                                        <a href="{{ route('admin.student.status.toggle', $student->user->id) }}"
+                                        <a href="{{ route('admin.student.status.toggle', $student->user?->id) }}"
                                                 class="btn btn-primary btn-sm">
                                                <i class="bi bi-arrow-left-right"></i>
                                                
