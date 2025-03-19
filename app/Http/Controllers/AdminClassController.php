@@ -50,6 +50,7 @@ class AdminClassController extends Controller
         $request->validate([
             'name' => 'required|unique:classes,name,' . $id
         ]);
+
         $class = ClassData::find($id);
 
         $class->update(['name' => $request->name]);  
@@ -57,38 +58,12 @@ class AdminClassController extends Controller
 
         if ($request->sections) {
 
-            $current_section_ids=Section::where('class_id',$id)->get();          
-
-            foreach($current_section_ids as $current_section_id){
-                if(!in_array($current_section_id,$request->section_ids)){
-                   // Section::where('id',$current_section_id)->delete();                                      
-                }else{
-
-                }
-
-            }
-
-
-
-            $collectionn = collect($request->sections);
-            $collectioni = collect($request->section_ids);
-
-$combined = $collectioni->combine($collectionn);
-
-return $combined->all();
-
-// ['name' => 'George', 'age' => 29]
-
+            Section::where('class_id',$id)->delete();      
+        
             foreach ($request->sections as $section) {
-
-                $student = Section::find($id);
-
-                $student->update([
-                    'name' => $request->name,
-                    'class_id' => $request->class_id,
-                    'section_id' => $request->section_id                      
-                ]);
+                Section::create(['name' => $section, 'class_id' => $id]);
             }
+           
         }
 
         return redirect()->route('admin.class.index')->with('success', 'Class updated successfully!');

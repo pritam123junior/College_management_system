@@ -49,35 +49,34 @@
         <section class="login-content">
             <div class="row m-0 align-items-center bg-white vh-100">
                 <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-                    <img src="" class="img-fluid gradient-main animated-scaleX" alt="cimages">
+                    <img src="{{asset('images/auth/01.png')}}" class="img-fluid gradient-main animated-scaleX" alt="cimages">
                 </div>
                 <div class="col-md-6">
                     <div class="row justify-content-center">
                         <div class="col-md-10">
                             <div class="card card-transparent auth-card shadow-none d-flex justify-content-center mb-0">
                                 <div class="card-body">
-                                    <a href="../../dashboard/index.html"
-                                        class="navbar-brand d-flex align-items-center mb-3">
+                                    <a href="" class="navbar-brand d-flex mb-3" style="flex-direction:column;place-items:center;">
                                         <!--Logo start-->
                                         <!--logo End-->
-
+                                        
                                         <!--Logo start-->
                                         <div class="logo-main">
                                             <div class="logo-normal">
-                                                logo
+                                              <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                                             </div>
                                             <div class="logo-mini">
-                                                logo
+                                              <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                                             </div>
                                         </div>
                                         <!--logo End-->
-
-
-
-
-                                        <h4 class="logo-title ms-3">Logo Text</h4>
-                                    </a>                                                                       
-                                    <h2 class="pb-3 text-center">Student Register</h2>         
+                                        <div class="mt-2"><h4 class="logo-title" style="color:darkred;">Ronit School & College</h4></div>
+                                       
+                                        
+                                        
+                                       
+                                     </a>                                                                     
+                                    <h3 class="pb-3 text-center">Student Register</h3>         
                                     @if (session('status'))
                                         <div class="alert alert-success">
                                             {{ session('status') }}

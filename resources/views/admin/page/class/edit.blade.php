@@ -20,9 +20,7 @@
                             @foreach ($sections as $section)
                                 @if ($loop->last)
                                     <div class="form-group">
-                                        <label class="form-label">Section</label>
-                                        <input type="hidden" class="form-control" name="section_ids[]"
-                                            value="{{ $section->id }}">
+                                        <label class="form-label">Section</label>                                        
                                         <input type="text" class="form-control" name="sections[]"
                                             value="{{ $section->name }}">
                                         <button type="button" class="add-input-text-btn mt-2 btn btn-sm btn-secondary"><i
