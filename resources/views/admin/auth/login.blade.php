@@ -40,22 +40,22 @@
                   <div class="col-md-10">
                      <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
                         <div class="card-body">
-                           <a href="" class="navbar-brand d-flex align-items-center mb-3">
+                           <a href="" class="navbar-brand d-flex mb-3" style="flex-direction:column;place-items:center;">
                               <!--Logo start-->
                               <!--logo End-->
                               
                               <!--Logo start-->
                               <div class="logo-main">
                                   <div class="logo-normal">
-                                      logo
+                                    <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                                   </div>
                                   <div class="logo-mini">
-                                     logo mini
+                                    <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                                   </div>
                               </div>
                               <!--logo End-->
-                              
-                              
+                              <div class="mt-2"><h4 class="logo-title" style="color:darkred;">Ronit School & College</h4></div>
+                             
                               
                               
                              

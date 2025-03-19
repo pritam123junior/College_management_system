@@ -6,51 +6,66 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Content List</h4>
+                        <h4 class="card-title">Content List{{ $selected_type === 'file' ? '(File)' : '(Youtube)' }}</h4>
                     </div>
-                    <a href="{{ route('admin.content.create') }}" class="btn btn-primary">Add Content</a>
+                    <div class="form-group">
+                        <a href="{{ route('admin.course.content.create', $course_id) }}"
+                            class="btn btn-primary mb-2 w-100">Add Content</a>
+                        <form id="content-type-form">
+                            <select name="type" id="content-type" class="form-control" required>
+                                <option value="">Select Content Type</option>
+                                <option value="youtube" {{ $selected_type === 'youtube' ? 'selected' : '' }}>Youtube Content
+                                </option>
+                                <option value="file" {{ $selected_type === 'file' ? 'selected' : '' }}>File Content</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body">
 
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         @foreach ($contents as $content)
                             <div class="col">
+
+
                                 <div class="card">
-                                    <div class="card-header">
-                                        @if (in_array($content->file_type, ['png', 'jpg', 'jpeg', 'gif']))
-                                            <h5 class="card-title"><i class="bi bi-image"></i></h5>
-                                           
-                                        @elseif(in_array($content->file_type, ['mp3']))
-                                            <h5 class="card-title"><i class="bi bi-music-note"></i> Audio File</h5>
-                                           
-                                            
+                                    <div class="card-header py-3" style="background-color:lightblue;">
+                                        <h5 class="text-center">{{ $content->name }}</h5>
+                                    </div>
+                                    <div class="card-body" style="background-color:lavender">
+                                        @if ($content->user?->type == 'Admin')
+                                            <span class="card-text">Author: Admin</span><br>
+                                        @elseif($content->user?->type == 'Teacher')
+                                            <span class="card-text">Uploader: {{ $content->teacher?->name }}</span><br>
                                         @endif
+                                        @if ($content->file_type === 'png')
+                                            <span class="card-text">File type: Image</span><br>
+                                        @endif
+                                        <span class="card-text">Added:
+                                            {{ \Carbon\Carbon::parse($content->created_at)->format('d M, Y') }}</span>                                     
 
                                     </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $content->name }}</h5>
-                                        <span class="card-text">Description: {{ $content->description }}</span>
-                                        </br>
-                                        <span class="card-text">Class: {{ $content->class?->name }}</span> </br>
-                                        <span class="card-text">Course: {{ $content->course?->name }}</span> </br>
-                                        @if ($content->user?->type == 'Admin')
-                                            <span class="card-text">Uploaded by: Admin</span> </br>
-                                        @elseif($content->user?->type == 'Teacher')
-                                            <span class="card-text">Uploaded By: {{ $content->teacher?->name }}</span> </br>
-                                        @endif
-                                        <span>Date:{{ $content->created_at }}</span> </br>
-                                        <button type="button" class="btn btn-primary btn-sm view-content-btn"
-                                            data-bs-toggle="modal" data-bs-target="#viewContentModal">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
+                                    <div class="card-footer" style="background-color:lightsteelblue">
                                         @if ($content->type === 'file')
-                                            <a href="{{ route('admin.content.download', $content->id) }}"
+                                        <input type="hidden" class="file-mime-data" value="{{ Storage::mimeType($content->path) }}">    
+                                        <input type="hidden" class="file-data" value="data:{{ Storage::mimeType($content->path)}};base64,{{base64_encode(Storage::get($content->path))}}">
+                                            <button type="button" class="btn btn-primary btn-sm view-file-content-btn"
+                                                data-bs-toggle="modal" data-bs-target="#viewFileContentModal">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        @else
+                                            <input type="hidden" class="content-key" value="{{ $content->key }}">
+                                            <button type="button" class="btn btn-primary btn-sm view-youtube-content-btn"
+                                                data-bs-toggle="modal" data-bs-target="#viewYoutbeContentModal">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        @endif
+                                        @if ($content->type === 'file')
+                                            <a href="{{ route('admin.course.content.download', $content->id) }}"
                                                 class="btn btn-primary btn-sm"><i class="bi bi-download"></i></a>
                                         @endif
-                                    </div>
-                                    <div class="card-footer text-muted">
                                         <input type="hidden" class="row-id"
-                                            value="{{ route('admin.content.destroy', $content->id) }}">
+                                            value="{{ route('admin.course.content.destroy', $content->id) }}">
                                         <button type="button" class="btn btn-danger btn-sm delete-btn"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             <i class="bi bi-trash-fill"></i>

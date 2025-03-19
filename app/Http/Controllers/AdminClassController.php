@@ -52,9 +52,23 @@ class AdminClassController extends Controller
         ]);
         $class = ClassData::find($id);
 
-        $class->update(['name' => $request->name]);        
+        $class->update(['name' => $request->name]);  
+        
 
         if ($request->sections) {
+
+            $current_section_ids=Section::where('class_id',$id)->get();          
+
+            foreach($current_section_ids as $current_section_id){
+                if(!in_array($current_section_id,$request->section_ids)){
+                   // Section::where('id',$current_section_id)->delete();                                      
+                }else{
+
+                }
+
+            }
+
+
 
             $collectionn = collect($request->sections);
             $collectioni = collect($request->section_ids);

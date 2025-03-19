@@ -12,7 +12,7 @@
 
 
                 <div class="card-body">
-                    <form action="{{ route('admin.group.store') }}" method="POST">
+                    <form action="{{ route('admin.course.group.store',$id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -20,7 +20,7 @@
                         </div>
                                       
                         <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        
                     </form>
                 </div>
             </div>

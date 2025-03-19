@@ -40,6 +40,14 @@
     <link rel="stylesheet" href="{{ asset('css/snapAlert.min.css') }}" />
     <script src="{{ asset('js/snap-alert.min.js') }}"></script>
 
+
+    <style>
+        .content-item-action:hover {
+            color: green;
+        }
+       
+    </style>
+
     <script>
         $(document).ready(function() {
 
@@ -49,16 +57,23 @@
                 position: 'top right'
             });
 
-              $(document).on('click', '.content-name', function() {
+         
+
+            $(document).on('click', '.content-item-action', function() {
                 event.preventDefault();
-                let src_data = $(this).siblings('.content-youtube-link').val();               
+                $('.content-item-action').css('color', '#3a57e8');
+                $(this).css('color', 'green');
+                let key_data = $(this).siblings('.content-key').val();
+                let src_data='https://www.youtube.com/embed/'+key_data;                
                 $(".content-youtube-iframe").attr("src", src_data);
-                
+
             });
 
             $(".add-input-text-btn").on("click", function(event) {
                 event.preventDefault();
-                $("#dynamic-input-text").append('<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>');
+                $("#dynamic-input-text").append(
+                    '<div class="form-group"><label class="form-label">Section</label><input type="text" class="form-control" name="section[]"><button type="button" class="add-input-text-btn btn btn-secondary"><i class="bi bi-plus-circle-fill"></i></button><button type="button" class="add-input-text-btn btn btn-danger"><i class="bi bi-dash-circle-fill"></i></button></div>'
+                    );
             });
 
             @if (session()->has('success'))

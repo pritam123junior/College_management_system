@@ -7,10 +7,10 @@
              <!--Logo start-->
              <div class="logo-main">
                  <div class="logo-normal">
-                     logo
+                    <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                  </div>
                  <div class="logo-mini">
-                     logo mini
+                    <img src="{{ asset('images/logo.png') }}" style="width:4rem;height:4rem;">
                  </div>
              </div>
              <!--logo End-->
@@ -128,6 +128,7 @@
                          </i>
                          <span class="item-name">Exam</span>
                      </a>
+                 </li>
                  <li class="nav-item">
                      <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-auth" role="button"
                          aria-expanded="false" aria-controls="sidebar-user">

@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Teacher Login</title>
-      
-      <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Teacher Login</title>
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="" />
 
     <!-- Library / Plugin Css Build -->
@@ -28,78 +29,91 @@
 
     <!-- RTL Css -->
     <link rel="stylesheet" href="{{ asset('css/rtl.min.css') }}" />
-      
-      
-  </head>
-  <body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0"> 
-      <div class="wrapper">
-      <section class="login-content">
-         <div class="row m-0 align-items-center bg-white vh-100">            
-            <div class="col-md-6">
-               <div class="row justify-content-center">
-                  <div class="col-md-10">
-                     <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
-                        <div class="card-body">
-                           <a href="" class="navbar-brand d-flex align-items-center mb-3">
-                              <!--Logo start-->
-                              <!--logo End-->
-                              
-                              <!--Logo start-->
-                              <div class="logo-main">
-                                  <div class="logo-normal">
-                                      logo
-                                  </div>
-                                  <div class="logo-mini">
-                                     logo mini
-                                  </div>
-                              </div>
-                              <!--logo End-->
-                              
-                              
-                              
-                              
-                            
-                           </a>
-                           <h2 class="mb-5 text-center">Teacher Login</h2>                          
-                           <form action="{{url('teacher/login')}}" method="POST">
-                           @csrf
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="user_id" class="form-label">User ID</label>
-                                       <input type="text" class="form-control" id="user_id" aria-describedby="user_id" placeholder="Enter User ID" name="user_id">
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                       <label for="password" class="form-label">Password</label>
-                                       <input type="password" class="form-control" id="password" aria-describedby="password" placeholder="Enter Password" name="password">
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-12 d-flex justify-content-between">
-                                    <div class="form-check mb-3">
-                                       <input type="checkbox" class="form-check-input" id="customCheck1" name="remember">
-                                       <label class="form-check-label" for="customCheck1">Remember Me</label>
-                                    </div>                                    
-                                 </div>
-                              </div>
-                              <div class="d-flex justify-content-center">
-                                 <button type="submit" class="btn btn-primary">Login</button>
-                              </div>                   
-                           </form>
+
+
+</head>
+
+<body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="row m-0 align-items-center bg-white vh-100">
+                <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                                <div class="card-body">
+                                    <a href="" class="navbar-brand d-flex mb-3"
+                                        style="flex-direction:column;place-items:center;">
+                                        <!--Logo start-->
+                                        <!--logo End-->
+
+                                        <!--Logo start-->
+                                        <div class="logo-main">
+                                            <div class="logo-normal">
+                                                <img src="{{ asset('images/logo.png') }}"
+                                                    style="width:4rem;height:4rem;">
+                                            </div>
+                                            <div class="logo-mini">
+                                                <img src="{{ asset('images/logo.png') }}"
+                                                    style="width:4rem;height:4rem;">
+                                            </div>
+                                        </div>
+                                        <!--logo End-->
+                                        <div class="mt-2">
+                                            <h4 class="logo-title" style="color:darkred;">Ronit School & College</h4>
+                                        </div>
+
+
+
+
+                                    </a>
+                                    <h2 class="mb-5 text-center">Teacher Login</h2>
+                                    <form action="{{ url('teacher/login') }}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="user_id" class="form-label">User ID</label>
+                                                    <input type="text" class="form-control" id="user_id"
+                                                        aria-describedby="user_id" placeholder="Enter User ID"
+                                                        name="user_id">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="password" class="form-control" id="password"
+                                                        aria-describedby="password" placeholder="Enter Password"
+                                                        name="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 d-flex justify-content-between">
+                                                <div class="form-check mb-3">
+                                                    <input type="checkbox" class="form-check-input" id="customCheck1"
+                                                        name="remember">
+                                                    <label class="form-check-label" for="customCheck1">Remember
+                                                        Me</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-primary">Login</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>               
+                    </div>
+                </div>
+                <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
+                    <img src="{{ asset('images/auth/01.png') }}" class="img-fluid gradient-main animated-scaleX"
+                        alt="images">
+                </div>
             </div>
-            <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-               <img src="{{asset('images/auth/01.png')}}" class="img-fluid gradient-main animated-scaleX" alt="images">
-            </div>
-         </div>
-      </section>
-      </div>
-    
-     <!-- Library Bundle Script -->
+        </section>
+    </div>
+
+    <!-- Library Bundle Script -->
     <script src="{{ asset('js/core/libs.min.js') }}"></script>
 
     <!-- External Library Bundle Script -->
@@ -129,6 +143,7 @@
 
     <!-- App Script -->
     <script src="{{ asset('js/hope-ui.js') }}" defer></script>
-    
-  </body>
+
+</body>
+
 </html>

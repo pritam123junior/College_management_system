@@ -20,14 +20,19 @@
                                         alt="" style="height:10rem;">
                                     <div class="card-body" style="background-color:lavender">
                                         <h5 class="card-title">{{ $course->name }}</h5>
-                                        <span class="card-text">Class:{{ $course->class->name }}</span><br>
-                                        <span class="card-text">Price:{{ $course->price>0?$course->price.' BDT':'N/A' }}</span><br>
-                                        <span class="card-text">Type:{{ $course->type }}</span>
+                                        <span class="card-text">Class: {{ $course->class->name }}</span><br>
+                                        <span
+                                            class="card-text">Price: {{ $course->price > 0 ? $course->price . ' BDT' : 'N/A' }}</span><br>
+                                        <span class="card-text">Type: {{ $course->type }}</span>
 
                                     </div>
                                     <div class="card-footer" style="background-color:#cbd3d3">
                                         <a href="{{ route('admin.course.edit', $course->id) }}"
                                             class="btn btn-warning btn-sm"> <i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ route('admin.course.content.index', $course->id) }}"
+                                            class="btn btn-secondary btn-sm"><i class="bi bi-folder"></i></a>
+                                        <a href="{{ route('admin.course.group.list', $course->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="bi bi-collection"></i></a>
                                         <input type="hidden" class="row-id"
                                             value="{{ route('admin.course.destroy', $course->id) }}">
                                         <button type="button" class="btn btn-danger btn-sm delete-btn"

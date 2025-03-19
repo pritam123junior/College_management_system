@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\YoutubeGroup;
+use App\Models\Group;
 
-class YoutubeGroupController extends Controller
+class GroupController extends Controller
 {
     // Display list of YouTube Groups
     public function index()
     {
-        $groups = YoutubeGroup::all();
-        return view('youtube_groups.index', compact('groups'));
+        $groups = Group::all();
+        return view('groups.index', compact('groups'));
     }
 
     // Show form to create a new group
