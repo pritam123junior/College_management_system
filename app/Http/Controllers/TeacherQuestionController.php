@@ -26,7 +26,16 @@ class TeacherQuestionController extends Controller
     {
        
   
-        
+        $questions=  Question::create(['user_id' => Auth::id(),
+        'exam_id' => $question->exam_id,
+        'question_text' => $question->question_text,
+        'option_1' => $question->option_1,
+        'option_2' => $question->option_2,
+        'option_3' => $question->option_3,
+        'option_4' => $question->option_4,
+        'correct_option' => is_array($question->correct_option) ? implode(',', $request->correct_option) : $request->correct_option,
+        'marks' => $question->marks,
+        'solution' => $question->solution]);
         if ($request->questions) {
             foreach ($request->questions as $question) {
                 Question::create(['user_id' => Auth::id(),
