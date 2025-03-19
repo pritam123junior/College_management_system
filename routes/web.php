@@ -110,23 +110,27 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'tea
         Route::prefix('course')->name('course.')->group(function () {
             Route::get('index', [TeacherCourseController::class, 'index'])->name('index');
             Route::get('/view/{id}', [TeacherCourseController::class, 'view'])->name('view');
+
+            Route::prefix('group')->name('group.')->group(function () {
+                Route::get('/{id}', [TeacherContentController::class, 'groupList'])->name('list');
+                Route::get('/create/{id}', [TeacherContentController::class, 'groupCreate'])->name('create');
+                Route::post('/store/{id}', [TeacherContentController::class, 'groupStore'])->name('store');
+                Route::get('/edit/{id}', [TeacherContentController::class, 'groupEdit'])->name('edit');
+                Route::put('/update/{id}', [TeacherContentController::class, 'groupUpdate'])->name('update');
+                Route::delete('/delete/{id}', [TeacherContentController::class, 'groupDestroy'])->name('destroy');
+            });
+    
+            Route::prefix('content')->name('content.')->group(function () {
+                Route::get('/{course_id}', [TeacherContentController::class, 'index'])->name('index');
+                Route::get('/create/{course_id}', [TeacherContentController::class, 'create'])->name('create');
+                Route::post('/store/{course_id}', [TeacherContentController::class, 'store'])->name('store');    
+                Route::get('/download/{id}', [TeacherContentController::class, 'download'])->name('download');      
+                Route::delete('/destroy/{id}', [TeacherContentController::class, 'destroy'])->name('destroy');
+            });
          
         });
-   Route::prefix('content')->name('content.')->group(function () {
-            Route::get('index', [TeacherContentController::class, 'index'])->name('index');
-            Route::get('/create', [TeacherContentController::class, 'create'])->name('create');
-            Route::post('/store', [TeacherContentController::class, 'store'])->name('store');
-            Route::get('/download/{id}', [TeacherContentController::class, 'download'])->name('download');
-            Route::delete('/destroy/{id}', [TeacherContentController::class, 'destroy'])->name('destroy');
-        });
-        Route::prefix('group')->name('group.')->group(function () {
-            Route::get('/', [TeacherContentController::class, 'groupList'])->name('list');
-            Route::get('/create', [TeacherContentController::class, 'groupCreate'])->name('create');
-            Route::post('/store', [TeacherContentController::class, 'groupStore'])->name('store');
-            Route::get('/edit/{id}', [TeacherContentController::class, 'groupEdit'])->name('edit');
-            Route::put('/update/{id}', [TeacherContentController::class, 'groupUpdate'])->name('update');
-            Route::delete('/delete/{id}', [TeacherContentController::class, 'groupDestroy'])->name('destroy');
-        });
+  
+        
         Route::prefix('exam')->name('exam.')->group(function () {
             Route::get('index', [ExamController::class, 'index'])->name('index');
             Route::get('/create', [ExamController::class, 'create'])->name('create');
@@ -143,31 +147,10 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'tea
             Route::put('/update/{id}', [TeacherQuestionController::class, 'update'])->name('update');
             Route::delete('/destroy/{id}', [TeacherQuestionController::class, 'destroy'])->name('destroy');
         });
-        Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
-            Route::post('section', [TeacherAjaxDataController::class, 'section'])->name('section');
-            Route::post('course', [TeacherAjaxDataController::class, 'course'])->name('course');
-        });
+      
+    
 
-    Route::prefix('course')->name('course.')->group(function () {
-        Route::get('index', [TeacherCourseController::class, 'index'])->name('index');
-        Route::get('/view/{id}', [TeacherCourseController::class, 'view'])->name('view');
 
-    });
-    Route::prefix('content')->name('content.')->group(function () {
-        Route::get('index', [TeacherContentController::class, 'index'])->name('index');
-        Route::get('/create', [TeacherContentController::class, 'create'])->name('create');
-        Route::post('/store', [TeacherContentController::class, 'store'])->name('store');
-        Route::get('/download/{id}', [TeacherContentController::class, 'download'])->name('download');
-        Route::delete('/destroy/{id}', [TeacherContentController::class, 'destroy'])->name('destroy');
-    });
-    Route::prefix('group')->name('group.')->group(function () {
-        Route::get('/', [TeacherContentController::class, 'groupList'])->name('list');
-        Route::get('/create', [TeacherContentController::class, 'groupCreate'])->name('create');
-        Route::post('/store', [TeacherContentController::class, 'groupStore'])->name('store');
-        Route::get('/edit/{id}', [TeacherContentController::class, 'groupEdit'])->name('edit');
-        Route::put('/update/{id}', [TeacherContentController::class, 'groupUpdate'])->name('update');
-        Route::delete('/delete/{id}', [TeacherContentController::class, 'groupDestroy'])->name('destroy');
-    });
 
     Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
         Route::post('section', [TeacherAjaxDataController::class, 'section'])->name('section');
@@ -187,18 +170,11 @@ Route::middleware(['auth', 'verified', 'student_auth_check'])->group(function ()
         Route::get('/view/{id}', [CourseController::class, 'view'])->name('view');
     });
     Route::prefix('content')->name('content.')->group(function () {
-        
-        Route::get('/{course_id}', [ContentController::class, 'index'])->name('index');
+        Route::get('index', [ContentController::class, 'index'])->name('index');
+        //  Route::get('list/{id}', [ContentController::class, 'index'])->name('index');
         Route::get('add/{id}', [TeacherContentController::class, 'add'])->name('add');
         Route::post('store/{id}', [TeacherContentController::class, 'store'])->name('store');
         Route::delete('delete/{id}', [TeacherContentController::class, 'delete'])->name('delete');
-
-
-       
-        Route::get('/create/{course_id}', [AdminContentController::class, 'create'])->name('create');
-        Route::post('/store/{course_id}', [AdminContentController::class, 'store'])->name('store');    
-        Route::get('/download/{id}', [AdminContentController::class, 'download'])->name('download');      
-        Route::delete('/destroy/{id}', [AdminContentController::class, 'destroy'])->name('destroy');
 
     });
 
@@ -215,5 +191,6 @@ Route::prefix('public/ajaxdata')->name('public.ajaxdata.')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); */
 
+//test
 
 require __DIR__.'/auth.php';

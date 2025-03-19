@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Models\ClassData;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
-
 
 
 class AdminContentController extends Controller
@@ -143,7 +143,7 @@ class AdminContentController extends Controller
     }
     public function groupList($id)
     {
-          $groups = Group::with('course')->get();
+         $groups = Group::with('course')->where('course_id',$id)->get();
         return view('admin.page.group.index', compact('groups','id'));
     }
 

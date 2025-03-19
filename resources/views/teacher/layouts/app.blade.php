@@ -53,6 +53,25 @@
                 position: 'top right'
             });
 
+             $(".view-file-content-btn").on("click", function(event) {
+                event.preventDefault();
+                let file_data = $(this).siblings('.file-data').val();
+                let file_mime_data = $(this).siblings('.file-mime-data').val();
+                $(".view-file-content").attr("type", file_mime_data);
+                $(".view-file-content").attr("data", file_data);
+            });
+
+            $(".view-youtube-content-btn").on("click", function(event) {
+                event.preventDefault();
+                let key_data = $(this).siblings('.content-key').val();
+                let src_data = 'https://www.youtube.com/embed/' + key_data;
+                $(".content-youtube-iframe").attr("src", src_data);
+            });
+
+            $("#content-type").on("change", function(event) {
+                event.preventDefault();
+                $("#content-type-form").trigger("submit");
+            });
 
               $(document).on('click', '.add-question-btn', function() {
                 event.preventDefault();
@@ -68,10 +87,7 @@
                
             });
 
-            $(document).on('click', '.remove-input-text-btn', function() {
-                event.preventDefault();
-                $(this).parent('div.dynamic-input').remove();
-            });
+          
            
 
             $(document).on('click', '.add-input-text-btn', function() {
@@ -136,6 +152,50 @@
                         <button class="btn btn-danger">
                             <i class="bi bi-trash-fill"></i> Delete</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- View File Content Modal -->
+    <div class="modal fade" id="viewFileContentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <object class="view-file-content" type="" data="" width="100%" height="100%">
+                    </object>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- View Youtbe Content Modal -->
+    <div class="modal fade" id="viewYoutbeContentModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="100%" src="" class="content-youtube-iframe"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 
 
                 <div class="card-body">
-                    <form action="{{ route('teacher.group.store') }}" method="POST">
+                    <form action="{{ route('teacher.course.group.store',$id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
