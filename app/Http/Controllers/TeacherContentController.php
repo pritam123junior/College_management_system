@@ -10,37 +10,54 @@ use App\Models\Group;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Response;
+
 
 class TeacherContentController extends Controller
 {
   
-    public function index()
+    public function index($course_id,Request $request)
     {
-        $contents = Content::get(); 
-        return view('teacher.page.content.index', compact('contents'));
+                if($request->type=='file'){
+                    $contents = Content::where('course_id',$course_id)->where('type','file')->get();
+                    $selected_type='file';
+                }
+                elseif($request->type=='youtube'){
+                    $contents = Content::where('course_id',$course_id)->where('type','youtube')->get();
+                    $selected_type='youtube';
+                }
+                else{
+                    $contents = Content::where('course_id',$course_id)->where('type','youtube')->get();
+                    $selected_type='';
+                }
+                
+        
+
+        return view('teacher.page.content.index', compact('contents','course_id','selected_type'));
     }
 
-    public function create()
+    public function create($course_id)
     {
-        $classes = ClassData::get(); 
-        $youtube_groups=Group::get();
+        
+        $groups=Group::where('course_id',$course_id)->get();
 
-        return view('teacher.page.content.create', compact('classes','youtube_groups'));
+        return view('teacher.page.content.create', compact('course_id','groups'));
     }
 
-    public function store(Request $request)
+    public function store($course_id,Request $request)
     {
+
+        
         $request->validate([
             'name' => ['required','string','max:255'],
-            'description' => ['nullable','string'],
-            'class_id'=>['required'],
-            'course_id' => ['nullable'],
-            'file_content' => ['nullable','max:51200'],
-            'youtube_link' => ['nullable','string'],  
-            'group_id' => ['nullable'],          
+            'description' => ['nullable','string']               
         ]);    
         
         if($request->file_content){
+
+            $request->validate([                         
+                'file_content' => ['required','max:51200']                         
+            ]); 
         
         $folder = 'contents'.'/'.Str::lower(Auth::user()->type);
 
@@ -57,23 +74,32 @@ class TeacherContentController extends Controller
         $type='file';
 
         $key = '';
+
+        $url="/teacher/course/content/$course_id?type=file";
        
         }else{
+
+            $request->validate([                
+                'youtube_link' => ['required','string'],  
+                'group_id' => ['required'],          
+            ]); 
+
             $path='';
             $file_type='';
-            $type='youtube_link';
+            $type='youtube';
 
             $url = parse_url($request->youtube_link, PHP_URL_QUERY);
             parse_str($url, $params);
             $key = $params['v'];
+
+            $url="/teacher/course/content/$course_id?type=youtube";
         }
 
-
+            
             Content::create([
                 'name'=>$request->name,
-                'description'=>$request->description,
-                'class_id' => $request->class_id,
-                'course_id' => $request->course_id,
+                'description'=>$request->description,                
+                'course_id' => $course_id,
                 'user_id' => Auth::id(),  
                 'user_type' => Auth::user()->type,              
                 'path' => $path,
@@ -85,52 +111,62 @@ class TeacherContentController extends Controller
             ]);
 
          
-        
-        
 
-
-
-
-        return redirect()->route('teacher.content.index')->with('success', 'Content added successfully.');
+            return redirect($url)->with('success', 'Content added successfully.');
     }
 
     public function download($id)
     {
-       return $id; $path=Content::where('id',$id)->value('path');
+        $path=Content::where('id',$id)->value('path');
 
         return Storage::download($path);
+
         
     }
 
 
     public function destroy($id)
     {
+        
+        $content=Content::where('id',$id)->first();
+        $course_id=$content->course_id;
+        if($content->type=='file'){
+            $url="/teacher/course/content/$course_id?type=file";
+        }else{
+            $url="/teacher/course/content/$course_id?type=youtube";
+        }
+
         Content::destroy($id);
 
-        return redirect()->route('teacher.content.index')->with('success', 'Content deleted successfully!');
+        
+
+        return redirect($url)->with('success', 'Content deleted successfully!');
     }
-    public function groupList()
+    public function groupList($id)
     {
-        $groups = Group::all();
-        return view('teacher.page.group.index', compact('groups'));
+        $groups = Group::with('course')->where('course_id',$id)->get();
+        return view('teacher.page.group.index', compact('groups','id'));
     }
 
     // Show form to create a new group
-    public function groupCreate()
+    public function groupCreate($id)
     {
-        return view('teacher.page.group.create');
+        return view('teacher.page.group.create',compact('id'));
     }
 
     // Store a newly created group
-    public function groupStore(Request $request)
+    public function groupStore($id,Request $request)
     {
         $request->validate([
             'name' => 'required',
         ]);
 
-        Group::create($request->all());
+        Group::create([
+            'name'=>$request->name,            
+            'course_id' => $id          
+        ]);
 
-        return redirect()->route('teacher.group.list')
+        return redirect()->route('teacher.course.group.list',$id)
                          ->with('success', 'Group created successfully.');
     }
 
@@ -140,30 +176,43 @@ class TeacherContentController extends Controller
     // Show form to edit an existing group
     public function groupEdit($id)
     { 
-        $group = Group::findOrFail($id);
+
+        $group = Group::find($id);
+
         return view('teacher.page.group.edit', compact('group'));
     }
 
     // Update an existing group
-    public function groupUpdate(Request $request, $id)
+    public function groupUpdate($id,Request $request)
     {
         $request->validate([
             'name' => ['required' ],
         ]);
 
-        $group = Group::findOrFail($id);
-        $group->update($request->all());
+        $group = Group::find($id);
 
-        return redirect()->route('teacher.group.list')->with('success', 'Group updated successfully.');
+        $course_id=Group::where('id',$group->id)->value('course_id');
+
+        $group->update([
+            'name'=>$request->name         
+        ]);       
+        
+
+        return redirect()->route('teacher.course.group.list',$course_id)->with('success', 'Group updated successfully.');
     }
 
     // Delete a group
     public function groupDestroy($id)
     {
-        $group = Group::findOrFail($id);
+        $group = Group::find($id);
+
+        $course_id=Group::where('id',$group->id)->value('course_id');
+
         $group->delete();
 
-        return redirect()->route('teacher.group.list')
+        
+
+        return redirect()->route('teacher.course.group.list',$course_id)
                          ->with('success', 'Group deleted successfully.');
     }
 

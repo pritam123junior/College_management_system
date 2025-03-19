@@ -10,7 +10,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('teacher.content.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('teacher.course.content.store', $course_id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>
@@ -19,21 +20,6 @@
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="class_id" class="form-label">Class</label>
-                            <select name="class_id" id="class_id" class="form-control" required>
-                                <option value="">Select Class</option>
-                                @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="course_id" class="form-label">Course</label>
-                            <select name="course_id" id="course_id" class="form-control">
-                                <option value="">Select Course</option>
-                            </select>
                         </div>
                         <div class="form-group">
                             <label for="type_id" class="form-label">Type</label>
@@ -58,14 +44,13 @@
                                 <label for="group_id" class="form-label">Group Name</label>
                                 <select id="group_id" class="form-control" name="group_id">
                                     <option value="">Select Group</option>
-                                    @foreach ($youtube_groups as $youtube_group)
-                                        <option value="{{ $youtube_group->id }}">{{ $youtube_group->name }}</option>
+                                    @foreach ($groups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
                                     @endforeach
-                                </select>                                
+                                </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>                        
                     </form>
                 </div>
             </div>
@@ -74,31 +59,6 @@
 @endsection
 @push('scripts')
     <script>
-        $("#class_id").on("change", function() {
-
-            $("#course_id").html("");
-            $("#course_id").html('<option value="">Select Course</option>');
-
-            $.ajax({
-
-                url: "{{ route('teacher.ajaxdata.course') }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    class_id: $("#class_id option:selected").val()
-                },
-                success: function(data) {
-                    for (const item of data) {
-                        let html_code = '<option value="' + item.id + '">' + item.name +
-                            '</option>';
-                        $("#course_id").append(html_code);
-                    }
-                }
-
-            });
-
-        });
-
         $("#type_id").on("change", function() {
 
             let type = $("#type_id option:selected").val();
@@ -110,9 +70,9 @@
                 }
 
                 $('.youtube-link-show').addClass("d-none");
-                $( "#file_content" ).attr( "required", true );
-                 $( "#youtube_link" ).attr( "required", false );
-                
+                $("#file_content").attr("required", true);
+                $("#youtube_link").attr("required", false);
+
 
 
             } else if (type === 'youtube_link') {
@@ -122,17 +82,17 @@
 
                 }
 
-                $('.content-upload-show').addClass("d-none");                
-                $( "#youtube_link" ).attr( "required", true );
-                $( "#group_id" ).attr( "required", true );
-                 $( "#file_content" ).attr( "required", false );
+                $('.content-upload-show').addClass("d-none");
+                $("#youtube_link").attr("required", true);
+                $("#group_id").attr("required", true);
+                $("#file_content").attr("required", false);
 
             } else {
                 $('.content-upload-show').addClass("d-none");
                 $('.youtube-link-show').addClass("d-none");
-                 $( "#youtube_link" ).attr( "required", false );
-                $( "#group_id" ).attr( "required", false );
-                 $( "#file_content" ).attr( "required", false );
+                $("#youtube_link").attr("required", false);
+                $("#group_id").attr("required", false);
+                $("#file_content").attr("required", false);
             }
 
 
