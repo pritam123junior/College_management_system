@@ -52,6 +52,26 @@
                 isDark: false,
                 position: 'top right'
             });
+
+
+              $(document).on('click', '.add-question-btn', function() {
+                event.preventDefault();
+              let question_number=  $('.question-number').val();
+              let i=2;
+                while(question_number>0){
+                    $(".question-list").append(
+                        '<section class="bg-light p-4 single-question"><div class=form-group><label class=form-label for=name>Question '+i+'</label> <input class=form-control id=name name=name placeholder="Enter Question"required></div><div class=form-group><label class=form-label for=name>Option 1</label> <input class=form-control id=name name=name placeholder="Enter Option 1"required></div><div class=form-group><label class=form-label for=name>Option 2</label> <input class=form-control id=name name=name placeholder="Enter Option 2"required></div><div class=form-group><label class=form-label for=name>Option 3</label> <input class=form-control id=name name=name placeholder="Enter Option 3"required></div><div class=form-group><label class=form-label for=name>Option 4</label> <input class=form-control id=name name=name placeholder="Enter Option 4"required></div><div class=form-group><label class=form-label for=name>Correct Option</label> <select class=form-control name="Correct Option"required><option value="Option 1">Option 1<option value="Option 2">Option 2<option value="Option 3">Option 3<option value="Option 4">Option 4</select></div><div class=form-group><label class=form-label for=name>Solution</label> <input class=form-control id=name name=name placeholder=Solution required></div></section>'
+                    );
+                    question_number--;
+                    i++;
+                }
+               
+            });
+
+            $(document).on('click', '.remove-input-text-btn', function() {
+                event.preventDefault();
+                $(this).parent('div.dynamic-input').remove();
+            });
            
 
             $(document).on('click', '.add-input-text-btn', function() {

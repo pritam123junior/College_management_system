@@ -20,7 +20,8 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\PublicAjaxDataController;
 use App\Http\Controllers\TeacherAjaxDataController;
-
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\TeacherQuestionController;
 
 //admin
 
@@ -130,8 +131,22 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified','teac
             Route::put('/update/{id}', [TeacherContentController::class, 'groupUpdate'])->name('update');
             Route::delete('/delete/{id}', [TeacherContentController::class, 'groupDestroy'])->name('destroy');
         });
-        
-        
+        Route::prefix('exam')->name('exam.')->group(function () {
+            Route::get('index', [ExamController::class, 'index'])->name('index');
+            Route::get('/create', [ExamController::class, 'create'])->name('create');
+            Route::post('/store', [ExamController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [ExamController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [ExamController::class, 'update'])->name('update');
+            Route::delete('/destroy/{id}', [ExamController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('question')->name('question.')->group(function () {
+            Route::get('index', [TeacherQuestionController::class, 'index'])->name('index');
+            Route::get('/create', [TeacherQuestionController::class, 'create'])->name('create');
+            Route::post('/store', [TeacherQuestionController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [TeacherQuestionController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [TeacherQuestionController::class, 'update'])->name('update');
+            Route::delete('/destroy/{id}', [TeacherQuestionController::class, 'destroy'])->name('destroy');
+        });
         Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
             Route::post('section', [TeacherAjaxDataController::class, 'section'])->name('section');
             Route::post('course', [TeacherAjaxDataController::class, 'course'])->name('course');
