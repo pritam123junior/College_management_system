@@ -40,7 +40,7 @@ class AdminTeacherController extends Controller
         ]);
 
         User::where('id', $user->id)            
-            ->update(['user_id' => 't'.$user->id]);
+            ->update(['user_identity' => 't'.$user->id]);
 
         return redirect()->route('admin.teacher.index')->with('success', 'Teacher added successfully.');
     }
@@ -56,8 +56,7 @@ class AdminTeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-
+      
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -67,7 +66,7 @@ class AdminTeacherController extends Controller
 
         $teacher = teacher::find($id);   
         
-        $user = User::find($teacher->id); 
+        $user = User::find($teacher->user_id); 
         $user->email = $request->email;  
         if($request->password){
             $user->password = $request->password; 

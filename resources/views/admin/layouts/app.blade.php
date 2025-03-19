@@ -84,7 +84,7 @@
             });
 
 
-            $("#content-type").on("click", function(event) {
+            $("#content-type").on("change", function(event) {
                 event.preventDefault();
                 $("#content-type-form").trigger("submit");
             });
@@ -162,14 +162,14 @@
     <!-- View Youtbe Content Modal -->
     <div class="modal fade" id="viewYoutbeContentModal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Content</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <iframe width="100%" height="315" src="" class="content-youtube-iframe"
+                    <iframe width="100%" height="100%" src="" class="content-youtube-iframe"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

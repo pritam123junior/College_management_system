@@ -82,7 +82,7 @@
                       <a class="py-0 nav-link d-flex align-items-center" href="#" id="navbarDropdown"
                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <div class="caption ms-3 d-none d-md-block ">
-                              <h6 class="mb-0 caption-title">Mr. Admin</h6>
+                              <h6 class="mb-0 caption-title">Admin</h6>
                               
                           </div>
                       </a>

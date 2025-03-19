@@ -27,23 +27,23 @@
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                    <option value="{{ $class->id }}" {{ $course->class_id==$class->id?'selected':'' }}>{{ $class->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="type" class="form-label">Course Type</label>
+                            <label for="type" class="form-label">Type</label>
                             <select class="form-select" id="type" name="type" required>
                                 <option value ="">Select Type</option>
 
-                                <option value="paid" {{ $course->type == 'paid' ? 'selected' : '' }}>Paid</option>
-                                <option value="free" {{ $course->type == 'free' ? 'selected' : '' }}>Free</option>
+                                <option value="Paid" {{ $course->type == 'Paid' ? 'selected' : '' }}>Paid</option>
+                                <option value="Free" {{ $course->type == 'Free' ? 'selected' : '' }}>Free</option>
                             </select>
-                        </div>
-                        <div class="form-group priceshow d-none">
+                        </div>                        
+                        <div class="form-group priceshow @if($course->type=='Free') d-none @endif">
                             <label for="price" class="form-label">Price (BDT)</label>
                             <input type="text" class="form-control" id="price" name="price"
-                                value="{{ $class->price }}">
+                                value="{{ $course->price }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary">update</button>
@@ -53,14 +53,15 @@
         </div>
     </div>
 @endsection
-
 @push('scripts')
     <script>
-        $("#type").on("change", function() {
+        $("#type").on("change", function() {            
 
-            let type = $("#type option:selected").val();
+            let type = $("#type option:selected").val();            
 
-            if (type === 'Paid') {
+            if (type === 'Paid') {   
+
+               
 
                 $('.priceshow').removeClass("d-none");
 
@@ -77,13 +78,7 @@
 
 
 
-            } else {
-
-                $('.priceshow').addClass("d-none");
-
-                $("#price").attr("required", false);
-
-            }
+            } 
 
 
 

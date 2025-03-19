@@ -15,7 +15,7 @@
                         <table id="basic-table" class="table table-striped mb-0" role="grid">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Student ID</th>
                                     <th>Name</th>  
                                     <th>Mobile</th>                   
                                     <th>Class</th>
@@ -27,7 +27,7 @@
                             <tbody>
                                 @foreach ($students as $student)
                                     <tr class="{{$student->user->approve_status=='Pending'?'table-info':''}}">
-                                        <td>{{ $student->id }}</td>
+                                        <td>{{ $student->user?->user_identity }}</td>
                                         <td>{{ $student->name }}</td>  
                                         <td>{{ $student->user?->mobile}}</td>      
                                         <td>{{ $student->class?->name }}</td>

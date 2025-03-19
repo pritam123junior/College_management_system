@@ -118,7 +118,7 @@ class AdminContentController extends Controller
     {
         $path=Content::where('id',$id)->value('path');
 
-        return response()->file($path);
+        return Storage::download($path);
 
         
     }
@@ -126,9 +126,20 @@ class AdminContentController extends Controller
 
     public function destroy($id)
     {
+        
+        $content=Content::where('id',$id)->first();
+        $course_id=$content->course_id;
+        if($content->type=='file'){
+            $url="/admin/course/content/$course_id?type=file";
+        }else{
+            $url="/admin/course/content/$course_id?type=youtube";
+        }
+
         Content::destroy($id);
 
-        return redirect()->route('admin.content.index')->with('success', 'Content deleted successfully!');
+        
+
+        return redirect($url)->with('success', 'Content deleted successfully!');
     }
     public function groupList($id)
     {
