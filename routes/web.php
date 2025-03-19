@@ -175,7 +175,7 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'tea
         Route::post('course', [TeacherAjaxDataController::class, 'course'])->name('course');
     });
 
-});
+
 
 // student
 Route::middleware(['auth', 'verified', 'student_auth_check'])->group(function () {
