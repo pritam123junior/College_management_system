@@ -18,8 +18,13 @@ class StudentAuthCheck
     {
         if(Auth::user()->type==='Student'){
             return $next($request);
-        }else{
-            abort(403);
         }
+        elseif(Auth::user()->type==='Admin'){
+            return redirect()->route('admin.dashboard');
+        }
+        elseif(Auth::user()->type==='Teacher'){
+            return redirect()->route('teacher.dashboard');
+        }
+        
     }
 }

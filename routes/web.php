@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // admin
 
-//Route::get('ghfghgh', [CourseController::class, 'index'])->name('admin.course.content.index');
-
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'admin_auth_check'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['admin_auth_check','auth','admin_auth_check'])->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('class')->name('class.')->group(function () {
@@ -97,7 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'admin_a
 
 // teacher
 
-Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'teacher_auth_check'])->group(function () {
+Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'teacher_auth_check'])->group(function () {
 
     Route::get('dashboard', [TeacherDashboardController::class, 'index'])->name('dashboard');
     // content
@@ -160,7 +158,8 @@ Route::prefix('teacher')->name('teacher.')->middleware(['auth', 'verified', 'tea
   });
 
 // student
-Route::middleware(['auth', 'verified', 'student_auth_check'])->group(function () {
+Route::middleware(['auth', 'student_auth_check'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // content
@@ -178,6 +177,12 @@ Route::middleware(['auth', 'verified', 'student_auth_check'])->group(function ()
     });
 
 });
+
+
+
+
+
+
 
 Route::prefix('public/ajaxdata')->name('public.ajaxdata.')->group(function () {
     Route::post('section', [PublicAjaxDataController::class, 'publicSection'])->name('section');
