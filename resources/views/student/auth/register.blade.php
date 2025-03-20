@@ -218,9 +218,8 @@
                 $.ajax({
 
                     url: "{{ route('ajaxdata.section') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
+                    type: "GET",
+                    data: {                        
                         class_id: $("#class_id option:selected").val()
                     },
                     success: function(data) {
