@@ -13,6 +13,10 @@
                     <form action="{{ route('admin.teacher.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
+                            <label>Teacher ID</label>
+                            <input type="text" name="teacher_id" class="form-control" required>
+                        </div>
+                        <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>

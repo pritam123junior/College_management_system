@@ -87,6 +87,13 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
+                                                    <label for="student_id" class="form-label">Student ID</label>
+                                                    <input type="text" class="form-control" id="student_id"
+                                                        placeholder="Enter your Student ID" name="student_id">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
                                                     <label for="fullName" class="form-label">Full Name</label>
                                                     <input type="text" class="form-control" id="fullName"
                                                         placeholder="Enter your name" name="name">
@@ -210,7 +217,7 @@
 
                 $.ajax({
 
-                    url: "{{ route('public.ajaxdata.section') }}",
+                    url: "{{ route('ajaxdata.section') }}",
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",

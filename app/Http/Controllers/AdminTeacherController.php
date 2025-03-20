@@ -21,13 +21,15 @@ class AdminTeacherController extends Controller
     public function store(Request $request)
     {  
         $request->validate([
+            'teacher_id' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required'],           
             'mobile' => ['required', 'string', 'max:255']            
         ]);
 
-        $user = User::create([            
+        $user = User::create([  
+            'teacher_id' => $request->teacher_id,           
             'password' => Hash::make($request->password),
             'type' => 'Teacher',
             'email' => $request->email,              
@@ -38,9 +40,7 @@ class AdminTeacherController extends Controller
             'name' => $request->name,
             'user_id' => $user->id           
         ]);
-
-        User::where('id', $user->id)            
-            ->update(['user_identity' => 't'.$user->id]);
+       
 
         return redirect()->route('admin.teacher.index')->with('success', 'Teacher added successfully.');
     }
@@ -58,6 +58,7 @@ class AdminTeacherController extends Controller
     {
       
         $request->validate([
+            'teacher_id' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['nullable'],           
@@ -67,9 +68,10 @@ class AdminTeacherController extends Controller
         $teacher = teacher::find($id);   
         
         $user = User::find($teacher->user_id); 
+        $user->teacher_id = $request->teacher_id;   
         $user->email = $request->email;  
         if($request->password){
-            $user->password = $request->password; 
+            $user->password = Hash::make($request->password);
         }     
         $user->mobile = $request->mobile;  
         $user->save();

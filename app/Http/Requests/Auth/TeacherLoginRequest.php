@@ -21,7 +21,7 @@ class TeacherLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_identity' => ['required', 'string'],
+            'teacher_id' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
 
@@ -31,11 +31,11 @@ class TeacherLoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('user_identity', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('teacher_id', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'user_identity' => trans('auth.failed'),
+                'teacher_id' => trans('auth.failed'),
             ]);
         }
 
@@ -54,7 +54,7 @@ class TeacherLoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-                'user_identity' => trans('auth.throttle', [
+                'teacher_id' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -66,7 +66,7 @@ class TeacherLoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('user_identity')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('teacher_id')).'|'.$this->ip());
     }
 
     

@@ -14,6 +14,10 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            <label>Teacher ID</label>
+                            <input type="text" name="name" class="form-control" value="{{$teacher->teacher_id}}" required>
+                        </div>
+                        <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" class="form-control" value="{{$teacher->name}}" required>
                         </div>

@@ -11,7 +11,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PublicAjaxDataController;
+use App\Http\Controllers\AjaxDataController;
 use App\Http\Controllers\TeacherAjaxDataController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\TeacherQuestionController;
@@ -184,9 +184,13 @@ Route::middleware(['auth', 'student_auth_check'])->group(function () {
 
 
 
-Route::prefix('public/ajaxdata')->name('public.ajaxdata.')->group(function () {
-    Route::post('section', [PublicAjaxDataController::class, 'publicSection'])->name('section');
+Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
+    Route::post('section', [AjaxDataController::class, 'section'])->name('section');
 });
+
+
+
+
 
 
 /* Route::middleware('auth')->group(function () {

@@ -26,6 +26,7 @@ class AdminStudentController extends Controller
     public function store(Request $request)
     {  
         $request->validate([
+            'student_id' => ['required', 'string'],
             'name' => ['required', 'string'],
             'password' => ['required', 'string'],
             'class_id' => ['required'],
@@ -34,23 +35,20 @@ class AdminStudentController extends Controller
             'approve_status' => ['required', 'string']
         ]);
 
-        $user = User::create([            
+        $user = User::create([   
+            'student_id' => $request->student_id,         
             'password' => Hash::make($request->password),
             'mobile' => $request->mobile, 
             'type' => 'Student',
             'approve_status' => $request->approve_status
         ]);
 
-        Student::create([
+        Student::create([           
             'name' => $request->name,
             'user_id' => $user->id,
             'class_id' => $request->class_id,
             'section_id' => $request->section_id                    
-        ]);
-
-        User::where('id', $user->id)            
-            ->update(['user_identity' => 's'.$user->id]);      
-
+        ]);          
 
 
         return redirect()->route('admin.student.index')->with('success', 'Student added successfully.');
@@ -71,6 +69,7 @@ class AdminStudentController extends Controller
     {
              
         $request->validate([
+            'student_id' => ['required', 'string'],
             'name' => ['required', 'string'],
             'password' => ['nullable', 'string'],
             'class_id' => ['required'],
@@ -82,14 +81,15 @@ class AdminStudentController extends Controller
         $student = Student::find($id);      
 
         $user = User::find($student->user_id); 
+        $user->student_id = $request->student_id; 
         $user->approve_status = $request->approve_status;  
         if($request->password){
-            $user->password = $request->password; 
+            $user->password = Hash::make($request->password);
         }     
         $user->mobile = $request->mobile;  
         $user->save();
 
-        $student->update([
+        $student->update([            
             'name' => $request->name,
             'class_id' => $request->class_id,
             'section_id' => $request->section_id                      
