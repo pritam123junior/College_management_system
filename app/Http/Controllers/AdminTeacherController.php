@@ -21,7 +21,7 @@ class AdminTeacherController extends Controller
     public function store(Request $request)
     {  
         $request->validate([
-            'teacher_id' => ['required', 'string'],
+            'user_teacher_id' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required'],           
@@ -29,7 +29,7 @@ class AdminTeacherController extends Controller
         ]);
 
         $user = User::create([  
-            'teacher_id' => $request->teacher_id,           
+            'user_teacher_id' => $request->user_teacher_id,           
             'password' => Hash::make($request->password),
             'type' => 'Teacher',
             'email' => $request->email,              
@@ -58,7 +58,7 @@ class AdminTeacherController extends Controller
     {
       
         $request->validate([
-            'teacher_id' => ['required', 'string'],
+            'user_teacher_id' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['nullable'],           
@@ -68,7 +68,7 @@ class AdminTeacherController extends Controller
         $teacher = teacher::find($id);   
         
         $user = User::find($teacher->user_id); 
-        $user->teacher_id = $request->teacher_id;   
+        $user->user_teacher_id = $request->user_teacher_id;   
         $user->email = $request->email;  
         if($request->password){
             $user->password = Hash::make($request->password);

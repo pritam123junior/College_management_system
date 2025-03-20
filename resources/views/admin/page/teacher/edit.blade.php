@@ -15,7 +15,7 @@
                         @method('PUT')
                         <div class="form-group">
                             <label>Teacher ID</label>
-                            <input type="text" name="name" class="form-control" value="{{$teacher->teacher_id}}" required>
+                            <input type="text" name="user_teacher_id" class="form-control" value="{{$teacher->user?->user_teacher_id}}" required>
                         </div>
                         <div class="form-group">
                             <label>Name</label>

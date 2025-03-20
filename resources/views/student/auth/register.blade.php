@@ -87,9 +87,9 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="student_id" class="form-label">Student ID</label>
-                                                    <input type="text" class="form-control" id="student_id"
-                                                        placeholder="Enter your Student ID" name="student_id" required>
+                                                    <label for="user_student_id" class="form-label">Student ID</label>
+                                                    <input type="text" class="form-control" id="user_student_id"
+                                                        placeholder="Enter your Student ID" name="user_student_id" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">

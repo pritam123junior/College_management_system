@@ -26,7 +26,7 @@ class AdminStudentController extends Controller
     public function store(Request $request)
     {  
         $request->validate([
-            'student_id' => ['required', 'string'],
+            'user_student_id' => ['required', 'string'],
             'name' => ['required', 'string'],
             'password' => ['required', 'string'],
             'class_id' => ['required'],
@@ -36,7 +36,7 @@ class AdminStudentController extends Controller
         ]);
 
         $user = User::create([   
-            'student_id' => $request->student_id,         
+            'user_student_id' => $request->user_student_id,         
             'password' => Hash::make($request->password),
             'mobile' => $request->mobile, 
             'type' => 'Student',
@@ -69,7 +69,7 @@ class AdminStudentController extends Controller
     {
              
         $request->validate([
-            'student_id' => ['required', 'string'],
+            'user_student_id' => ['required', 'string'],
             'name' => ['required', 'string'],
             'password' => ['nullable', 'string'],
             'class_id' => ['required'],
@@ -81,7 +81,7 @@ class AdminStudentController extends Controller
         $student = Student::find($id);      
 
         $user = User::find($student->user_id); 
-        $user->student_id = $request->student_id; 
+        $user->user_student_id = $request->user_student_id; 
         $user->approve_status = $request->approve_status;  
         if($request->password){
             $user->password = Hash::make($request->password);

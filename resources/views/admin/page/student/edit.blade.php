@@ -14,9 +14,9 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="student_id" class="form-label">Student ID</label>
-                            <input type="text" name="student_id" id="student_id" class="form-control"
-                                placeholder="Enter Student ID" value="{{ $student->id }}" required>
+                            <label for="user_student_id" class="form-label">Student ID</label>
+                            <input type="text" name="user_student_id" id="user_student_id" class="form-control"
+                                placeholder="Enter Student ID" value="{{ $student->user?->user_student_id }}" required>
                         </div>
                         <div class="form-group">
                             <label for="name" class="form-label">Student Name</label>

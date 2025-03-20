@@ -27,7 +27,7 @@
                             <tbody>
                                 @foreach ($students as $student)
                                     <tr class="{{$student->user?->approve_status=='Pending'?'table-info':''}}">
-                                        <td>{{ $student->user?->user_identity }}</td>
+                                        <td>{{ $student->user?->user_student_id }}</td>
                                         <td>{{ $student->name }}</td>  
                                         <td>{{ $student->user?->mobile}}</td>      
                                         <td>{{ $student->class?->name }}</td>

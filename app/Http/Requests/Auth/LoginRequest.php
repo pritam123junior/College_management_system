@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'student_id' => ['required', 'string'],
+            'user_student_id' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -37,21 +37,21 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $approve_status=User::where('student_id',$this->only('student_id'))->value('approve_status');
+        $approve_status=User::where('user_student_id',$this->only('user_student_id'))->value('approve_status');
 
         if($approve_status==='Pending'||$approve_status==='Not Approved'){
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'student_id' => trans('auth.failed'),
+                'user_student_id' => trans('auth.failed'),
             ]);
         }           
 
-        if ( !Auth::attempt($this->only('student_id', 'password'), $this->boolean('remember') )) {
+        if ( !Auth::attempt($this->only('user_student_id', 'password'), $this->boolean('remember') )) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'student_id' => trans('auth.failed'),
+                'user_student_id' => trans('auth.failed'),
             ]);
         }
 
@@ -76,7 +76,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'student_id' => trans('auth.throttle', [
+            'user_student_id' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -88,7 +88,7 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('student_id')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('user_student_id')).'|'.$this->ip());
     }
 
 

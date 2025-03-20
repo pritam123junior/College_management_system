@@ -14,7 +14,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Teacher ID</label>
-                            <input type="text" name="teacher_id" class="form-control" required>
+                            <input type="text" name="user_teacher_id" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Name</label>

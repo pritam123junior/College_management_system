@@ -73,10 +73,10 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <label for="student_id" class="form-label">Student ID</label>
-                                                    <input type="text" class="form-control" id="student_id"
-                                                        aria-describedby="student_id" placeholder="Enter Student ID"
-                                                        name="student_id">
+                                                    <label for="user_student_id" class="form-label">Student ID</label>
+                                                    <input type="text" class="form-control" id="user_student_id"
+                                                        aria-describedby="user_student_id" placeholder="Enter Student ID"
+                                                        name="user_student_id">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
