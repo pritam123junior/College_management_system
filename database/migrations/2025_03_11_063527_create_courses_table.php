@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
              $table->id();
-             $table->foreignId('class_id');
-
-            
+             $table->foreignId('class_id')->nullable();
+             $table->foreignId('section_name')->nullable();            
              $table->string('name')->unique();
             $table->longText('description')->nullable();
             $table->decimal('price',10,2)->nullable();           

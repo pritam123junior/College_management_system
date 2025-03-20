@@ -30,6 +30,12 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="section_name" class="form-label">Section</label>
+                            <select name="section_name" id="section_name" class="form-control " required>
+                                <option value="">Select Section</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Type</label>
                             <select name="type" id="type" class="form-control" required>
                                 <option value ="">Select Type</option>
@@ -41,8 +47,7 @@
                             <label>Price (BDT)</label>
                             <input type="number" name="price" class="form-control" id="price" step="any">
                         </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="submit" class="btn btn-danger">cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>                        
                     </form>
                 </div>
             </div>
@@ -55,7 +60,7 @@
 
             let type = $("#type option:selected").val();
 
-            if (type === 'Paid') {   
+            if (type === 'Paid') {
 
                 $('.priceshow').removeClass("d-none");
 
@@ -81,6 +86,30 @@
             }
 
 
+
+        });
+
+        $("#class_id").on("change", function() {
+
+            $("#section_name").html("");
+            $("#section_name").html('<option value="">Select Section</option>');
+
+            $.ajax({
+
+                url: "{{ route('admin.ajaxdata.section') }}",
+                type: "GET",
+                data: {
+                    class_id: $("#class_id option:selected").val()
+                },
+                success: function(data) {
+                    for (const item of data) {
+                        let html_code = '<option value="' + item.name + '">' + item.name +
+                            '</option>';
+                        $("#section_name").append(html_code);
+                    }
+                }
+
+            });
 
         });
     </script>

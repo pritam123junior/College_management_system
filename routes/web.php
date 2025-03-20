@@ -19,6 +19,7 @@ use App\Http\Controllers\TeacherClassController;
 use App\Http\Controllers\TeacherContentController;
 use App\Http\Controllers\TeacherCourseController;
 use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Controllers\AdminSystemController;
 use Illuminate\Support\Facades\Route;
 
 // admin
@@ -86,10 +87,13 @@ Route::prefix('admin')->name('admin.')->middleware(['admin_auth_check','auth','a
     });
 
     Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
-        Route::post('section', [AdminAjaxDataController::class, 'section'])->name('section');
-        Route::post('course', [AdminAjaxDataController::class, 'course'])->name('course');
-        Route::post('file', [AdminAjaxDataController::class, 'file'])->name('file');
+        Route::get('section', [AdminAjaxDataController::class, 'section'])->name('section');
+        Route::get('course', [AdminAjaxDataController::class, 'course'])->name('course');
+        
     });
+
+
+    Route::get('clear', [AdminSystemController::class, 'clear']);
 
 });
 
@@ -180,12 +184,8 @@ Route::middleware(['auth', 'student_auth_check'])->group(function () {
 
 
 
-
-
-
-
 Route::prefix('ajaxdata')->name('ajaxdata.')->group(function () {
-    Route::post('section', [AjaxDataController::class, 'section'])->name('section');
+    Route::get('section', [AjaxDataController::class, 'section'])->name('section');
 });
 
 

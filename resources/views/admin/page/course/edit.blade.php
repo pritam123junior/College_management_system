@@ -27,7 +27,18 @@
                             <select name="class_id" id="class_id" class="form-control" required>
                                 <option value="">Select Class</option>
                                 @foreach ($classes as $class)
-                                    <option value="{{ $class->id }}" {{ $course->class_id==$class->id?'selected':'' }}>{{ $class->name }}</option>
+                                    <option value="{{ $class->id }}" {{ $course->class_id == $class->id ? 'selected' : '' }}>
+                                        {{ $class->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="section_name" class="form-label">Section</label>
+                            <select name="section_name" id="section_name" class="form-control" required>
+                                <option value="">Select Section</option>
+                                @foreach ($sections as $section)
+                                    <option value="{{ $section->name }}"
+                                        {{ $course->section_name == $section->name ? 'selected' : '' }}>{{ $section->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -39,8 +50,8 @@
                                 <option value="Paid" {{ $course->type == 'Paid' ? 'selected' : '' }}>Paid</option>
                                 <option value="Free" {{ $course->type == 'Free' ? 'selected' : '' }}>Free</option>
                             </select>
-                        </div>                        
-                        <div class="form-group priceshow @if($course->type=='Free') d-none @endif">
+                        </div>
+                        <div class="form-group priceshow @if ($course->type == 'Free') d-none @endif">
                             <label for="price" class="form-label">Price (BDT)</label>
                             <input type="text" class="form-control" id="price" name="price"
                                 value="{{ $course->price }}">
@@ -55,13 +66,13 @@
 @endsection
 @push('scripts')
     <script>
-        $("#type").on("change", function() {            
+        $("#type").on("change", function() {
 
-            let type = $("#type option:selected").val();            
+            let type = $("#type option:selected").val();
 
-            if (type === 'Paid') {   
+            if (type === 'Paid') {
 
-               
+
 
                 $('.priceshow').removeClass("d-none");
 
@@ -78,9 +89,33 @@
 
 
 
-            } 
+            }
 
 
+
+        });
+
+        $("#class_id").on("change", function() {
+
+            $("#section_name").html("");
+            $("#section_name").html('<option value="">Select Section</option>');
+
+            $.ajax({
+
+                url: "{{ route('admin.ajaxdata.section') }}",
+                type: "GET",
+                data: {
+                    class_id: $("#class_id option:selected").val()
+                },
+                success: function(data) {
+                    for (const item of data) {
+                        let html_code = '<option value="' + item.name + '">' + item.name +
+                            '</option>';
+                        $("#section_name").append(html_code);
+                    }
+                }
+
+            });
 
         });
     </script>

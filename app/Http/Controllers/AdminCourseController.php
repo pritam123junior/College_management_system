@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\ClassData;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class AdminCourseController extends Controller
@@ -17,22 +18,14 @@ class AdminCourseController extends Controller
     {   
           $classes=ClassData::all();
         return view('admin.page.course.create' , compact('classes'));
-    }
-    public function courseCreate($id)
-    {      $course = Course::find($id);
-       
-        return view('admin.page.course.create' , compact('course'));
-    }
-    public function classcreate($id)
-    {    $class = Course::find($id);
-        
-        return view('admin.page.course.create' , compact('class'));
-    }
+    }    
+   
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required','string','max:255'],
             'class_id'=>['nullable'],
+            'section_name'=>['nullable'],
             'description' => ['nullable','string'],
             'price' => ['nullable','string'],            
             'type' => ['required'],
@@ -40,6 +33,7 @@ class AdminCourseController extends Controller
 
         Course::create([
             'class_id'=>$request->class_id,
+            'section_name'=>$request->section_name,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,            
@@ -52,16 +46,18 @@ class AdminCourseController extends Controller
 
     public function edit($id)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::find($id);
         $classes = classData::all();
-        return view('admin.page.course.edit', compact('course' , 'classes'));
+        $sections = Section::where('class_id',$course->class_id)->get();
+        return view('admin.page.course.edit', compact('course' , 'classes','sections'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => ['required','string','max:255'],
-            'class_id'=>['required'],
+            'class_id'=>['nullable'],
+            'section_name'=>['nullable'],
             'description' => ['nullable','string'],
             'price' => ['nullable','string'],            
             'type' => ['required'],
@@ -72,6 +68,7 @@ class AdminCourseController extends Controller
 
         $course->name = $request->name;  
         $course->class_id = $request->class_id; 
+        $course->section_name = $request->section_name;
         if($request->type=='Paid'){
             $course->price = $request->price; 
         }else{
