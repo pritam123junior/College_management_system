@@ -89,14 +89,14 @@
                                                 <div class="form-group">
                                                     <label for="student_id" class="form-label">Student ID</label>
                                                     <input type="text" class="form-control" id="student_id"
-                                                        placeholder="Enter your Student ID" name="student_id">
+                                                        placeholder="Enter your Student ID" name="student_id" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="fullName" class="form-label">Full Name</label>
                                                     <input type="text" class="form-control" id="fullName"
-                                                        placeholder="Enter your name" name="name">
+                                                        placeholder="Enter your name" name="name" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -110,7 +110,7 @@
                                                 <div class="form-group">
                                                     <label for="password" class="form-label">Password</label>
                                                     <input type="password" class="form-control" id="password"
-                                                        placeholder="Enter password" name="password">
+                                                        placeholder="Enter password" name="password" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -118,7 +118,7 @@
                                                     <label for="confirm-password" class="form-label">Confirm
                                                         Password</label>
                                                     <input type="password" class="form-control" name="confirm_password"
-                                                        id="confirm-password" placeholder="Enter password again">
+                                                        id="confirm-password" placeholder="Enter password again" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
